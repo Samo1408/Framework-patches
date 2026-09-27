@@ -1,0 +1,32 @@
+{
+  "id": "pixel_10_pro_xl",
+  "brandLabel": "Google",
+  "modelLabel": "Pixel 10 Pro XL",
+  "summary": "Tensor G5 - Android 16",
+  "profile": {
+    "bootloader": "mustang-1.0-13450100",
+    "baseband": "g5500a-260218-B-13400050",
+    "brand": "google",
+    "manufacturer": "Google",
+    "model": "Pixel 10 Pro XL",
+    "productName": "mustang",
+    "deviceCode": "mustang",
+    "board": "mustang",
+    "hardware": "mustang",
+    "boardPlatform": "ripcurrent",
+    "buildFingerprint": "google/mustang/mustang:16/AP4A.250405.001/13500000:user/release-keys",
+    "buildId": "AP4A.250405.001",
+    "buildDisplayId": "AP4A.250405.001",
+    "buildIncremental": "13500000",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "mustang-user 16 AP4A.250405.001 13500000 release-keys",
+    "buildFlavor": "mustang-user",
+    "buildProduct": "mustang",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Google Tensor G5",
+    "socManufacturer": "Google",
+    "buildHost": "android-build-147.oneplus.com",
+    "buildUser": "build",
+    "buildTags": "release-keys"
+  }
+}
