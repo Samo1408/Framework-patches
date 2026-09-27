@@ -1,0 +1,32 @@
+{
+  "id": "nubia_z60_ultra",
+  "brandLabel": "nubia",
+  "modelLabel": "nubia Z60 Ultra",
+  "summary": "Snapdragon 8 Gen 3 - Android 14",
+  "profile": {
+    "bootloader": "nubia_nx721j-01.0-12896415",
+    "baseband": "nubia_nx721j-baseband-12896415",
+    "brand": "nubia",
+    "manufacturer": "nubia",
+    "model": "nubia Z60 Ultra",
+    "productName": "nubia_nx721j",
+    "deviceCode": "nubia_nx721j",
+    "board": "nubia_nx721j",
+    "hardware": "nubia_nx721j",
+    "boardPlatform": "nubia_nx721j",
+    "buildFingerprint": "nubia/nubia_nx721j/nubia_nx721j:14/UP1A.231005.007/12896415:user/release-keys",
+    "buildId": "UP1A.231005.007",
+    "buildDisplayId": "UP1A.231005.007",
+    "buildIncremental": "12896415",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "nubia_nx721j-user 14 UP1A.231005.007 12896415 release-keys",
+    "buildFlavor": "nubia_nx721j-user",
+    "buildProduct": "nubia_nx721j",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Gen 3",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "jenkins-999.android.com",
+    "buildUser": "jenkins",
+    "buildTags": "release-keys,ota"
+  }
+}
