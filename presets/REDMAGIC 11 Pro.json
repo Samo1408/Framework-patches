@@ -1,0 +1,32 @@
+{
+  "id": "redmagic_11_pro",
+  "brandLabel": "nubia",
+  "modelLabel": "REDMAGIC 11 Pro",
+  "summary": "Snapdragon 8 Elite Gen 5 - Android 16",
+  "profile": {
+    "bootloader": "nx799j-01.0-12965370",
+    "baseband": "nx799j-baseband-12965370",
+    "brand": "nubia",
+    "manufacturer": "nubia",
+    "model": "REDMAGIC 11 Pro",
+    "productName": "nx799j",
+    "deviceCode": "nx799j",
+    "board": "nx799j",
+    "hardware": "nx799j",
+    "boardPlatform": "nx799j",
+    "buildFingerprint": "nubia/nx799j/nx799j:16/BP2A.250805.003/12965370:user/release-keys",
+    "buildId": "BP2A.250805.003",
+    "buildDisplayId": "BP2A.250805.003",
+    "buildIncremental": "12965370",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "nx799j-user 16 BP2A.250805.003 12965370 release-keys",
+    "buildFlavor": "nx799j-user",
+    "buildProduct": "nx799j",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Elite Gen 5",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "ci-666.oneplus.com",
+    "buildUser": "jenkins",
+    "buildTags": "release-keys,release-keys"
+  }
+}
