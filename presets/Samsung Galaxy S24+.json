@@ -1,0 +1,32 @@
+{
+  "id": "samsung_galaxy_s24",
+  "brandLabel": "Samsung",
+  "modelLabel": "Samsung Galaxy S24+",
+  "summary": "Exynos 2400 - Android 14",
+  "profile": {
+    "bootloader": "e2s-01.0-12027582",
+    "baseband": "e2s-baseband-12027582",
+    "brand": "samsung",
+    "manufacturer": "Samsung",
+    "model": "Samsung Galaxy S24+",
+    "productName": "e2s",
+    "deviceCode": "e2s",
+    "board": "e2s",
+    "hardware": "e2s",
+    "boardPlatform": "e2s",
+    "buildFingerprint": "samsung/e2s/e2s:14/UP1A.231005.007/12027582:user/release-keys",
+    "buildId": "UP1A.231005.007",
+    "buildDisplayId": "UP1A.231005.007",
+    "buildIncremental": "12027582",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "e2s-user 14 UP1A.231005.007 12027582 release-keys",
+    "buildFlavor": "e2s-user",
+    "buildProduct": "e2s",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Exynos 2400",
+    "socManufacturer": "Samsung",
+    "buildHost": "builder-888.vivo.com",
+    "buildUser": "android-build",
+    "buildTags": "release-keys,ota"
+  }
+}
