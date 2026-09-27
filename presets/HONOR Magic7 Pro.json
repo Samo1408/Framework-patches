@@ -1,0 +1,32 @@
+{
+  "id": "honor_magic7_pro",
+  "brandLabel": "HONOR",
+  "modelLabel": "HONOR Magic7 Pro",
+  "summary": "Snapdragon 8 Elite - Android 15",
+  "profile": {
+    "bootloader": "mahon-01.0-12551640",
+    "baseband": "mahon-baseband-12551640",
+    "brand": "honor",
+    "manufacturer": "HONOR",
+    "model": "HONOR Magic7 Pro",
+    "productName": "mahon",
+    "deviceCode": "mahon",
+    "board": "mahon",
+    "hardware": "mahon",
+    "boardPlatform": "mahon",
+    "buildFingerprint": "honor/mahon/mahon:15/AP3A.241205.015/12551640:user/release-keys",
+    "buildId": "AP3A.241205.015",
+    "buildDisplayId": "AP3A.241205.015",
+    "buildIncremental": "12551640",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "mahon-user 15 AP3A.241205.015 12551640 release-keys",
+    "buildFlavor": "mahon-user",
+    "buildProduct": "mahon",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Elite",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "jenkins-873.vivo.com",
+    "buildUser": "jenkins",
+    "buildTags": "release-keys,verified"
+  }
+}
