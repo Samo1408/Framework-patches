@@ -1,0 +1,32 @@
+{
+  "id": "motorola_razr_60_ultra",
+  "brandLabel": "motorola",
+  "modelLabel": "Motorola Razr 60 Ultra",
+  "summary": "Snapdragon 8 Elite - Android 15",
+  "profile": {
+    "bootloader": "mars-01.0-12758505",
+    "baseband": "mars-baseband-12758505",
+    "brand": "motorola",
+    "manufacturer": "motorola",
+    "model": "Motorola Razr 60 Ultra",
+    "productName": "mars",
+    "deviceCode": "mars",
+    "board": "mars",
+    "hardware": "mars",
+    "boardPlatform": "mars",
+    "buildFingerprint": "motorola/mars/mars:15/AP3A.241205.015/12758505:user/release-keys",
+    "buildId": "AP3A.241205.015",
+    "buildDisplayId": "AP3A.241205.015",
+    "buildIncremental": "12758505",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "mars-user 15 AP3A.241205.015 12758505 release-keys",
+    "buildFlavor": "mars-user",
+    "buildProduct": "mars",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Elite",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "buildkite-411.google.com",
+    "buildUser": "android-build",
+    "buildTags": "release-keys,ota"
+  }
+}
