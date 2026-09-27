@@ -1,0 +1,32 @@
+{
+  "id": "vivo_x100_ultra",
+  "brandLabel": "vivo",
+  "modelLabel": "vivo X100 Ultra",
+  "summary": "Snapdragon 8 Gen 3 - Android 14",
+  "profile": {
+    "bootloader": "thunder-01.0-12468894",
+    "baseband": "thunder-baseband-12468894",
+    "brand": "vivo",
+    "manufacturer": "vivo",
+    "model": "vivo X100 Ultra",
+    "productName": "thunder",
+    "deviceCode": "thunder",
+    "board": "thunder",
+    "hardware": "thunder",
+    "boardPlatform": "thunder",
+    "buildFingerprint": "vivo/thunder/thunder:14/UP1A.231005.007/12468894:user/release-keys",
+    "buildId": "UP1A.231005.007",
+    "buildDisplayId": "UP1A.231005.007",
+    "buildIncremental": "12468894",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "thunder-user 14 UP1A.231005.007 12468894 release-keys",
+    "buildFlavor": "thunder-user",
+    "buildProduct": "thunder",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Gen 3",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "android-build-237.oneplus.com",
+    "buildUser": "builder",
+    "buildTags": "release-keys"
+  }
+}
