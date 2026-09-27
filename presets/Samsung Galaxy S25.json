@@ -1,0 +1,32 @@
+{
+  "id": "samsung_galaxy_s25",
+  "brandLabel": "Samsung",
+  "modelLabel": "Samsung Galaxy S25",
+  "summary": "Snapdragon 8 Elite for Galaxy - Android 15",
+  "profile": {
+    "bootloader": "pa1s-01.0-12110328",
+    "baseband": "pa1s-baseband-12110328",
+    "brand": "samsung",
+    "manufacturer": "Samsung",
+    "model": "Samsung Galaxy S25",
+    "productName": "pa1s",
+    "deviceCode": "pa1s",
+    "board": "pa1s",
+    "hardware": "pa1s",
+    "boardPlatform": "pa1s",
+    "buildFingerprint": "samsung/pa1s/pa1s:15/AP3A.241205.015/12110328:user/release-keys",
+    "buildId": "AP3A.241205.015",
+    "buildDisplayId": "AP3A.241205.015",
+    "buildIncremental": "12110328",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "pa1s-user 15 AP3A.241205.015 12110328 release-keys",
+    "buildFlavor": "pa1s-user",
+    "buildProduct": "pa1s",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Elite for Galaxy",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "ci-875.xiaomi.com",
+    "buildUser": "jenkins",
+    "buildTags": "release-keys,verified"
+  }
+}
