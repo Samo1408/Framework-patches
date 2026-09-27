@@ -1,0 +1,32 @@
+{
+  "id": "oneplus_13r",
+  "brandLabel": "OnePlus",
+  "modelLabel": "OnePlus 13R",
+  "summary": "Snapdragon 8 Gen 3 - Android 15",
+  "profile": {
+    "bootloader": "cph2645-01.0-12262029",
+    "baseband": "cph2645-baseband-12262029",
+    "brand": "oneplus",
+    "manufacturer": "OnePlus",
+    "model": "OnePlus 13R",
+    "productName": "cph2645",
+    "deviceCode": "cph2645",
+    "board": "cph2645",
+    "hardware": "cph2645",
+    "boardPlatform": "cph2645",
+    "buildFingerprint": "oneplus/cph2645/cph2645:15/AP3A.241205.015/12262029:user/release-keys",
+    "buildId": "AP3A.241205.015",
+    "buildDisplayId": "AP3A.241205.015",
+    "buildIncremental": "12262029",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "cph2645-user 15 AP3A.241205.015 12262029 release-keys",
+    "buildFlavor": "cph2645-user",
+    "buildProduct": "cph2645",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Gen 3",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "jenkins-725.oneplus.com",
+    "buildUser": "aosp",
+    "buildTags": "release-keys"
+  }
+}
