@@ -1,0 +1,32 @@
+{
+  "id": "nubia_z70_ultra",
+  "brandLabel": "nubia",
+  "modelLabel": "nubia Z70 Ultra",
+  "summary": "Snapdragon 8 Elite - Android 15",
+  "profile": {
+    "bootloader": "nubia_nx731j-01.0-12910206",
+    "baseband": "nubia_nx731j-baseband-12910206",
+    "brand": "nubia",
+    "manufacturer": "nubia",
+    "model": "nubia Z70 Ultra",
+    "productName": "nubia_nx731j",
+    "deviceCode": "nubia_nx731j",
+    "board": "nubia_nx731j",
+    "hardware": "nubia_nx731j",
+    "boardPlatform": "nubia_nx731j",
+    "buildFingerprint": "nubia/nubia_nx731j/nubia_nx731j:15/AP3A.241205.015/12910206:user/release-keys",
+    "buildId": "AP3A.241205.015",
+    "buildDisplayId": "AP3A.241205.015",
+    "buildIncremental": "12910206",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "nubia_nx731j-user 15 AP3A.241205.015 12910206 release-keys",
+    "buildFlavor": "nubia_nx731j-user",
+    "buildProduct": "nubia_nx731j",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Elite",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "buildkite-933.honor.com",
+    "buildUser": "release",
+    "buildTags": "release-keys,release-keys"
+  }
+}
