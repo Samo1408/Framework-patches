@@ -1,0 +1,32 @@
+{
+  "id": "sony_xperia_1_vii",
+  "brandLabel": "Sony",
+  "modelLabel": "Sony Xperia 1 VII",
+  "summary": "Snapdragon 8 Elite - Android 15",
+  "profile": {
+    "bootloader": "PDX256-01.0-12648177",
+    "baseband": "PDX256-baseband-12648177",
+    "brand": "sony",
+    "manufacturer": "Sony",
+    "model": "Sony Xperia 1 VII",
+    "productName": "PDX256",
+    "deviceCode": "PDX256",
+    "board": "PDX256",
+    "hardware": "PDX256",
+    "boardPlatform": "PDX256",
+    "buildFingerprint": "sony/PDX256/PDX256:15/AP3A.241205.015/12648177:user/release-keys",
+    "buildId": "AP3A.241205.015",
+    "buildDisplayId": "AP3A.241205.015",
+    "buildIncremental": "12648177",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "PDX256-user 15 AP3A.241205.015 12648177 release-keys",
+    "buildFlavor": "PDX256-user",
+    "buildProduct": "PDX256",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Elite",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "jenkins-463.oneplus.com",
+    "buildUser": "release",
+    "buildTags": "release-keys,verified"
+  }
+}
