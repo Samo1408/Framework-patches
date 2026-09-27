@@ -1,0 +1,32 @@
+{
+  "id": "oneplus_open",
+  "brandLabel": "OnePlus",
+  "modelLabel": "OnePlus Open",
+  "summary": "Snapdragon 8 Gen 2 - Android 14",
+  "profile": {
+    "bootloader": "cupid-01.0-12234447",
+    "baseband": "cupid-baseband-12234447",
+    "brand": "oneplus",
+    "manufacturer": "OnePlus",
+    "model": "OnePlus Open",
+    "productName": "cupid",
+    "deviceCode": "cupid",
+    "board": "cupid",
+    "hardware": "cupid",
+    "boardPlatform": "cupid",
+    "buildFingerprint": "oneplus/cupid/cupid:14/UP1A.231005.007/12234447:user/release-keys",
+    "buildId": "UP1A.231005.007",
+    "buildDisplayId": "UP1A.231005.007",
+    "buildIncremental": "12234447",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "cupid-user 14 UP1A.231005.007 12234447 release-keys",
+    "buildFlavor": "cupid-user",
+    "buildProduct": "cupid",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Gen 2",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "builder-367.sony.com",
+    "buildUser": "android-build",
+    "buildTags": "release-keys,verified"
+  }
+}
