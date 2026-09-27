@@ -1,0 +1,12 @@
+{
+  "schema": "official_verified_device_profile_v1",
+  "verification": "official_manufacturer_or_google_source",
+  "device": {
+    "brand": "Motorola",
+    "model": "motorola razr 60 ultra",
+    "soc": "Qualcomm Snapdragon 8 Elite Mobile Platform",
+    "os": "Android 15",
+    "androidVersion": 15,
+    "source": "https://en-us.support.motorola.com/app/answers/detail/a_id/185980/~/specifications---motorola-razr-60-ultra"
+  }
+}
