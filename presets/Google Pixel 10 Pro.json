@@ -1,0 +1,32 @@
+{
+  "id": "pixel_10_pro",
+  "brandLabel": "Google",
+  "modelLabel": "Pixel 10 Pro",
+  "summary": "Tensor G5 - Android 16",
+  "profile": {
+    "bootloader": "blazer-1.0-13450100",
+    "baseband": "g5500a-260218-B-13400050",
+    "brand": "google",
+    "manufacturer": "Google",
+    "model": "Pixel 10",
+    "productName": "blazer",
+    "deviceCode": "blazer",
+    "board": "blazer",
+    "hardware": "blazer",
+    "boardPlatform": "ripcurrent",
+    "buildFingerprint": "google/blazer/blazer:16/AP4A.250405.001/13500000:user/release-keys",
+    "buildId": "AP4A.250405.001",
+    "buildDisplayId": "AP4A.250405.001",
+    "buildIncremental": "13500000",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "blazer-user 16 AP4A.250405.001 13500000 release-keys",
+    "buildFlavor": "blazer-user",
+    "buildProduct": "blazer",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Google Tensor G5",
+    "socManufacturer": "Google",
+    "buildHost": "builder-255.google.com",
+    "buildUser": "jenkins",
+    "buildTags": "release-keys,release-keys"
+  }
+}
