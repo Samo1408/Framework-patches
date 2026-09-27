@@ -1,0 +1,32 @@
+{
+  "id": "pixel_6",
+  "brandLabel": "Google",
+  "modelLabel": "Pixel 6",
+  "summary": "Tensor G1 - Android 15",
+  "profile": {
+    "bootloader": "slider-13.2-11224652",
+    "baseband": "g5123b-97423-231121-B-10961416",
+    "brand": "google",
+    "manufacturer": "Google",
+    "model": "Pixel 6",
+    "productName": "oriole",
+    "deviceCode": "oriole",
+    "board": "oriole",
+    "hardware": "oriole",
+    "boardPlatform": "gs101",
+    "buildFingerprint": "google/oriole/oriole:15/AP3A.240905.015/12326511:user/release-keys",
+    "buildId": "AP3A.240905.015",
+    "buildDisplayId": "AP3A.240905.015",
+    "buildIncremental": "12326511",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "oriole-user 15 AP3A.240905.015 12326511 release-keys",
+    "buildFlavor": "oriole-user",
+    "buildProduct": "oriole",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Google Tensor",
+    "socManufacturer": "Google",
+    "buildHost": "android-build-275.android.com",
+    "buildUser": "build",
+    "buildTags": "release-keys"
+  }
+}
