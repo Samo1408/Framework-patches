@@ -12,9 +12,20 @@ API="${API:-34}"
 [[ -f "$BAKSMALI_JAR" ]] || { echo "Missing $BAKSMALI_JAR" >&2; exit 2; }
 [[ -f "$SMALI_JAR" ]] || { echo "Missing $SMALI_JAR" >&2; exit 2; }
 
-WORK="$(mktemp -d)"
-trap 'rm -rf "$WORK"' EXIT
-mkdir -p "$WORK/jar" "$WORK/dex" "$WORK/out"
+if [[ -n "${WORK_DIR:-}" ]]; then
+  WORK="$WORK_DIR"
+  rm -rf "$WORK"
+  mkdir -p "$WORK"
+  KEEP_WORK=1
+else
+  WORK="$(mktemp -d)"
+  KEEP_WORK="${KEEP_WORK:-0}"
+fi
+trap 'status=$?; if [[ "$KEEP_WORK" != "1" ]]; then rm -rf "$WORK"; fi; exit "$status"' EXIT
+mkdir -p "$WORK/jar" "$WORK/dex" "$WORK/out" "$WORK/logs"
+
+SMALI_XMX="${SMALI_XMX:-6g}"
+SMALI_JAVA_OPTS="${SMALI_JAVA_OPTS:--Xmx$SMALI_XMX -XX:+UseSerialGC}"
 
 unzip -q "$INPUT" -d "$WORK/jar"
 mapfile -t DEXES < <(find "$WORK/jar" -maxdepth 1 -type f -name 'classes*.dex' -printf '%f\n' | sort -V)
@@ -53,11 +64,31 @@ cp "$ROOT/patches/android/location/Spoof.smali" "$WORK/dex/classes6/android/loca
 rm -f "$WORK/jar"/classes*.dex
 for dex in "${DEXES[@]}"; do
   name="${dex%.dex}"
-  java -jar "$SMALI_JAR" assemble --api "$API" --output "$WORK/jar/$dex" "$WORK/dex/$name"
+  log="$WORK/logs/assemble-$name.log"
+  echo "=== ASSEMBLING $dex ==="
+  echo "Java: $(java -version 2>&1 | head -1)"
+  echo "Heap: $SMALI_XMX"
+  echo "Source: $WORK/dex/$name"
+  echo "Output: $WORK/jar/$dex"
+  set +e
+  java $SMALI_JAVA_OPTS -jar "$SMALI_JAR" assemble --api "$API" --output "$WORK/jar/$dex" "$WORK/dex/$name" >"$log" 2>&1
+  rc=$?
+  set -e
+  cat "$log"
+  if [[ "$rc" -ne 0 ]]; then
+    echo "ERROR: smali assemble failed for $dex with exit code $rc" >&2
+    echo "Diagnostic log: $log" >&2
+    if command -v free >/dev/null 2>&1; then free -h >&2 || true; fi
+    if [[ -r /proc/meminfo ]]; then grep -E 'Mem(Total|Free|Available)|Swap(Total|Free)' /proc/meminfo >&2 || true; fi
+    exit "$rc"
+  fi
+  test -s "$WORK/jar/$dex"
+  echo "=== ASSEMBLED $dex: $(stat -c '%s bytes' "$WORK/jar/$dex") ==="
 done
 
 # Modified JARs must not retain stale signing metadata.
 rm -f "$WORK/jar/META-INF/ANDROID.RSA" "$WORK/jar/META-INF/ANDROID.SF" "$WORK/jar/META-INF/SIG-*"
+rm -f "$WORK/jar/META-INF"/*.SF "$WORK/jar/META-INF"/*.RSA "$WORK/jar/META-INF"/*.DSA
 
 mkdir -p "$(dirname "$OUTPUT")"
 (cd "$WORK/jar" && zip -q -X -r "$OUTPUT" .)
