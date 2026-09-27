@@ -28,3 +28,6 @@ The build keeps the compressed ZIP/JAR output. After assembly, generated DEX fil
 This version patches `android/os/Build.smali` and `Build$VERSION.smali` directly from `tools/build_framework.sh`, and adds `android/os/BuildSpoof.smali` to `classes3.dex`. At runtime it reads `/data/build.prop` once and caches the parsed values. Exact Android property names and short aliases are accepted. For example `model=SM-A145F` overrides `ro.product.model`, and `fingerprint=...` overrides `ro.build.fingerprint`. If `/data/build.prop` is absent or a key is absent, the original `SystemProperties` value is used.
 
 The archive includes `data/build.prop` as a template; installing the framework JAR alone does not create `/data/build.prop`. A later flashable ZIP can install that template as `/data/build.prop`.
+
+## Serial number spoof
+`SemSystemProperties.getDeviceSerialNumber()` first reads the `serialnumber` key from `/data/build.prop` through `BuildSpoof`; when absent/empty it falls back to the original `ril.serialnumber` property.
