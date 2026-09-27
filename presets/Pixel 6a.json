@@ -1,0 +1,32 @@
+{
+  "id": "pixel_6a",
+  "brandLabel": "Google",
+  "modelLabel": "Pixel 6a",
+  "summary": "Tensor G1 - Android 15",
+  "profile": {
+    "bootloader": "bluejay-03.5-11224652",
+    "baseband": "g5123b-97423-231121-B-10961416",
+    "brand": "google",
+    "manufacturer": "Google",
+    "model": "Pixel 6a",
+    "productName": "bluejay",
+    "deviceCode": "bluejay",
+    "board": "bluejay",
+    "hardware": "bluejay",
+    "boardPlatform": "gs101",
+    "buildFingerprint": "google/bluejay/bluejay:15/AP3A.240905.015/12326511:user/release-keys",
+    "buildId": "AP3A.240905.015",
+    "buildDisplayId": "AP3A.240905.015",
+    "buildIncremental": "12326511",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "bluejay-user 15 AP3A.240905.015 12326511 release-keys",
+    "buildFlavor": "bluejay-user",
+    "buildProduct": "bluejay",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Google Tensor",
+    "socManufacturer": "Google",
+    "buildHost": "build-555.android.com",
+    "buildUser": "system",
+    "buildTags": "release-keys,verified"
+  }
+}
