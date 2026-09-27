@@ -1,0 +1,32 @@
+{
+  "id": "samsung_galaxy_s25_ultra",
+  "brandLabel": "Samsung",
+  "modelLabel": "Samsung Galaxy S25 Ultra",
+  "summary": "Snapdragon 8 Elite for Galaxy - Android 15",
+  "profile": {
+    "bootloader": "pa3q-01.0-12082746",
+    "baseband": "pa3q-baseband-12082746",
+    "brand": "samsung",
+    "manufacturer": "Samsung",
+    "model": "Samsung Galaxy S25 Ultra",
+    "productName": "pa3q",
+    "deviceCode": "pa3q",
+    "board": "pa3q",
+    "hardware": "pa3q",
+    "boardPlatform": "pa3q",
+    "buildFingerprint": "samsung/pa3q/pa3q:15/AP3A.241205.015/12082746:user/release-keys",
+    "buildId": "AP3A.241205.015",
+    "buildDisplayId": "AP3A.241205.015",
+    "buildIncremental": "12082746",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "pa3q-user 15 AP3A.241205.015 12082746 release-keys",
+    "buildFlavor": "pa3q-user",
+    "buildProduct": "pa3q",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Elite for Galaxy",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "aosp-build-239.sony.com",
+    "buildUser": "builder",
+    "buildTags": "release-keys,verified"
+  }
+}
