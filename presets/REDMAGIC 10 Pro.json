@@ -1,0 +1,32 @@
+{
+  "id": "redmagic_10_pro",
+  "brandLabel": "nubia",
+  "modelLabel": "REDMAGIC 10 Pro",
+  "summary": "Snapdragon 8 Elite - Android 15",
+  "profile": {
+    "bootloader": "nx789j-01.0-12951579",
+    "baseband": "nx789j-baseband-12951579",
+    "brand": "nubia",
+    "manufacturer": "nubia",
+    "model": "REDMAGIC 10 Pro",
+    "productName": "nx789j",
+    "deviceCode": "nx789j",
+    "board": "nx789j",
+    "hardware": "nx789j",
+    "boardPlatform": "nx789j",
+    "buildFingerprint": "nubia/nx789j/nx789j:15/AP3A.241205.015/12951579:user/release-keys",
+    "buildId": "AP3A.241205.015",
+    "buildDisplayId": "AP3A.241205.015",
+    "buildIncremental": "12951579",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "nx789j-user 15 AP3A.241205.015 12951579 release-keys",
+    "buildFlavor": "nx789j-user",
+    "buildProduct": "nx789j",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Elite",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "ci-863.oneplus.com",
+    "buildUser": "build",
+    "buildTags": "release-keys,verified"
+  }
+}
