@@ -1,0 +1,32 @@
+{
+  "id": "xiaomi_mix_fold_4",
+  "brandLabel": "Xiaomi",
+  "modelLabel": "Xiaomi Mix Fold 4",
+  "summary": "Snapdragon 8 Gen 3 - Android 14",
+  "profile": {
+    "bootloader": "ruyi-01.0-12317193",
+    "baseband": "ruyi-baseband-12317193",
+    "brand": "xiaomi",
+    "manufacturer": "Xiaomi",
+    "model": "Xiaomi Mix Fold 4",
+    "productName": "ruyi",
+    "deviceCode": "ruyi",
+    "board": "ruyi",
+    "hardware": "ruyi",
+    "boardPlatform": "ruyi",
+    "buildFingerprint": "xiaomi/ruyi/ruyi:14/UP1A.231005.007/12317193:user/release-keys",
+    "buildId": "UP1A.231005.007",
+    "buildDisplayId": "UP1A.231005.007",
+    "buildIncremental": "12317193",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "ruyi-user 14 UP1A.231005.007 12317193 release-keys",
+    "buildFlavor": "ruyi-user",
+    "buildProduct": "ruyi",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Gen 3",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "builder-836.honor.com",
+    "buildUser": "builder",
+    "buildTags": "release-keys,release-keys"
+  }
+}
