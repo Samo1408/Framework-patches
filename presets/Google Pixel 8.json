@@ -1,0 +1,32 @@
+{
+  "id": "pixel_8",
+  "brandLabel": "Google",
+  "modelLabel": "Pixel 8",
+  "summary": "Tensor G3 - Android 15",
+  "profile": {
+    "bootloader": "husky-14.0-12281874",
+    "baseband": "g5300i-241205-250127-B-12973597",
+    "brand": "google",
+    "manufacturer": "Google",
+    "model": "Pixel 8",
+    "productName": "shiba",
+    "deviceCode": "shiba",
+    "board": "shiba",
+    "hardware": "shiba",
+    "boardPlatform": "zuma",
+    "buildFingerprint": "google/shiba/shiba:15/BP1A.250305.019/13003188:user/release-keys",
+    "buildId": "BP1A.250305.019",
+    "buildDisplayId": "BP1A.250305.019",
+    "buildIncremental": "13003188",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "shiba-user 15 BP1A.250305.019 13003188 release-keys",
+    "buildFlavor": "shiba-user",
+    "buildProduct": "shiba",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Google Tensor G3",
+    "socManufacturer": "Google",
+    "buildHost": "builder-520.oppo.com",
+    "buildUser": "release",
+    "buildTags": "release-keys,verified"
+  }
+}
