@@ -1,0 +1,13 @@
+{
+  "schema": "official_verified_device_profile_v1",
+  "verification": "official_manufacturer_or_google_source",
+  "device": {
+    "brand": "ASUS",
+    "model": "Zenfone 12 Ultra",
+    "modelCode": "AI2501",
+    "soc": "Qualcomm Snapdragon 8 Elite Mobile Platform",
+    "os": "Android 15",
+    "androidVersion": 15,
+    "source": "https://www.asus.com/mobile-handhelds/phones/zenfone/zenfone-12-ultra/techspec/"
+  }
+}
