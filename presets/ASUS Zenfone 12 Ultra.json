@@ -1,0 +1,32 @@
+{
+  "id": "asus_zenfone_12_ultra",
+  "brandLabel": "ASUS",
+  "modelLabel": "ASUS Zenfone 12 Ultra",
+  "summary": "Snapdragon 8 Elite - Android 15",
+  "profile": {
+    "bootloader": "AI2501-01.0-12717132",
+    "baseband": "AI2501-baseband-12717132",
+    "brand": "asus",
+    "manufacturer": "ASUS",
+    "model": "ASUS Zenfone 12 Ultra",
+    "productName": "AI2501",
+    "deviceCode": "AI2501",
+    "board": "AI2501",
+    "hardware": "AI2501",
+    "boardPlatform": "AI2501",
+    "buildFingerprint": "asus/AI2501/AI2501:15/AP3A.241205.015/12717132:user/release-keys",
+    "buildId": "AP3A.241205.015",
+    "buildDisplayId": "AP3A.241205.015",
+    "buildIncremental": "12717132",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "AI2501-user 15 AP3A.241205.015 12717132 release-keys",
+    "buildFlavor": "AI2501-user",
+    "buildProduct": "AI2501",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Elite",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "builder-868.android.com",
+    "buildUser": "jenkins",
+    "buildTags": "release-keys,ota"
+  }
+}
