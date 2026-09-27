@@ -1,0 +1,32 @@
+{
+  "id": "samsung_galaxy_s24",
+  "brandLabel": "Samsung",
+  "modelLabel": "Samsung Galaxy S24",
+  "summary": "Exynos 2400 - Android 14",
+  "profile": {
+    "bootloader": "e1s-01.0-12041373",
+    "baseband": "e1s-baseband-12041373",
+    "brand": "samsung",
+    "manufacturer": "Samsung",
+    "model": "Samsung Galaxy S24",
+    "productName": "e1s",
+    "deviceCode": "e1s",
+    "board": "e1s",
+    "hardware": "e1s",
+    "boardPlatform": "e1s",
+    "buildFingerprint": "samsung/e1s/e1s:14/UP1A.231005.007/12041373:user/release-keys",
+    "buildId": "UP1A.231005.007",
+    "buildDisplayId": "UP1A.231005.007",
+    "buildIncremental": "12041373",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "e1s-user 14 UP1A.231005.007 12041373 release-keys",
+    "buildFlavor": "e1s-user",
+    "buildProduct": "e1s",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Exynos 2400",
+    "socManufacturer": "Samsung",
+    "buildHost": "build-370.samsung.com",
+    "buildUser": "jenkins",
+    "buildTags": "release-keys,release-keys"
+  }
+}
