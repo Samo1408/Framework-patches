@@ -1,0 +1,32 @@
+{
+  "id": "asus_rog_phone_9_pro",
+  "brandLabel": "ASUS",
+  "modelLabel": "ASUS ROG Phone 9 Pro",
+  "summary": "Snapdragon 8 Elite - Android 15",
+  "profile": {
+    "bootloader": "AI2501-01.0-12703341",
+    "baseband": "AI2501-baseband-12703341",
+    "brand": "asus",
+    "manufacturer": "ASUS",
+    "model": "ASUS ROG Phone 9 Pro",
+    "productName": "AI2501",
+    "deviceCode": "AI2501",
+    "board": "AI2501",
+    "hardware": "AI2501",
+    "boardPlatform": "AI2501",
+    "buildFingerprint": "asus/AI2501/AI2501:15/AP3A.241205.015/12703341:user/release-keys",
+    "buildId": "AP3A.241205.015",
+    "buildDisplayId": "AP3A.241205.015",
+    "buildIncremental": "12703341",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "AI2501-user 15 AP3A.241205.015 12703341 release-keys",
+    "buildFlavor": "AI2501-user",
+    "buildProduct": "AI2501",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Elite",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "abfarm-106.vivo.com",
+    "buildUser": "jenkins",
+    "buildTags": "release-keys,verified"
+  }
+}
