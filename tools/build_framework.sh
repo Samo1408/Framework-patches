@@ -61,7 +61,20 @@ copy_patch android/location/Location.smali
 copy_patch android/telephony/SubscriptionInfo.smali
 copy_patch android/telephony/TelephonyManager.smali
 
-# Spoof is deliberately added to the original classes6.dex directory.
+# BuildSpoof patch: replace the original framework Build classes in-place.
+# Build and Build$VERSION both live in classes3.dex on the target Android 14
+# framework. copy_patch() auto-detects the original DEX and preserves that
+# DEX boundary instead of merging classes.
+copy_patch android/os/Build.smali
+copy_patch 'android/os/Build$VERSION.smali'
+
+# Add the new BuildSpoof helper to classes3.dex, matching the DEX placement
+# expected by the patched Build/Build$VERSION implementation.
+[[ -d "$WORK/dex/classes3" ]] || { echo "classes3.dex is required for BuildSpoof" >&2; exit 6; }
+mkdir -p "$WORK/dex/classes3/android/os"
+cp "$ROOT/patches/android/os/BuildSpoof.smali" "$WORK/dex/classes3/android/os/BuildSpoof.smali"
+
+# Location/SIM spoof helper remains in the original classes6.dex boundary.
 [[ -d "$WORK/dex/classes6" ]] || { echo "classes6.dex is required for this patch" >&2; exit 6; }
 mkdir -p "$WORK/dex/classes6/android/location"
 cp "$ROOT/patches/android/location/Spoof.smali" "$WORK/dex/classes6/android/location/Spoof.smali"
