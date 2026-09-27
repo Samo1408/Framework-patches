@@ -1,0 +1,32 @@
+{
+  "id": "oppo_find_n5",
+  "brandLabel": "OPPO",
+  "modelLabel": "OPPO Find N5",
+  "summary": "Snapdragon 8 Elite - Android 15",
+  "profile": {
+    "bootloader": "PKH110-01.0-12413730",
+    "baseband": "PKH110-baseband-12413730",
+    "brand": "oppo",
+    "manufacturer": "OPPO",
+    "model": "OPPO Find N5",
+    "productName": "PKH110",
+    "deviceCode": "PKH110",
+    "board": "PKH110",
+    "hardware": "PKH110",
+    "boardPlatform": "PKH110",
+    "buildFingerprint": "oppo/PKH110/PKH110:15/AP3A.241205.015/12413730:user/release-keys",
+    "buildId": "AP3A.241205.015",
+    "buildDisplayId": "AP3A.241205.015",
+    "buildIncremental": "12413730",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "PKH110-user 15 AP3A.241205.015 12413730 release-keys",
+    "buildFlavor": "PKH110-user",
+    "buildProduct": "PKH110",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Elite",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "jenkins-253.samsung.com",
+    "buildUser": "build",
+    "buildTags": "release-keys"
+  }
+}
