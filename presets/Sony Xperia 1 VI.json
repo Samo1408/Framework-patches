@@ -1,0 +1,32 @@
+{
+  "id": "sony_xperia_1_vi",
+  "brandLabel": "Sony",
+  "modelLabel": "Sony Xperia 1 VI",
+  "summary": "Snapdragon 8 Gen 3 - Android 14",
+  "profile": {
+    "bootloader": "PDX245-01.0-12634386",
+    "baseband": "PDX245-baseband-12634386",
+    "brand": "sony",
+    "manufacturer": "Sony",
+    "model": "Sony Xperia 1 VI",
+    "productName": "PDX245",
+    "deviceCode": "PDX245",
+    "board": "PDX245",
+    "hardware": "PDX245",
+    "boardPlatform": "PDX245",
+    "buildFingerprint": "sony/PDX245/PDX245:14/UP1A.231005.007/12634386:user/release-keys",
+    "buildId": "UP1A.231005.007",
+    "buildDisplayId": "UP1A.231005.007",
+    "buildIncremental": "12634386",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "PDX245-user 14 UP1A.231005.007 12634386 release-keys",
+    "buildFlavor": "PDX245-user",
+    "buildProduct": "PDX245",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Gen 3",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "builder-713.oppo.com",
+    "buildUser": "jenkins",
+    "buildTags": "release-keys,verified"
+  }
+}
