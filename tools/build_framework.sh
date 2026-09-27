@@ -4,6 +4,11 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 INPUT="${1:-$ROOT/framework.jar}"
 OUTPUT="${2:-$ROOT/framework_A14_sim-cached_patched.jar}"
+# Always use an absolute output path. The JAR must be written outside WORK/jar,
+# otherwise zip would try to include the output JAR while creating it.
+if [[ "$OUTPUT" != /* ]]; then
+  OUTPUT="$(cd "$(dirname "$OUTPUT")" && pwd)/$(basename "$OUTPUT")"
+fi
 BAKSMALI_JAR="${BAKSMALI_JAR:-$ROOT/tools/baksmali-3.0.9-fat.jar}"
 SMALI_JAR="${SMALI_JAR:-$ROOT/tools/smali-3.0.9-fat.jar}"
 API="${API:-34}"
@@ -91,6 +96,8 @@ rm -f "$WORK/jar/META-INF/ANDROID.RSA" "$WORK/jar/META-INF/ANDROID.SF" "$WORK/ja
 rm -f "$WORK/jar/META-INF"/*.SF "$WORK/jar/META-INF"/*.RSA "$WORK/jar/META-INF"/*.DSA
 
 mkdir -p "$(dirname "$OUTPUT")"
+rm -f "$OUTPUT"
+# Write the final archive outside WORK/jar so it cannot include itself.
 (cd "$WORK/jar" && zip -q -X -r "$OUTPUT" .)
 
 # Structural checks.
