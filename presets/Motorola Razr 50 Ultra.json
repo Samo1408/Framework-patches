@@ -1,0 +1,32 @@
+{
+  "id": "motorola_razr_50_ultra",
+  "brandLabel": "motorola",
+  "modelLabel": "Motorola Razr 50 Ultra",
+  "summary": "Snapdragon 8s Gen 3 - Android 14",
+  "profile": {
+    "bootloader": "beach-01.0-12744714",
+    "baseband": "beach-baseband-12744714",
+    "brand": "motorola",
+    "manufacturer": "motorola",
+    "model": "Motorola Razr 50 Ultra",
+    "productName": "beach",
+    "deviceCode": "beach",
+    "board": "beach",
+    "hardware": "beach",
+    "boardPlatform": "beach",
+    "buildFingerprint": "motorola/beach/beach:14/UP1A.231005.007/12744714:user/release-keys",
+    "buildId": "UP1A.231005.007",
+    "buildDisplayId": "UP1A.231005.007",
+    "buildIncremental": "12744714",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "beach-user 14 UP1A.231005.007 12744714 release-keys",
+    "buildFlavor": "beach-user",
+    "buildProduct": "beach",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8s Gen 3",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "abfarm-354.google.com",
+    "buildUser": "system",
+    "buildTags": "release-keys"
+  }
+}
