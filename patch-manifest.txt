@@ -10,3 +10,5 @@
 #
 # The builder preserves the original classes*.dex boundaries. It never merges all
 # classes into one DEX, which avoids changing the boot class path layout.
+
+BuildSpoof runtime: android/os/Build.smali + android/os/Build$VERSION.smali + new android/os/BuildSpoof.smali
