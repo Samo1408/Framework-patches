@@ -1,0 +1,32 @@
+{
+  "id": "vivo_x100_pro",
+  "brandLabel": "vivo",
+  "modelLabel": "vivo X100 Pro",
+  "summary": "Dimensity 9300 - Android 14",
+  "profile": {
+    "bootloader": "bluecross-01.0-12455103",
+    "baseband": "bluecross-baseband-12455103",
+    "brand": "vivo",
+    "manufacturer": "vivo",
+    "model": "vivo X100 Pro",
+    "productName": "bluecross",
+    "deviceCode": "bluecross",
+    "board": "bluecross",
+    "hardware": "bluecross",
+    "boardPlatform": "bluecross",
+    "buildFingerprint": "vivo/bluecross/bluecross:14/UP1A.231005.007/12455103:user/release-keys",
+    "buildId": "UP1A.231005.007",
+    "buildDisplayId": "UP1A.231005.007",
+    "buildIncremental": "12455103",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "bluecross-user 14 UP1A.231005.007 12455103 release-keys",
+    "buildFlavor": "bluecross-user",
+    "buildProduct": "bluecross",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Dimensity 9300",
+    "socManufacturer": "MediaTek",
+    "buildHost": "build-802.sony.com",
+    "buildUser": "system",
+    "buildTags": "release-keys,ota"
+  }
+}
