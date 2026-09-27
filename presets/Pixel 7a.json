@@ -1,0 +1,32 @@
+{
+  "id": "pixel_7a",
+  "brandLabel": "Google",
+  "modelLabel": "Pixel 7a",
+  "summary": "Tensor G2 - Android 15",
+  "profile": {
+    "bootloader": "lynx-02.0-12281874",
+    "baseband": "g5300i-241205-250127-B-12973597",
+    "brand": "google",
+    "manufacturer": "Google",
+    "model": "Pixel 7a",
+    "productName": "lynx",
+    "deviceCode": "lynx",
+    "board": "lynx",
+    "hardware": "lynx",
+    "boardPlatform": "gs201",
+    "buildFingerprint": "google/lynx/lynx:15/BP1A.250305.019/13003188:user/release-keys",
+    "buildId": "BP1A.250305.019",
+    "buildDisplayId": "BP1A.250305.019",
+    "buildIncremental": "13003188",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "lynx-user 15 BP1A.250305.019 13003188 release-keys",
+    "buildFlavor": "lynx-user",
+    "buildProduct": "lynx",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Google Tensor G2",
+    "socManufacturer": "Google",
+    "buildHost": "android-build-179.vivo.com",
+    "buildUser": "system",
+    "buildTags": "release-keys,ota"
+  }
+}
