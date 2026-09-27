@@ -1,0 +1,32 @@
+{
+  "id": "tecno_phantom_v_fold2",
+  "brandLabel": "TECNO",
+  "modelLabel": "TECNO PHANTOM V Fold2",
+  "summary": "Dimensity 9000+ - Android 14",
+  "profile": {
+    "bootloader": "AE10-01.0-12979161",
+    "baseband": "AE10-baseband-12979161",
+    "brand": "tecno",
+    "manufacturer": "TECNO",
+    "model": "TECNO PHANTOM V Fold2",
+    "productName": "AE10",
+    "deviceCode": "AE10",
+    "board": "AE10",
+    "hardware": "AE10",
+    "boardPlatform": "AE10",
+    "buildFingerprint": "tecno/AE10/AE10:14/UP1A.231005.007/12979161:user/release-keys",
+    "buildId": "UP1A.231005.007",
+    "buildDisplayId": "UP1A.231005.007",
+    "buildIncremental": "12979161",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "AE10-user 14 UP1A.231005.007 12979161 release-keys",
+    "buildFlavor": "AE10-user",
+    "buildProduct": "AE10",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Dimensity 9000+",
+    "socManufacturer": "MediaTek",
+    "buildHost": "aosp-build-203.xiaomi.com",
+    "buildUser": "system",
+    "buildTags": "release-keys,ota"
+  }
+}
