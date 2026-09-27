@@ -1,0 +1,12 @@
+{
+  "schema": "official_verified_device_profile_v1",
+  "verification": "official_manufacturer_or_google_source",
+  "device": {
+    "brand": "Google",
+    "model": "Pixel 9 Pro",
+    "codename": "caiman",
+    "officialBuildExample": "AP4A.241205.013.C1",
+    "androidVersion": 15,
+    "source": "https://developers.google.com/android/drivers"
+  }
+}
