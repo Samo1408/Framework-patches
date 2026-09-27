@@ -1,0 +1,12 @@
+{
+  "schema": "official_verified_device_profile_v1",
+  "verification": "official_manufacturer_or_google_source",
+  "device": {
+    "brand": "HONOR",
+    "model": "HONOR Magic7 Pro",
+    "soc": "Qualcomm Snapdragon 8 Elite Mobile Platform",
+    "os": "MagicOS",
+    "androidVersion": 15,
+    "source": "https://www.honor.com/global/phones/honor-magic7-pro/spec/"
+  }
+}
