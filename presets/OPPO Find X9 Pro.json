@@ -1,0 +1,32 @@
+{
+  "id": "oppo_find_x9_pro",
+  "brandLabel": "OPPO",
+  "modelLabel": "OPPO Find X9 Pro",
+  "summary": "Dimensity 9500 - Android 16",
+  "profile": {
+    "bootloader": "PKJ110-01.0-12427521",
+    "baseband": "PKJ110-baseband-12427521",
+    "brand": "oppo",
+    "manufacturer": "OPPO",
+    "model": "OPPO Find X9 Pro",
+    "productName": "PKJ110",
+    "deviceCode": "PKJ110",
+    "board": "PKJ110",
+    "hardware": "PKJ110",
+    "boardPlatform": "PKJ110",
+    "buildFingerprint": "oppo/PKJ110/PKJ110:16/BP2A.250805.003/12427521:user/release-keys",
+    "buildId": "BP2A.250805.003",
+    "buildDisplayId": "BP2A.250805.003",
+    "buildIncremental": "12427521",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "PKJ110-user 16 BP2A.250805.003 12427521 release-keys",
+    "buildFlavor": "PKJ110-user",
+    "buildProduct": "PKJ110",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Dimensity 9500",
+    "socManufacturer": "MediaTek",
+    "buildHost": "buildkite-668.vivo.com",
+    "buildUser": "aosp",
+    "buildTags": "release-keys,release-keys"
+  }
+}
