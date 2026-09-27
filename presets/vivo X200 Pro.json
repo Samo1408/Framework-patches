@@ -1,0 +1,32 @@
+{
+  "id": "vivo_x200_pro",
+  "brandLabel": "vivo",
+  "modelLabel": "vivo X200 Pro",
+  "summary": "Dimensity 9400 - Android 15",
+  "profile": {
+    "bootloader": "v2419-01.0-12496476",
+    "baseband": "v2419-baseband-12496476",
+    "brand": "vivo",
+    "manufacturer": "vivo",
+    "model": "vivo X200 Pro",
+    "productName": "v2419",
+    "deviceCode": "v2419",
+    "board": "v2419",
+    "hardware": "v2419",
+    "boardPlatform": "v2419",
+    "buildFingerprint": "vivo/v2419/v2419:15/AP3A.241205.015/12496476:user/release-keys",
+    "buildId": "AP3A.241205.015",
+    "buildDisplayId": "AP3A.241205.015",
+    "buildIncremental": "12496476",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "v2419-user 15 AP3A.241205.015 12496476 release-keys",
+    "buildFlavor": "v2419-user",
+    "buildProduct": "v2419",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Dimensity 9400",
+    "socManufacturer": "MediaTek",
+    "buildHost": "buildkite-252.vivo.com",
+    "buildUser": "build",
+    "buildTags": "release-keys"
+  }
+}
