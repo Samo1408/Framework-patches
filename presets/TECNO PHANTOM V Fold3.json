@@ -1,0 +1,32 @@
+{
+  "id": "tecno_phantom_v_fold3",
+  "brandLabel": "TECNO",
+  "modelLabel": "TECNO PHANTOM V Fold3",
+  "summary": "Dimensity 9400 - Android 15",
+  "profile": {
+    "bootloader": "AE11-01.0-12992952",
+    "baseband": "AE11-baseband-12992952",
+    "brand": "tecno",
+    "manufacturer": "TECNO",
+    "model": "TECNO PHANTOM V Fold3",
+    "productName": "AE11",
+    "deviceCode": "AE11",
+    "board": "AE11",
+    "hardware": "AE11",
+    "boardPlatform": "AE11",
+    "buildFingerprint": "tecno/AE11/AE11:15/AP3A.241205.015/12992952:user/release-keys",
+    "buildId": "AP3A.241205.015",
+    "buildDisplayId": "AP3A.241205.015",
+    "buildIncremental": "12992952",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "AE11-user 15 AP3A.241205.015 12992952 release-keys",
+    "buildFlavor": "AE11-user",
+    "buildProduct": "AE11",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Dimensity 9400",
+    "socManufacturer": "MediaTek",
+    "buildHost": "aosp-build-177.motorola.com",
+    "buildUser": "aosp",
+    "buildTags": "release-keys,release-keys"
+  }
+}
