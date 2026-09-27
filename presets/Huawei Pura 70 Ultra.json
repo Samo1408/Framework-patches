@@ -1,0 +1,32 @@
+{
+  "id": "huawei_pura_70_ultra",
+  "brandLabel": "HUAWEI",
+  "modelLabel": "Huawei Pura 70 Ultra",
+  "summary": "Kirin 9010 - Android 14",
+  "profile": {
+    "bootloader": "HBN-AL00-01.0-12593013",
+    "baseband": "HBN-AL00-baseband-12593013",
+    "brand": "huawei",
+    "manufacturer": "HUAWEI",
+    "model": "Huawei Pura 70 Ultra",
+    "productName": "HBN-AL00",
+    "deviceCode": "HBN-AL00",
+    "board": "HBN-AL00",
+    "hardware": "HBN-AL00",
+    "boardPlatform": "HBN-AL00",
+    "buildFingerprint": "huawei/HBN-AL00/HBN-AL00:14/UP1A.231005.007/12593013:user/release-keys",
+    "buildId": "UP1A.231005.007",
+    "buildDisplayId": "UP1A.231005.007",
+    "buildIncremental": "12593013",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "HBN-AL00-user 14 UP1A.231005.007 12593013 release-keys",
+    "buildFlavor": "HBN-AL00-user",
+    "buildProduct": "HBN-AL00",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Kirin 9010",
+    "socManufacturer": "Huawei",
+    "buildHost": "android-build-668.google.com",
+    "buildUser": "jenkins",
+    "buildTags": "release-keys"
+  }
+}
