@@ -1,0 +1,32 @@
+{
+  "id": "sony_xperia_1_viii",
+  "brandLabel": "Sony",
+  "modelLabel": "Sony Xperia 1 VIII",
+  "summary": "Snapdragon 8 Elite Gen 5 - Android 16",
+  "profile": {
+    "bootloader": "PDX267-01.0-12661968",
+    "baseband": "PDX267-baseband-12661968",
+    "brand": "sony",
+    "manufacturer": "Sony",
+    "model": "Sony Xperia 1 VIII",
+    "productName": "PDX267",
+    "deviceCode": "PDX267",
+    "board": "PDX267",
+    "hardware": "PDX267",
+    "boardPlatform": "PDX267",
+    "buildFingerprint": "sony/PDX267/PDX267:16/BP2A.250805.003/12661968:user/release-keys",
+    "buildId": "BP2A.250805.003",
+    "buildDisplayId": "BP2A.250805.003",
+    "buildIncremental": "12661968",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "PDX267-user 16 BP2A.250805.003 12661968 release-keys",
+    "buildFlavor": "PDX267-user",
+    "buildProduct": "PDX267",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Elite Gen 5",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "jenkins-597.google.com",
+    "buildUser": "system",
+    "buildTags": "release-keys,verified"
+  }
+}
