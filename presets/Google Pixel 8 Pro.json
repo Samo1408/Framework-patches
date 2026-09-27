@@ -1,0 +1,32 @@
+{
+  "id": "pixel_8_pro",
+  "brandLabel": "Google",
+  "modelLabel": "Pixel 8 Pro",
+  "summary": "Tensor G3 - Android 15",
+  "profile": {
+    "bootloader": "husky-14.0-12281874",
+    "baseband": "g5300i-241205-250127-B-12973597",
+    "brand": "google",
+    "manufacturer": "Google",
+    "model": "Pixel 8 Pro",
+    "productName": "husky",
+    "deviceCode": "husky",
+    "board": "husky",
+    "hardware": "husky",
+    "boardPlatform": "zuma",
+    "buildFingerprint": "google/husky/husky:15/BP1A.250305.019/13003188:user/release-keys",
+    "buildId": "BP1A.250305.019",
+    "buildDisplayId": "BP1A.250305.019",
+    "buildIncremental": "13003188",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "husky-user 15 BP1A.250305.019 13003188 release-keys",
+    "buildFlavor": "husky-user",
+    "buildProduct": "husky",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Google Tensor G3",
+    "socManufacturer": "Google",
+    "buildHost": "jenkins-767.motorola.com",
+    "buildUser": "system",
+    "buildTags": "release-keys"
+  }
+}
