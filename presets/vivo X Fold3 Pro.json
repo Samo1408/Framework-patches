@@ -1,0 +1,32 @@
+{
+  "id": "vivo_x_fold3_pro",
+  "brandLabel": "vivo",
+  "modelLabel": "vivo X Fold3 Pro",
+  "summary": "Snapdragon 8 Gen 3 - Android 14",
+  "profile": {
+    "bootloader": "bluebird-01.0-12482685",
+    "baseband": "bluebird-baseband-12482685",
+    "brand": "vivo",
+    "manufacturer": "vivo",
+    "model": "vivo X Fold3 Pro",
+    "productName": "bluebird",
+    "deviceCode": "bluebird",
+    "board": "bluebird",
+    "hardware": "bluebird",
+    "boardPlatform": "bluebird",
+    "buildFingerprint": "vivo/bluebird/bluebird:14/UP1A.231005.007/12482685:user/release-keys",
+    "buildId": "UP1A.231005.007",
+    "buildDisplayId": "UP1A.231005.007",
+    "buildIncremental": "12482685",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "bluebird-user 14 UP1A.231005.007 12482685 release-keys",
+    "buildFlavor": "bluebird-user",
+    "buildProduct": "bluebird",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Gen 3",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "abfarm-661.samsung.com",
+    "buildUser": "jenkins",
+    "buildTags": "release-keys"
+  }
+}
