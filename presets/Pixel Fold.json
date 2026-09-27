@@ -1,0 +1,32 @@
+{
+  "id": "pixel_fold",
+  "brandLabel": "Google",
+  "modelLabel": "Pixel Fold",
+  "summary": "Tensor G2 - Android 15",
+  "profile": {
+    "bootloader": "felix-02.0-12326511",
+    "baseband": "g5300i-241205-250127-B-12973597",
+    "brand": "google",
+    "manufacturer": "Google",
+    "model": "Pixel Fold",
+    "productName": "felix",
+    "deviceCode": "felix",
+    "board": "felix",
+    "hardware": "felix",
+    "boardPlatform": "gs201",
+    "buildFingerprint": "google/felix/felix:15/BP1A.250305.019/13003188:user/release-keys",
+    "buildId": "BP1A.250305.019",
+    "buildDisplayId": "BP1A.250305.019",
+    "buildIncremental": "13003188",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "felix-user 15 BP1A.250305.019 13003188 release-keys",
+    "buildFlavor": "felix-user",
+    "buildProduct": "felix",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Google Tensor G2",
+    "socManufacturer": "Google",
+    "buildHost": "aosp-build-173.oneplus.com",
+    "buildUser": "aosp",
+    "buildTags": "release-keys,ota"
+  }
+}
