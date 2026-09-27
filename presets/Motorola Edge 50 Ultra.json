@@ -1,0 +1,32 @@
+{
+  "id": "motorola_edge_50_ultra",
+  "brandLabel": "motorola",
+  "modelLabel": "Motorola Edge 50 Ultra",
+  "summary": "Snapdragon 8s Gen 3 - Android 14",
+  "profile": {
+    "bootloader": "cuprite-01.0-12730923",
+    "baseband": "cuprite-baseband-12730923",
+    "brand": "motorola",
+    "manufacturer": "motorola",
+    "model": "Motorola Edge 50 Ultra",
+    "productName": "cuprite",
+    "deviceCode": "cuprite",
+    "board": "cuprite",
+    "hardware": "cuprite",
+    "boardPlatform": "cuprite",
+    "buildFingerprint": "motorola/cuprite/cuprite:14/UP1A.231005.007/12730923:user/release-keys",
+    "buildId": "UP1A.231005.007",
+    "buildDisplayId": "UP1A.231005.007",
+    "buildIncremental": "12730923",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "cuprite-user 14 UP1A.231005.007 12730923 release-keys",
+    "buildFlavor": "cuprite-user",
+    "buildProduct": "cuprite",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8s Gen 3",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "builder-265.sony.com",
+    "buildUser": "release",
+    "buildTags": "release-keys,release-keys"
+  }
+}
