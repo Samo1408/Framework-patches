@@ -1,0 +1,32 @@
+{
+  "id": "oneplus_12",
+  "brandLabel": "OnePlus",
+  "modelLabel": "OnePlus 12",
+  "summary": "Snapdragon 8 Gen 3 - Android 14",
+  "profile": {
+    "bootloader": "waffle-01.0-12220656",
+    "baseband": "waffle-baseband-12220656",
+    "brand": "oneplus",
+    "manufacturer": "OnePlus",
+    "model": "OnePlus 12",
+    "productName": "waffle",
+    "deviceCode": "waffle",
+    "board": "waffle",
+    "hardware": "waffle",
+    "boardPlatform": "waffle",
+    "buildFingerprint": "oneplus/waffle/waffle:14/UP1A.231005.007/12220656:user/release-keys",
+    "buildId": "UP1A.231005.007",
+    "buildDisplayId": "UP1A.231005.007",
+    "buildIncremental": "12220656",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "waffle-user 14 UP1A.231005.007 12220656 release-keys",
+    "buildFlavor": "waffle-user",
+    "buildProduct": "waffle",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Gen 3",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "build-823.android.com",
+    "buildUser": "build",
+    "buildTags": "release-keys,verified"
+  }
+}
