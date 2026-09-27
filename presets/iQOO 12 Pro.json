@@ -1,0 +1,32 @@
+{
+  "id": "iqoo_12_pro",
+  "brandLabel": "iQOO",
+  "modelLabel": "iQOO 12 Pro",
+  "summary": "Snapdragon 8 Gen 3 - Android 14",
+  "profile": {
+    "bootloader": "I2220-01.0-12855042",
+    "baseband": "I2220-baseband-12855042",
+    "brand": "iqoo",
+    "manufacturer": "iQOO",
+    "model": "iQOO 12 Pro",
+    "productName": "I2220",
+    "deviceCode": "I2220",
+    "board": "I2220",
+    "hardware": "I2220",
+    "boardPlatform": "I2220",
+    "buildFingerprint": "iqoo/I2220/I2220:14/UP1A.231005.007/12855042:user/release-keys",
+    "buildId": "UP1A.231005.007",
+    "buildDisplayId": "UP1A.231005.007",
+    "buildIncremental": "12855042",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "I2220-user 14 UP1A.231005.007 12855042 release-keys",
+    "buildFlavor": "I2220-user",
+    "buildProduct": "I2220",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Gen 3",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "abfarm-143.xiaomi.com",
+    "buildUser": "android-build",
+    "buildTags": "release-keys,release-keys"
+  }
+}
