@@ -73,7 +73,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          API=34 bash tools/build_framework.sh \
+          rm -rf build-debug
+          mkdir -p build-debug
+          API=34 SMALI_XMX=6g WORK_DIR="$GITHUB_WORKSPACE/build-debug" bash tools/build_framework.sh \
             framework.jar \
             framework_A14_sim-cached_patched.jar
 
@@ -146,6 +148,14 @@ jobs:
           fi
 
           echo 'Verification completed successfully.'
+
+      - name: Upload build diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: framework-A14-build-diagnostics
+          path: build-debug
+          if-no-files-found: ignore
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
