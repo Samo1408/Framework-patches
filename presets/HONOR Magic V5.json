@@ -1,0 +1,32 @@
+{
+  "id": "honor_magic_v5",
+  "brandLabel": "HONOR",
+  "modelLabel": "HONOR Magic V5",
+  "summary": "Snapdragon 8 Elite - Android 15",
+  "profile": {
+    "bootloader": "swan-01.0-12565431",
+    "baseband": "swan-baseband-12565431",
+    "brand": "honor",
+    "manufacturer": "HONOR",
+    "model": "HONOR Magic V5",
+    "productName": "swan",
+    "deviceCode": "swan",
+    "board": "swan",
+    "hardware": "swan",
+    "boardPlatform": "swan",
+    "buildFingerprint": "honor/swan/swan:15/AP3A.241205.015/12565431:user/release-keys",
+    "buildId": "AP3A.241205.015",
+    "buildDisplayId": "AP3A.241205.015",
+    "buildIncremental": "12565431",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "swan-user 15 AP3A.241205.015 12565431 release-keys",
+    "buildFlavor": "swan-user",
+    "buildProduct": "swan",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Elite",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "buildkite-490.android.com",
+    "buildUser": "android-build",
+    "buildTags": "release-keys"
+  }
+}
