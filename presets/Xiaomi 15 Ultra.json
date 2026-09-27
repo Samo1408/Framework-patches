@@ -1,0 +1,32 @@
+{
+  "id": "xiaomi_15_ultra",
+  "brandLabel": "Xiaomi",
+  "modelLabel": "Xiaomi 15 Ultra",
+  "summary": "Snapdragon 8 Elite - Android 15",
+  "profile": {
+    "bootloader": "xuanyuan-01.0-12330984",
+    "baseband": "xuanyuan-baseband-12330984",
+    "brand": "xiaomi",
+    "manufacturer": "Xiaomi",
+    "model": "Xiaomi 15 Ultra",
+    "productName": "xuanyuan",
+    "deviceCode": "xuanyuan",
+    "board": "xuanyuan",
+    "hardware": "xuanyuan",
+    "boardPlatform": "xuanyuan",
+    "buildFingerprint": "xiaomi/xuanyuan/xuanyuan:15/AP3A.241205.015/12330984:user/release-keys",
+    "buildId": "AP3A.241205.015",
+    "buildDisplayId": "AP3A.241205.015",
+    "buildIncremental": "12330984",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "xuanyuan-user 15 AP3A.241205.015 12330984 release-keys",
+    "buildFlavor": "xuanyuan-user",
+    "buildProduct": "xuanyuan",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Elite",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "buildkite-475.sony.com",
+    "buildUser": "aosp",
+    "buildTags": "release-keys"
+  }
+}
