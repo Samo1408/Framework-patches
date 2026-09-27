@@ -91,6 +91,19 @@ for dex in "${DEXES[@]}"; do
   echo "=== ASSEMBLED $dex: $(stat -c '%s bytes' "$WORK/jar/$dex") ==="
 done
 
+# Preserve the requested DEX 039 format for MT Manager compatibility.
+# smali 3.0.9 may emit DEX 040 when assembling API 34 sources; normalize
+# the generated DEX header to 039 and recalculate both integrity fields.
+# ZIP compression is intentionally unchanged: the final JAR remains a normal
+# compressed ZIP archive to keep its size lower than the original framework.
+DEX_VERSION_TOOL="$ROOT/tools/preserve_dex_version.py"
+[[ -f "$DEX_VERSION_TOOL" ]] || { echo "Missing $DEX_VERSION_TOOL" >&2; exit 8; }
+
+for dex in "${DEXES[@]}"; do
+  python3 "$DEX_VERSION_TOOL" "$WORK/jar/$dex" 039
+  echo "=== DEX VERSION $dex: $(python3 -c 'import sys; print(open(sys.argv[1],"rb").read(8)[4:7].decode("ascii"))' "$WORK/jar/$dex") ==="
+done
+
 # Modified JARs must not retain stale signing metadata.
 rm -f "$WORK/jar/META-INF/ANDROID.RSA" "$WORK/jar/META-INF/ANDROID.SF" "$WORK/jar/META-INF/SIG-*"
 rm -f "$WORK/jar/META-INF"/*.SF "$WORK/jar/META-INF"/*.RSA "$WORK/jar/META-INF"/*.DSA
