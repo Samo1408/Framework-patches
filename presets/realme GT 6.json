@@ -1,0 +1,32 @@
+{
+  "id": "realme_gt_6",
+  "brandLabel": "realme",
+  "modelLabel": "realme GT 6",
+  "summary": "Snapdragon 8s Gen 3 - Android 14",
+  "profile": {
+    "bootloader": "volcano-01.0-12813669",
+    "baseband": "volcano-baseband-12813669",
+    "brand": "realme",
+    "manufacturer": "realme",
+    "model": "realme GT 6",
+    "productName": "volcano",
+    "deviceCode": "volcano",
+    "board": "volcano",
+    "hardware": "volcano",
+    "boardPlatform": "volcano",
+    "buildFingerprint": "realme/volcano/volcano:14/UP1A.231005.007/12813669:user/release-keys",
+    "buildId": "UP1A.231005.007",
+    "buildDisplayId": "UP1A.231005.007",
+    "buildIncremental": "12813669",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "volcano-user 14 UP1A.231005.007 12813669 release-keys",
+    "buildFlavor": "volcano-user",
+    "buildProduct": "volcano",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8s Gen 3",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "jenkins-990.oneplus.com",
+    "buildUser": "build",
+    "buildTags": "release-keys"
+  }
+}
