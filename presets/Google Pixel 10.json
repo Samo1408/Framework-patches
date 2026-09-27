@@ -1,0 +1,32 @@
+{
+  "id": "pixel_10",
+  "brandLabel": "Google",
+  "modelLabel": "Pixel 10",
+  "summary": "Tensor G5 - Android 16",
+  "profile": {
+    "bootloader": "pixel10-01.0-13500000",
+    "baseband": "g6700a-250401-250401-A-13500000",
+    "brand": "google",
+    "manufacturer": "Google",
+    "model": "Pixel 10",
+    "productName": "frankel",
+    "deviceCode": "frankel",
+    "board": "frankel",
+    "hardware": "frankel",
+    "boardPlatform": "rio",
+    "buildFingerprint": "google/frankel/frankel:16/AP4A.250405.001/13500000:user/release-keys",
+    "buildId": "AP4A.250405.001",
+    "buildDisplayId": "AP4A.250405.001",
+    "buildIncremental": "13500000",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "frankel-user 16 AP4A.250405.001 13500000 release-keys",
+    "buildFlavor": "frankel-user",
+    "buildProduct": "frankel",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Google Tensor G5",
+    "socManufacturer": "Google",
+    "buildHost": "aosp-build-816.samsung.com",
+    "buildUser": "builder",
+    "buildTags": "release-keys,ota"
+  }
+}
