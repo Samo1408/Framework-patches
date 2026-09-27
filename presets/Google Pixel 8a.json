@@ -1,0 +1,32 @@
+{
+  "id": "pixel_8a",
+  "brandLabel": "Google",
+  "modelLabel": "Pixel 8a",
+  "summary": "Tensor G3 - Android 15",
+  "profile": {
+    "bootloader": "akita-01.0-12534060",
+    "baseband": "g5300i-241205-250127-B-12973597",
+    "brand": "google",
+    "manufacturer": "Google",
+    "model": "Pixel 8a",
+    "productName": "akita",
+    "deviceCode": "akita",
+    "board": "akita",
+    "hardware": "akita",
+    "boardPlatform": "zuma",
+    "buildFingerprint": "google/akita/akita:15/BP1A.250305.019/13003188:user/release-keys",
+    "buildId": "BP1A.250305.019",
+    "buildDisplayId": "BP1A.250305.019",
+    "buildIncremental": "13003188",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "akita-user 15 BP1A.250305.019 13003188 release-keys",
+    "buildFlavor": "akita-user",
+    "buildProduct": "akita",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Google Tensor G3",
+    "socManufacturer": "Google",
+    "buildHost": "abfarm-976.xiaomi.com",
+    "buildUser": "aosp",
+    "buildTags": "release-keys,ota"
+  }
+}
