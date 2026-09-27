@@ -1,0 +1,32 @@
+{
+  "id": "samsung_galaxy_z_fold6",
+  "brandLabel": "Samsung",
+  "modelLabel": "Samsung Galaxy Z Fold6",
+  "summary": "Snapdragon 8 Gen 3 for Galaxy - Android 14",
+  "profile": {
+    "bootloader": "q6q-01.0-12055164",
+    "baseband": "q6q-baseband-12055164",
+    "brand": "samsung",
+    "manufacturer": "Samsung",
+    "model": "Samsung Galaxy Z Fold6",
+    "productName": "q6q",
+    "deviceCode": "q6q",
+    "board": "q6q",
+    "hardware": "q6q",
+    "boardPlatform": "q6q",
+    "buildFingerprint": "samsung/q6q/q6q:14/UP1A.231005.007/12055164:user/release-keys",
+    "buildId": "UP1A.231005.007",
+    "buildDisplayId": "UP1A.231005.007",
+    "buildIncremental": "12055164",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "q6q-user 14 UP1A.231005.007 12055164 release-keys",
+    "buildFlavor": "q6q-user",
+    "buildProduct": "q6q",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Gen 3 for Galaxy",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "abfarm-676.oppo.com",
+    "buildUser": "build",
+    "buildTags": "release-keys,ota"
+  }
+}
