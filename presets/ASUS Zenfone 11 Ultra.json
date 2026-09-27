@@ -1,0 +1,32 @@
+{
+  "id": "asus_zenfone_11_ultra",
+  "brandLabel": "ASUS",
+  "modelLabel": "ASUS Zenfone 11 Ultra",
+  "summary": "Snapdragon 8 Gen 3 - Android 14",
+  "profile": {
+    "bootloader": "AI2401-01.0-12675759",
+    "baseband": "AI2401-baseband-12675759",
+    "brand": "asus",
+    "manufacturer": "ASUS",
+    "model": "ASUS Zenfone 11 Ultra",
+    "productName": "AI2401",
+    "deviceCode": "AI2401",
+    "board": "AI2401",
+    "hardware": "AI2401",
+    "boardPlatform": "AI2401",
+    "buildFingerprint": "asus/AI2401/AI2401:14/UP1A.231005.007/12675759:user/release-keys",
+    "buildId": "UP1A.231005.007",
+    "buildDisplayId": "UP1A.231005.007",
+    "buildIncremental": "12675759",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "AI2401-user 14 UP1A.231005.007 12675759 release-keys",
+    "buildFlavor": "AI2401-user",
+    "buildProduct": "AI2401",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Gen 3",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "jenkins-851.google.com",
+    "buildUser": "system",
+    "buildTags": "release-keys"
+  }
+}
