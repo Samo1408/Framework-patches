@@ -1,0 +1,12 @@
+{
+  "schema": "official_verified_device_profile_v1",
+  "verification": "official_manufacturer_or_google_source",
+  "device": {
+    "brand": "Xiaomi",
+    "model": "Xiaomi 15 Ultra",
+    "soc": "Qualcomm Snapdragon 8 Elite",
+    "os": "Xiaomi HyperOS",
+    "androidVersion": 15,
+    "source": "https://www.mi.com/fr/product/xiaomi-15-ultra/specs/"
+  }
+}
