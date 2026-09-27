@@ -1,0 +1,32 @@
+{
+  "id": "google_pixel_9_pro_fold",
+  "brandLabel": "Google",
+  "modelLabel": "Google Pixel 9 Pro Fold",
+  "summary": "Google Tensor G4 - Android 15",
+  "profile": {
+    "bootloader": "comet-01.0-12193074",
+    "baseband": "comet-baseband-12193074",
+    "brand": "google",
+    "manufacturer": "Google",
+    "model": "Google Pixel 9 Pro Fold",
+    "productName": "comet",
+    "deviceCode": "comet",
+    "board": "comet",
+    "hardware": "comet",
+    "boardPlatform": "comet",
+    "buildFingerprint": "google/comet/comet:15/AP3A.241205.015/12193074:user/release-keys",
+    "buildId": "AP3A.241205.015",
+    "buildDisplayId": "AP3A.241205.015",
+    "buildIncremental": "12193074",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "comet-user 15 AP3A.241205.015 12193074 release-keys",
+    "buildFlavor": "comet-user",
+    "buildProduct": "comet",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Google Tensor G4",
+    "socManufacturer": "Google",
+    "buildHost": "jenkins-800.xiaomi.com",
+    "buildUser": "system",
+    "buildTags": "release-keys,ota"
+  }
+}
