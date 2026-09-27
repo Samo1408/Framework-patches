@@ -1,0 +1,32 @@
+{
+  "id": "samsung_galaxy_z_flip6",
+  "brandLabel": "Samsung",
+  "modelLabel": "Samsung Galaxy Z Flip6",
+  "summary": "Snapdragon 8 Gen 3 for Galaxy - Android 14",
+  "profile": {
+    "bootloader": "b6q-01.0-12068955",
+    "baseband": "b6q-baseband-12068955",
+    "brand": "samsung",
+    "manufacturer": "Samsung",
+    "model": "Samsung Galaxy Z Flip6",
+    "productName": "b6q",
+    "deviceCode": "b6q",
+    "board": "b6q",
+    "hardware": "b6q",
+    "boardPlatform": "b6q",
+    "buildFingerprint": "samsung/b6q/b6q:14/UP1A.231005.007/12068955:user/release-keys",
+    "buildId": "UP1A.231005.007",
+    "buildDisplayId": "UP1A.231005.007",
+    "buildIncremental": "12068955",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "b6q-user 14 UP1A.231005.007 12068955 release-keys",
+    "buildFlavor": "b6q-user",
+    "buildProduct": "b6q",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Gen 3 for Galaxy",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "android-build-226.sony.com",
+    "buildUser": "jenkins",
+    "buildTags": "release-keys,release-keys"
+  }
+}
