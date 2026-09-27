@@ -1,0 +1,32 @@
+{
+  "id": "xiaomi_14_ultra",
+  "brandLabel": "Xiaomi",
+  "modelLabel": "Xiaomi 14 Ultra",
+  "summary": "Snapdragon 8 Gen 3 - Android 14",
+  "profile": {
+    "bootloader": "aurora-01.0-12289611",
+    "baseband": "aurora-baseband-12289611",
+    "brand": "xiaomi",
+    "manufacturer": "Xiaomi",
+    "model": "Xiaomi 14 Ultra",
+    "productName": "aurora",
+    "deviceCode": "aurora",
+    "board": "aurora",
+    "hardware": "aurora",
+    "boardPlatform": "aurora",
+    "buildFingerprint": "xiaomi/aurora/aurora:14/UP1A.231005.007/12289611:user/release-keys",
+    "buildId": "UP1A.231005.007",
+    "buildDisplayId": "UP1A.231005.007",
+    "buildIncremental": "12289611",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "aurora-user 14 UP1A.231005.007 12289611 release-keys",
+    "buildFlavor": "aurora-user",
+    "buildProduct": "aurora",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Gen 3",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "jenkins-964.samsung.com",
+    "buildUser": "android-build",
+    "buildTags": "release-keys,ota"
+  }
+}
