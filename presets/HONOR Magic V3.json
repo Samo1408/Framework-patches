@@ -1,0 +1,32 @@
+{
+  "id": "honor_magic_v3",
+  "brandLabel": "HONOR",
+  "modelLabel": "HONOR Magic V3",
+  "summary": "Snapdragon 8 Gen 3 - Android 14",
+  "profile": {
+    "bootloader": "vermeer-01.0-12537849",
+    "baseband": "vermeer-baseband-12537849",
+    "brand": "honor",
+    "manufacturer": "HONOR",
+    "model": "HONOR Magic V3",
+    "productName": "vermeer",
+    "deviceCode": "vermeer",
+    "board": "vermeer",
+    "hardware": "vermeer",
+    "boardPlatform": "vermeer",
+    "buildFingerprint": "honor/vermeer/vermeer:14/UP1A.231005.007/12537849:user/release-keys",
+    "buildId": "UP1A.231005.007",
+    "buildDisplayId": "UP1A.231005.007",
+    "buildIncremental": "12537849",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "vermeer-user 14 UP1A.231005.007 12537849 release-keys",
+    "buildFlavor": "vermeer-user",
+    "buildProduct": "vermeer",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Gen 3",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "ci-739.honor.com",
+    "buildUser": "android-build",
+    "buildTags": "release-keys,ota"
+  }
+}
