@@ -1,0 +1,32 @@
+{
+  "id": "oppo_find_x7_ultra",
+  "brandLabel": "OPPO",
+  "modelLabel": "OPPO Find X7 Ultra",
+  "summary": "Snapdragon 8 Gen 3 - Android 14",
+  "profile": {
+    "bootloader": "PHZ110-01.0-12372357",
+    "baseband": "PHZ110-baseband-12372357",
+    "brand": "oppo",
+    "manufacturer": "OPPO",
+    "model": "OPPO Find X7 Ultra",
+    "productName": "PHZ110",
+    "deviceCode": "PHZ110",
+    "board": "PHZ110",
+    "hardware": "PHZ110",
+    "boardPlatform": "PHZ110",
+    "buildFingerprint": "oppo/PHZ110/PHZ110:14/UP1A.231005.007/12372357:user/release-keys",
+    "buildId": "UP1A.231005.007",
+    "buildDisplayId": "UP1A.231005.007",
+    "buildIncremental": "12372357",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "PHZ110-user 14 UP1A.231005.007 12372357 release-keys",
+    "buildFlavor": "PHZ110-user",
+    "buildProduct": "PHZ110",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Gen 3",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "buildkite-244.google.com",
+    "buildUser": "android-build",
+    "buildTags": "release-keys"
+  }
+}
