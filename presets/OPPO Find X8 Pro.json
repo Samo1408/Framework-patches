@@ -1,0 +1,32 @@
+{
+  "id": "oppo_find_x8_pro",
+  "brandLabel": "OPPO",
+  "modelLabel": "OPPO Find X8 Pro",
+  "summary": "Dimensity 9400 - Android 15",
+  "profile": {
+    "bootloader": "PKK110-01.0-12386148",
+    "baseband": "PKK110-baseband-12386148",
+    "brand": "oppo",
+    "manufacturer": "OPPO",
+    "model": "OPPO Find X8 Pro",
+    "productName": "PKK110",
+    "deviceCode": "PKK110",
+    "board": "PKK110",
+    "hardware": "PKK110",
+    "boardPlatform": "PKK110",
+    "buildFingerprint": "oppo/PKK110/PKK110:15/AP3A.241205.015/12386148:user/release-keys",
+    "buildId": "AP3A.241205.015",
+    "buildDisplayId": "AP3A.241205.015",
+    "buildIncremental": "12386148",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "PKK110-user 15 AP3A.241205.015 12386148 release-keys",
+    "buildFlavor": "PKK110-user",
+    "buildProduct": "PKK110",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Dimensity 9400",
+    "socManufacturer": "MediaTek",
+    "buildHost": "aosp-build-672.sony.com",
+    "buildUser": "release",
+    "buildTags": "release-keys,release-keys"
+  }
+}
