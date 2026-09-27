@@ -1,0 +1,12 @@
+{
+  "schema": "official_verified_device_profile_v1",
+  "verification": "official_manufacturer_or_google_source",
+  "device": {
+    "brand": "vivo",
+    "model": "vivo X200 Pro",
+    "soc": "MediaTek Dimensity 9400",
+    "os": "Funtouch OS 15",
+    "androidVersion": 15,
+    "source": "https://www.vivo.com/en/products/param/x200-pro"
+  }
+}
