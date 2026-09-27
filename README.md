@@ -18,3 +18,6 @@ Requirements:
 
 Do not use the previously generated `framework_A14_sim-cached_fixed.jar`.
 \n## v3 diagnostics\n\nThe build script assembles each DEX separately with a bounded Java heap and logs each assembly. On failure, `build-debug/` is preserved and uploaded as a diagnostic artifact.\n
+
+## DEX format and compression
+The build keeps the compressed ZIP/JAR output. After assembly, generated DEX files are normalized to DEX 039 and their SHA-1 signature and Adler-32 checksum are recalculated. The workflow verifies that all six DEX files are version 039 before publishing the artifact.
