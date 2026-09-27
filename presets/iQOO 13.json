@@ -1,0 +1,32 @@
+{
+  "id": "iqoo_13",
+  "brandLabel": "iQOO",
+  "modelLabel": "iQOO 13",
+  "summary": "Snapdragon 8 Elite - Android 15",
+  "profile": {
+    "bootloader": "I2404-01.0-12868833",
+    "baseband": "I2404-baseband-12868833",
+    "brand": "iqoo",
+    "manufacturer": "iQOO",
+    "model": "iQOO 13",
+    "productName": "I2404",
+    "deviceCode": "I2404",
+    "board": "I2404",
+    "hardware": "I2404",
+    "boardPlatform": "I2404",
+    "buildFingerprint": "iqoo/I2404/I2404:15/AP3A.241205.015/12868833:user/release-keys",
+    "buildId": "AP3A.241205.015",
+    "buildDisplayId": "AP3A.241205.015",
+    "buildIncremental": "12868833",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "I2404-user 15 AP3A.241205.015 12868833 release-keys",
+    "buildFlavor": "I2404-user",
+    "buildProduct": "I2404",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Elite",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "ci-773.android.com",
+    "buildUser": "build",
+    "buildTags": "release-keys,verified"
+  }
+}
