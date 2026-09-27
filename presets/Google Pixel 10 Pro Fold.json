@@ -1,0 +1,32 @@
+{
+  "id": "pixel_10_fold",
+  "brandLabel": "Google",
+  "modelLabel": "Pixel 10 Pro Fold",
+  "summary": "Tensor G5 - Android 16",
+  "profile": {
+    "bootloader": "rango-1.0-13450100",
+    "baseband": "g5500a-260218-B-13400050",
+    "brand": "google",
+    "manufacturer": "Google",
+    "model": "Pixel 10 Pro Fold",
+    "productName": "rango",
+    "deviceCode": "rango",
+    "board": "rango",
+    "hardware": "rango",
+    "boardPlatform": "ripcurrent",
+    "buildFingerprint": "google/rango/rango:16/AP4A.250405.001/13500000:user/release-keys",
+    "buildId": "BP1A.260305.001",
+    "buildDisplayId": "BP1A.260305.001",
+    "buildIncremental": "13500000",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "rango-user 16 AP4A.250405.001 13500000 release-keys",
+    "buildFlavor": "rango-user",
+    "buildProduct": "rango",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Google Tensor G5",
+    "socManufacturer": "Google",
+    "buildHost": "aosp-build-192.xiaomi.com",
+    "buildUser": "build",
+    "buildTags": "release-keys,verified"
+  }
+}
