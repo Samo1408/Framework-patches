@@ -1,0 +1,32 @@
+{
+  "id": "pixel_9_pro_xl",
+  "brandLabel": "Google",
+  "modelLabel": "Pixel 9 Pro XL",
+  "summary": "Tensor G4 - Android 15",
+  "profile": {
+    "bootloader": "komodo-01.0-12897670",
+    "baseband": "g5900a-241012-250128-B-13016600",
+    "brand": "google",
+    "manufacturer": "Google",
+    "model": "Pixel 9 Pro XL",
+    "productName": "komodo",
+    "deviceCode": "komodo",
+    "board": "komodo",
+    "hardware": "komodo",
+    "boardPlatform": "zumapro",
+    "buildFingerprint": "google/komodo/komodo:15/BP1A.250305.019/13003188:user/release-keys",
+    "buildId": "BP1A.250305.019",
+    "buildDisplayId": "BP1A.250305.019",
+    "buildIncremental": "13003188",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "komodo-user 15 BP1A.250305.019 13003188 release-keys",
+    "buildFlavor": "komodo-user",
+    "buildProduct": "komodo",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Google Tensor G4",
+    "socManufacturer": "Google",
+    "buildHost": "aosp-build-453.android.com",
+    "buildUser": "system",
+    "buildTags": "release-keys,release-keys"
+  }
+}
