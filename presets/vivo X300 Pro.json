@@ -1,0 +1,32 @@
+{
+  "id": "vivo_x300_pro",
+  "brandLabel": "vivo",
+  "modelLabel": "vivo X300 Pro",
+  "summary": "Dimensity 9500 - Android 16",
+  "profile": {
+    "bootloader": "v2530-01.0-12510267",
+    "baseband": "v2530-baseband-12510267",
+    "brand": "vivo",
+    "manufacturer": "vivo",
+    "model": "vivo X300 Pro",
+    "productName": "v2530",
+    "deviceCode": "v2530",
+    "board": "v2530",
+    "hardware": "v2530",
+    "boardPlatform": "v2530",
+    "buildFingerprint": "vivo/v2530/v2530:16/BP2A.250805.003/12510267:user/release-keys",
+    "buildId": "BP2A.250805.003",
+    "buildDisplayId": "BP2A.250805.003",
+    "buildIncremental": "12510267",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "v2530-user 16 BP2A.250805.003 12510267 release-keys",
+    "buildFlavor": "v2530-user",
+    "buildProduct": "v2530",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Dimensity 9500",
+    "socManufacturer": "MediaTek",
+    "buildHost": "build-506.samsung.com",
+    "buildUser": "jenkins",
+    "buildTags": "release-keys,ota"
+  }
+}
