@@ -1,0 +1,32 @@
+{
+  "id": "pixel_5",
+  "brandLabel": "Google",
+  "modelLabel": "Pixel 5",
+  "summary": "Snapdragon 765G - Android 15",
+  "profile": {
+    "bootloader": "bramble-1.2-7590098",
+    "baseband": "g7250-00184-230626-B-10361986",
+    "brand": "google",
+    "manufacturer": "Google",
+    "model": "Pixel 5",
+    "productName": "redfin",
+    "deviceCode": "redfin",
+    "board": "redfin",
+    "hardware": "redfin",
+    "boardPlatform": "sm7250",
+    "buildFingerprint": "google/redfin/redfin:15/AP3A.240905.015/12326511:user/release-keys",
+    "buildId": "AP3A.240905.015",
+    "buildDisplayId": "AP3A.240905.015",
+    "buildIncremental": "12326511",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "redfin-user 15 AP3A.240905.015 12326511 release-keys",
+    "buildFlavor": "redfin-user",
+    "buildProduct": "redfin",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 765G",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "jenkins-244.motorola.com",
+    "buildUser": "system",
+    "buildTags": "release-keys,release-keys"
+  }
+}
