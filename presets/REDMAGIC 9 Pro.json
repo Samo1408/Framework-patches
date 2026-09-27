@@ -1,0 +1,32 @@
+{
+  "id": "redmagic_9_pro",
+  "brandLabel": "nubia",
+  "modelLabel": "REDMAGIC 9 Pro",
+  "summary": "Snapdragon 8 Gen 3 - Android 14",
+  "profile": {
+    "bootloader": "nx769j-01.0-12937788",
+    "baseband": "nx769j-baseband-12937788",
+    "brand": "nubia",
+    "manufacturer": "nubia",
+    "model": "REDMAGIC 9 Pro",
+    "productName": "nx769j",
+    "deviceCode": "nx769j",
+    "board": "nx769j",
+    "hardware": "nx769j",
+    "boardPlatform": "nx769j",
+    "buildFingerprint": "nubia/nx769j/nx769j:14/UP1A.231005.007/12937788:user/release-keys",
+    "buildId": "UP1A.231005.007",
+    "buildDisplayId": "UP1A.231005.007",
+    "buildIncremental": "12937788",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "nx769j-user 14 UP1A.231005.007 12937788 release-keys",
+    "buildFlavor": "nx769j-user",
+    "buildProduct": "nx769j",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Gen 3",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "build-634.sony.com",
+    "buildUser": "jenkins",
+    "buildTags": "release-keys,release-keys"
+  }
+}
