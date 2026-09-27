@@ -1,0 +1,32 @@
+{
+  "id": "huawei_mate_70_pro",
+  "brandLabel": "HUAWEI",
+  "modelLabel": "Huawei Mate 70 Pro",
+  "summary": "Kirin 9020 - Android 15",
+  "profile": {
+    "bootloader": "MRO-AL00-01.0-12606804",
+    "baseband": "MRO-AL00-baseband-12606804",
+    "brand": "huawei",
+    "manufacturer": "HUAWEI",
+    "model": "Huawei Mate 70 Pro",
+    "productName": "MRO-AL00",
+    "deviceCode": "MRO-AL00",
+    "board": "MRO-AL00",
+    "hardware": "MRO-AL00",
+    "boardPlatform": "MRO-AL00",
+    "buildFingerprint": "huawei/MRO-AL00/MRO-AL00:15/AP3A.241205.015/12606804:user/release-keys",
+    "buildId": "AP3A.241205.015",
+    "buildDisplayId": "AP3A.241205.015",
+    "buildIncremental": "12606804",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "MRO-AL00-user 15 AP3A.241205.015 12606804 release-keys",
+    "buildFlavor": "MRO-AL00-user",
+    "buildProduct": "MRO-AL00",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Kirin 9020",
+    "socManufacturer": "Huawei",
+    "buildHost": "abfarm-897.sony.com",
+    "buildUser": "aosp",
+    "buildTags": "release-keys,ota"
+  }
+}
