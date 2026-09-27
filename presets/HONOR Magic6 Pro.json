@@ -1,0 +1,32 @@
+{
+  "id": "honor_magic6_pro",
+  "brandLabel": "HONOR",
+  "modelLabel": "HONOR Magic6 Pro",
+  "summary": "Snapdragon 8 Gen 3 - Android 14",
+  "profile": {
+    "bootloader": "balmuda-01.0-12524058",
+    "baseband": "balmuda-baseband-12524058",
+    "brand": "honor",
+    "manufacturer": "HONOR",
+    "model": "HONOR Magic6 Pro",
+    "productName": "balmuda",
+    "deviceCode": "balmuda",
+    "board": "balmuda",
+    "hardware": "balmuda",
+    "boardPlatform": "balmuda",
+    "buildFingerprint": "honor/balmuda/balmuda:14/UP1A.231005.007/12524058:user/release-keys",
+    "buildId": "UP1A.231005.007",
+    "buildDisplayId": "UP1A.231005.007",
+    "buildIncremental": "12524058",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "balmuda-user 14 UP1A.231005.007 12524058 release-keys",
+    "buildFlavor": "balmuda-user",
+    "buildProduct": "balmuda",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Gen 3",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "builder-516.android.com",
+    "buildUser": "builder",
+    "buildTags": "release-keys,release-keys"
+  }
+}
