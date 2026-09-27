@@ -17,47 +17,135 @@ jobs:
     runs-on: ubuntu-24.04
     permissions:
       contents: read
+
     steps:
       - name: Checkout patch
         uses: actions/checkout@v4
 
       - name: Set up Java 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
 
       - name: Download smali tools
+        shell: bash
         run: |
+          set -euo pipefail
           mkdir -p tools
-          curl -fL --retry 3 -o tools/baksmali-3.0.9-fat.jar \
+          curl -fL --retry 3 --retry-all-errors -o tools/baksmali-3.0.9-fat.jar \
             https://github.com/baksmali/smali/releases/download/3.0.9/baksmali-3.0.9-fat-release.jar
-          curl -fL --retry 3 -o tools/smali-3.0.9-fat.jar \
+          curl -fL --retry 3 --retry-all-errors -o tools/smali-3.0.9-fat.jar \
             https://github.com/baksmali/smali/releases/download/3.0.9/smali-3.0.9-fat-release.jar
+          test -s tools/baksmali-3.0.9-fat.jar
+          test -s tools/smali-3.0.9-fat.jar
 
       - name: Download original framework.jar
         env:
           FRAMEWORK_URL: ${{ inputs.framework_url }}
           EXPECTED_SHA256: ${{ inputs.sha256 }}
+        shell: bash
         run: |
-          curl -fL --retry 3 -o framework.jar "$FRAMEWORK_URL"
+          set -euo pipefail
+          curl -fL --retry 3 --retry-all-errors -o framework.jar "$FRAMEWORK_URL"
+
           if [ -n "$EXPECTED_SHA256" ]; then
             echo "$EXPECTED_SHA256  framework.jar" | sha256sum -c -
           fi
+
           unzip -t framework.jar >/dev/null
+          echo '--- Original DEX files ---'
           unzip -l framework.jar | grep -E 'classes[0-9]*\.dex$'
 
-      - name: Build patched framework.jar
-        run: |
-          API=34 ./tools/build_framework.sh framework.jar framework_A14_sim-cached_patched.jar
+          ORIGINAL_DEX_COUNT=$(unzip -Z1 framework.jar | grep -E '^classes[0-9]*\.dex$' | wc -l)
+          test "$ORIGINAL_DEX_COUNT" -eq 6
+          echo "Original DEX count: $ORIGINAL_DEX_COUNT"
 
-      - name: Verify output structure
+      - name: Fix build script permissions
+        shell: bash
         run: |
-          unzip -t framework_A14_sim-cached_patched.jar >/dev/null
-          echo '--- DEX files ---'
-          unzip -l framework_A14_sim-cached_patched.jar | grep -E 'classes[0-9]*\.dex$'
-          echo '--- Spoof reference/class presence in assembled source tree ---'
-          grep -R 'Landroid/location/Spoof;' patches
+          set -euo pipefail
+          chmod 755 tools/build_framework.sh
+          test -x tools/build_framework.sh
+          ls -l tools/build_framework.sh
+
+      - name: Build patched framework.jar
+        shell: bash
+        run: |
+          set -euo pipefail
+          API=34 bash tools/build_framework.sh \
+            framework.jar \
+            framework_A14_sim-cached_patched.jar
+
+      - name: Verify output structure and critical classes
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          OUTPUT=framework_A14_sim-cached_patched.jar
+          test -s "$OUTPUT"
+          unzip -t "$OUTPUT" >/dev/null
+
+          echo '--- Output DEX files ---'
+          unzip -l "$OUTPUT" | grep -E 'classes[0-9]*\.dex$'
+
+          ORIGINAL_DEX_COUNT=$(unzip -Z1 framework.jar | grep -E '^classes[0-9]*\.dex$' | wc -l)
+          OUTPUT_DEX_COUNT=$(unzip -Z1 "$OUTPUT" | grep -E '^classes[0-9]*\.dex$' | wc -l)
+          echo "Original DEX count: $ORIGINAL_DEX_COUNT"
+          echo "Output DEX count:   $OUTPUT_DEX_COUNT"
+          test "$ORIGINAL_DEX_COUNT" -eq "$OUTPUT_DEX_COUNT"
+          test "$OUTPUT_DEX_COUNT" -eq 6
+
+          rm -rf verify_original verify_output
+          mkdir -p verify_original verify_output
+          unzip -q framework.jar -d verify_original
+          unzip -q "$OUTPUT" -d verify_output
+
+          echo '--- DEX names ---'
+          diff -u \
+            <(find verify_original -maxdepth 1 -type f -name 'classes*.dex' -printf '%f\n' | sort -V) \
+            <(find verify_output   -maxdepth 1 -type f -name 'classes*.dex' -printf '%f\n' | sort -V)
+
+          echo '--- Disassemble output for class verification ---'
+          mkdir -p verify_smali
+          for dex in verify_output/classes*.dex; do
+            name=$(basename "$dex" .dex)
+            mkdir -p "verify_smali/$name"
+            java -jar tools/baksmali-3.0.9-fat.jar disassemble \
+              --api 34 \
+              --output "verify_smali/$name" \
+              "$dex"
+          done
+
+          echo '--- Critical class checks ---'
+          find verify_smali -type f -name 'RuntimeInit.smali' -path '*/com/android/internal/os/*' -print -quit | grep -q .
+          find verify_smali -type f -name 'ZygoteInit.smali' -path '*/com/android/internal/os/*' -print -quit | grep -q .
+          find verify_smali -type f -name 'Spoof.smali' -path '*/android/location/*' -print -quit | grep -q .
+
+          echo 'RuntimeInit: OK'
+          echo 'ZygoteInit:  OK'
+          echo 'Spoof:       OK'
+
+          echo '--- Patched class checks ---'
+          for cls in \
+            android/location/Country.smali \
+            android/location/Location.smali \
+            android/telephony/SubscriptionInfo.smali \
+            android/telephony/TelephonyManager.smali; do
+            find verify_smali -type f -path "*/$cls" -print -quit | grep -q .
+            echo "$cls: OK"
+          done
+
+          echo '--- Spoof references ---'
+          grep -R -l 'Landroid/location/Spoof;' verify_smali | head -20
+
+          echo '--- Signature files ---'
+          if unzip -Z1 "$OUTPUT" | grep -E '^META-INF/.*\.(SF|RSA|DSA)$' >/dev/null; then
+            echo 'ERROR: stale JAR signature files found in output'
+            exit 1
+          fi
+
+          echo 'Verification completed successfully.'
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
