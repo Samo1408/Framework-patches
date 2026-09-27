@@ -1,0 +1,32 @@
+{
+  "id": "iqoo_15",
+  "brandLabel": "iQOO",
+  "modelLabel": "iQOO 15",
+  "summary": "Snapdragon 8 Elite Gen 5 - Android 16",
+  "profile": {
+    "bootloader": "I2501-01.0-12882624",
+    "baseband": "I2501-baseband-12882624",
+    "brand": "iqoo",
+    "manufacturer": "iQOO",
+    "model": "iQOO 15",
+    "productName": "I2501",
+    "deviceCode": "I2501",
+    "board": "I2501",
+    "hardware": "I2501",
+    "boardPlatform": "I2501",
+    "buildFingerprint": "iqoo/I2501/I2501:16/BP2A.250805.003/12882624:user/release-keys",
+    "buildId": "BP2A.250805.003",
+    "buildDisplayId": "BP2A.250805.003",
+    "buildIncremental": "12882624",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "I2501-user 16 BP2A.250805.003 12882624 release-keys",
+    "buildFlavor": "I2501-user",
+    "buildProduct": "I2501",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Elite Gen 5",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "aosp-build-553.samsung.com",
+    "buildUser": "builder",
+    "buildTags": "release-keys,ota"
+  }
+}
