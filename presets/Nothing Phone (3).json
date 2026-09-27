@@ -1,0 +1,32 @@
+{
+  "id": "nothing_phone_3",
+  "brandLabel": "Nothing",
+  "modelLabel": "Nothing Phone (3)",
+  "summary": "Snapdragon 8s Gen 4 - Android 15",
+  "profile": {
+    "bootloader": "metroid-01.0-12786087",
+    "baseband": "metroid-baseband-12786087",
+    "brand": "nothing",
+    "manufacturer": "Nothing",
+    "model": "Nothing Phone (3)",
+    "productName": "metroid",
+    "deviceCode": "metroid",
+    "board": "metroid",
+    "hardware": "metroid",
+    "boardPlatform": "metroid",
+    "buildFingerprint": "nothing/metroid/metroid:15/AP3A.241205.015/12786087:user/release-keys",
+    "buildId": "AP3A.241205.015",
+    "buildDisplayId": "AP3A.241205.015",
+    "buildIncremental": "12786087",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "metroid-user 15 AP3A.241205.015 12786087 release-keys",
+    "buildFlavor": "metroid-user",
+    "buildProduct": "metroid",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8s Gen 4",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "build-113.android.com",
+    "buildUser": "release",
+    "buildTags": "release-keys"
+  }
+}
