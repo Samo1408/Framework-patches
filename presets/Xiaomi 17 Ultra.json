@@ -1,0 +1,32 @@
+{
+  "id": "xiaomi_17_ultra",
+  "brandLabel": "Xiaomi",
+  "modelLabel": "Xiaomi 17 Ultra",
+  "summary": "Snapdragon 8 Elite Gen 5 - Android 16",
+  "profile": {
+    "bootloader": "nan-01.0-12358566",
+    "baseband": "nan-baseband-12358566",
+    "brand": "xiaomi",
+    "manufacturer": "Xiaomi",
+    "model": "Xiaomi 17 Ultra",
+    "productName": "nan",
+    "deviceCode": "nan",
+    "board": "nan",
+    "hardware": "nan",
+    "boardPlatform": "nan",
+    "buildFingerprint": "xiaomi/nan/nan:16/BP2A.250805.003/12358566:user/release-keys",
+    "buildId": "BP2A.250805.003",
+    "buildDisplayId": "BP2A.250805.003",
+    "buildIncremental": "12358566",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "nan-user 16 BP2A.250805.003 12358566 release-keys",
+    "buildFlavor": "nan-user",
+    "buildProduct": "nan",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Elite Gen 5",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "buildkite-171.vivo.com",
+    "buildUser": "builder",
+    "buildTags": "release-keys,release-keys"
+  }
+}
