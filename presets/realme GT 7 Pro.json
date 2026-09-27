@@ -1,0 +1,32 @@
+{
+  "id": "realme_gt_7_pro",
+  "brandLabel": "realme",
+  "modelLabel": "realme GT 7 Pro",
+  "summary": "Snapdragon 8 Elite - Android 15",
+  "profile": {
+    "bootloader": "RMX5010-01.0-12827460",
+    "baseband": "RMX5010-baseband-12827460",
+    "brand": "realme",
+    "manufacturer": "realme",
+    "model": "realme GT 7 Pro",
+    "productName": "RMX5010",
+    "deviceCode": "RMX5010",
+    "board": "RMX5010",
+    "hardware": "RMX5010",
+    "boardPlatform": "RMX5010",
+    "buildFingerprint": "realme/RMX5010/RMX5010:15/AP3A.241205.015/12827460:user/release-keys",
+    "buildId": "AP3A.241205.015",
+    "buildDisplayId": "AP3A.241205.015",
+    "buildIncremental": "12827460",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "RMX5010-user 15 AP3A.241205.015 12827460 release-keys",
+    "buildFlavor": "RMX5010-user",
+    "buildProduct": "RMX5010",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Elite",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "build-808.samsung.com",
+    "buildUser": "build",
+    "buildTags": "release-keys,ota"
+  }
+}
