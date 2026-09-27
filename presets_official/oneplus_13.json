@@ -1,0 +1,12 @@
+{
+  "schema": "official_verified_device_profile_v1",
+  "verification": "official_manufacturer_or_google_source",
+  "device": {
+    "brand": "OnePlus",
+    "model": "OnePlus 13",
+    "soc": "Qualcomm Snapdragon 8 Elite Mobile Platform",
+    "os": "OxygenOS 15.0",
+    "androidVersion": 15,
+    "source": "https://www.oneplus.com/fr/13/specs"
+  }
+}
