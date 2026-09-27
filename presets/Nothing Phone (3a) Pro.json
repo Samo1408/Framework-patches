@@ -1,0 +1,32 @@
+{
+  "id": "nothing_phone_3a_pro",
+  "brandLabel": "Nothing",
+  "modelLabel": "Nothing Phone (3a) Pro",
+  "summary": "Snapdragon 7s Gen 3 - Android 15",
+  "profile": {
+    "bootloader": "asteroid-01.0-12799878",
+    "baseband": "asteroid-baseband-12799878",
+    "brand": "nothing",
+    "manufacturer": "Nothing",
+    "model": "Nothing Phone (3a) Pro",
+    "productName": "asteroid",
+    "deviceCode": "asteroid",
+    "board": "asteroid",
+    "hardware": "asteroid",
+    "boardPlatform": "asteroid",
+    "buildFingerprint": "nothing/asteroid/asteroid:15/AP3A.241205.015/12799878:user/release-keys",
+    "buildId": "AP3A.241205.015",
+    "buildDisplayId": "AP3A.241205.015",
+    "buildIncremental": "12799878",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "asteroid-user 15 AP3A.241205.015 12799878 release-keys",
+    "buildFlavor": "asteroid-user",
+    "buildProduct": "asteroid",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 7s Gen 3",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "buildkite-814.xiaomi.com",
+    "buildUser": "builder",
+    "buildTags": "release-keys,ota"
+  }
+}
