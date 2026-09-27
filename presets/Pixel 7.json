@@ -1,0 +1,32 @@
+{
+  "id": "pixel_7",
+  "brandLabel": "Google",
+  "modelLabel": "Pixel 7",
+  "summary": "Tensor G2 - Android 15",
+  "profile": {
+    "bootloader": "lynx-02.0-12281874",
+    "baseband": "g5300i-241205-250127-B-12973597",
+    "brand": "google",
+    "manufacturer": "Google",
+    "model": "Pixel 7",
+    "productName": "panther",
+    "deviceCode": "panther",
+    "board": "panther",
+    "hardware": "panther",
+    "boardPlatform": "gs201",
+    "buildFingerprint": "google/panther/panther:15/BP1A.250305.019/13003188:user/release-keys",
+    "buildId": "BP1A.250305.019",
+    "buildDisplayId": "BP1A.250305.019",
+    "buildIncremental": "13003188",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "panther-user 15 BP1A.250305.019 13003188 release-keys",
+    "buildFlavor": "panther-user",
+    "buildProduct": "panther",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Google Tensor G2",
+    "socManufacturer": "Google",
+    "buildHost": "aosp-build-582.motorola.com",
+    "buildUser": "builder",
+    "buildTags": "release-keys,verified"
+  }
+}
