@@ -1,0 +1,10 @@
+{
+  "schema": "official_verified_device_profile_v1",
+  "verification": "official_manufacturer_or_google_source",
+  "device": {
+    "brand": "Sony",
+    "model": "Xperia 1 VII",
+    "storageVariant": "256GB",
+    "source": "https://www.sony.co.uk/electronics/support/mobile-phones-tablets-mobile-phones/xperia-1-vii-256gb/specifications"
+  }
+}
