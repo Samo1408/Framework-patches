@@ -1,0 +1,32 @@
+{
+  "id": "xiaomi_14",
+  "brandLabel": "Xiaomi",
+  "modelLabel": "Xiaomi 14",
+  "summary": "Snapdragon 8 Gen 3 - Android 14",
+  "profile": {
+    "bootloader": "houji-01.0-12303402",
+    "baseband": "houji-baseband-12303402",
+    "brand": "xiaomi",
+    "manufacturer": "Xiaomi",
+    "model": "Xiaomi 14",
+    "productName": "houji",
+    "deviceCode": "houji",
+    "board": "houji",
+    "hardware": "houji",
+    "boardPlatform": "houji",
+    "buildFingerprint": "xiaomi/houji/houji:14/UP1A.231005.007/12303402:user/release-keys",
+    "buildId": "UP1A.231005.007",
+    "buildDisplayId": "UP1A.231005.007",
+    "buildIncremental": "12303402",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "houji-user 14 UP1A.231005.007 12303402 release-keys",
+    "buildFlavor": "houji-user",
+    "buildProduct": "houji",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Gen 3",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "ci-785.xiaomi.com",
+    "buildUser": "system",
+    "buildTags": "release-keys,verified"
+  }
+}
