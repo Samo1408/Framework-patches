@@ -1,0 +1,32 @@
+{
+  "id": "xiaomi_15",
+  "brandLabel": "Xiaomi",
+  "modelLabel": "Xiaomi 15",
+  "summary": "Snapdragon 8 Elite - Android 15",
+  "profile": {
+    "bootloader": "dijun-01.0-12344775",
+    "baseband": "dijun-baseband-12344775",
+    "brand": "xiaomi",
+    "manufacturer": "Xiaomi",
+    "model": "Xiaomi 15",
+    "productName": "dijun",
+    "deviceCode": "dijun",
+    "board": "dijun",
+    "hardware": "dijun",
+    "boardPlatform": "dijun",
+    "buildFingerprint": "xiaomi/dijun/dijun:15/AP3A.241205.015/12344775:user/release-keys",
+    "buildId": "AP3A.241205.015",
+    "buildDisplayId": "AP3A.241205.015",
+    "buildIncremental": "12344775",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "dijun-user 15 AP3A.241205.015 12344775 release-keys",
+    "buildFlavor": "dijun-user",
+    "buildProduct": "dijun",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Elite",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "aosp-build-173.sony.com",
+    "buildUser": "build",
+    "buildTags": "release-keys"
+  }
+}
