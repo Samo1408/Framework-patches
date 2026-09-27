@@ -1,0 +1,32 @@
+{
+  "id": "oneplus_13",
+  "brandLabel": "OnePlus",
+  "modelLabel": "OnePlus 13",
+  "summary": "Snapdragon 8 Elite - Android 15",
+  "profile": {
+    "bootloader": "PJZ110-01.0-12248238",
+    "baseband": "PJZ110-baseband-12248238",
+    "brand": "oneplus",
+    "manufacturer": "OnePlus",
+    "model": "OnePlus 13",
+    "productName": "PJZ110",
+    "deviceCode": "PJZ110",
+    "board": "PJZ110",
+    "hardware": "PJZ110",
+    "boardPlatform": "PJZ110",
+    "buildFingerprint": "oneplus/PJZ110/PJZ110:15/AP3A.241205.015/12248238:user/release-keys",
+    "buildId": "AP3A.241205.015",
+    "buildDisplayId": "AP3A.241205.015",
+    "buildIncremental": "12248238",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "PJZ110-user 15 AP3A.241205.015 12248238 release-keys",
+    "buildFlavor": "PJZ110-user",
+    "buildProduct": "PJZ110",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Elite",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "builder-229.samsung.com",
+    "buildUser": "release",
+    "buildTags": "release-keys"
+  }
+}
