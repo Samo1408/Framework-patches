@@ -1,0 +1,32 @@
+{
+  "id": "nubia_z80_ultra",
+  "brandLabel": "nubia",
+  "modelLabel": "nubia Z80 Ultra",
+  "summary": "Snapdragon 8 Elite Gen 5 - Android 16",
+  "profile": {
+    "bootloader": "nubia_nx741j-01.0-12923997",
+    "baseband": "nubia_nx741j-baseband-12923997",
+    "brand": "nubia",
+    "manufacturer": "nubia",
+    "model": "nubia Z80 Ultra",
+    "productName": "nubia_nx741j",
+    "deviceCode": "nubia_nx741j",
+    "board": "nubia_nx741j",
+    "hardware": "nubia_nx741j",
+    "boardPlatform": "nubia_nx741j",
+    "buildFingerprint": "nubia/nubia_nx741j/nubia_nx741j:16/BP2A.250805.003/12923997:user/release-keys",
+    "buildId": "BP2A.250805.003",
+    "buildDisplayId": "BP2A.250805.003",
+    "buildIncremental": "12923997",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "nubia_nx741j-user 16 BP2A.250805.003 12923997 release-keys",
+    "buildFlavor": "nubia_nx741j-user",
+    "buildProduct": "nubia_nx741j",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Elite Gen 5",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "builder-910.oneplus.com",
+    "buildUser": "android-build",
+    "buildTags": "release-keys,release-keys"
+  }
+}
