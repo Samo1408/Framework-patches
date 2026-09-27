@@ -1,0 +1,32 @@
+{
+  "id": "samsung_galaxy_s24_ultra",
+  "brandLabel": "Samsung",
+  "modelLabel": "Samsung Galaxy S24 Ultra",
+  "summary": "Snapdragon 8 Gen 3 for Galaxy - Android 14",
+  "profile": {
+    "bootloader": "e3q-01.0-12013791",
+    "baseband": "e3q-baseband-12013791",
+    "brand": "samsung",
+    "manufacturer": "Samsung",
+    "model": "Samsung Galaxy S24 Ultra",
+    "productName": "e3q",
+    "deviceCode": "e3q",
+    "board": "e3q",
+    "hardware": "e3q",
+    "boardPlatform": "e3q",
+    "buildFingerprint": "samsung/e3q/e3q:14/UP1A.231005.007/12013791:user/release-keys",
+    "buildId": "UP1A.231005.007",
+    "buildDisplayId": "UP1A.231005.007",
+    "buildIncremental": "12013791",
+    "securityPatch": "2026-05-05",
+    "buildDescription": "e3q-user 14 UP1A.231005.007 12013791 release-keys",
+    "buildFlavor": "e3q-user",
+    "buildProduct": "e3q",
+    "buildCharacteristics": "nosdcard",
+    "socModel": "Snapdragon 8 Gen 3 for Galaxy",
+    "socManufacturer": "Qualcomm",
+    "buildHost": "build-155.xiaomi.com",
+    "buildUser": "release",
+    "buildTags": "release-keys,verified"
+  }
+}
