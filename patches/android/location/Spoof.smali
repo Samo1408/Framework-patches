@@ -29,7 +29,7 @@
     .registers 4
     const-string v0, "ro.product.locale"
     const-string v1, "en-GB"
-    invoke-static {v0, v1}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v0, v1}, Landroid/os/BuildSpoof;->getOrSystemProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
     move-result-object v0
     if-nez v0, :cond_ok
     const-string v0, "GB"
@@ -3141,6 +3141,15 @@
 
 .method public static getOpNumeric()Ljava/lang/String;
     .registers 7
+    const-string v0, "devicespoof.operator.numeric"
+    invoke-static {v0}, Landroid/os/BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;
+    move-result-object v2
+    if-eqz v2, :auto
+    invoke-virtual {v2}, Ljava/lang/String;->isEmpty()Z
+    move-result v3
+    if-nez v3, :auto
+    return-object v2
+    :auto
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
     move-result-wide v0
     sget-object v2, Landroid/location/Spoof;->sOpNum:Ljava/lang/String;
@@ -3161,6 +3170,15 @@
 
 .method public static getOpName()Ljava/lang/String;
     .registers 7
+    const-string v0, "devicespoof.operator.name"
+    invoke-static {v0}, Landroid/os/BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;
+    move-result-object v2
+    if-eqz v2, :auto
+    invoke-virtual {v2}, Ljava/lang/String;->isEmpty()Z
+    move-result v3
+    if-nez v3, :auto
+    return-object v2
+    :auto
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
     move-result-wide v0
     sget-object v2, Landroid/location/Spoof;->sOpName:Ljava/lang/String;
