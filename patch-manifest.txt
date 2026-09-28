@@ -19,3 +19,7 @@ BuildSpoof runtime: android/os/Build.smali + android/os/Build$VERSION.smali + ne
 Serial spoof: BuildSpoof.getSerialNumber() accepts serialNumber (and legacy serialnumber).
 SemSystemProperties.getDeviceSerialNumber(), SemSystemProperties reads of ril.serialnumber, and
 Build.getSerial() use the same non-empty override and preserve their original behavior otherwise.
+
+Build-property coverage: Build.getString/getStringList, Build.getLong, Build.VERSION string and
+integer fields, Build.getFingerprintedPartitions, and the system/vendor/bootimage reads in
+Build.isBuildConsistent() use BuildSpoof before their original SystemProperties fallback.
