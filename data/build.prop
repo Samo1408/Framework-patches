@@ -1,0 +1,16 @@
+# BuildSpoof runtime overrides
+# Use either Android property names (ro.product.model) or short aliases (model).
+manufacturer=samsung
+brand=samsung
+model=SM-A145F
+device=a14
+product=a14
+fingerprint=samsung/a14xnsxx/a14:14/UP1A.231005.007/A145FXXU:user/release-keys
+tags=release-keys
+type=user
+# Optional examples:
+# board=a14
+# hardware=mt6769
+# bootloader=A145FXXU...
+# id=UP1A.231005.007
+# display=A145FXXU...
