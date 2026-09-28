@@ -16,6 +16,7 @@ API="${API:-34}"
 [[ -f "$INPUT" ]] || { echo "Missing input framework.jar: $INPUT" >&2; exit 2; }
 [[ -f "$BAKSMALI_JAR" ]] || { echo "Missing $BAKSMALI_JAR" >&2; exit 2; }
 [[ -f "$SMALI_JAR" ]] || { echo "Missing $SMALI_JAR" >&2; exit 2; }
+python3 "$ROOT/tools/verify_framework_compat.py" --for-patching "$INPUT"
 
 if [[ -n "${WORK_DIR:-}" ]]; then
   WORK="$WORK_DIR"
