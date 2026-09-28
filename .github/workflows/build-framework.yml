@@ -69,6 +69,10 @@ jobs:
           test -x tools/build_framework.sh
           ls -l tools/build_framework.sh
 
+      - name: Verify serial hook sources
+        shell: bash
+        run: python3 tools/verify_serial_hook.py
+
       - name: Build patched framework.jar
         shell: bash
         run: |
@@ -133,7 +137,10 @@ jobs:
             android/location/Country.smali \
             android/location/Location.smali \
             android/telephony/SubscriptionInfo.smali \
-            android/telephony/TelephonyManager.smali; do
+            android/telephony/TelephonyManager.smali \
+            android/os/SemSystemProperties.smali \
+            android/os/Build.smali \
+            android/os/BuildSpoof.smali; do
             find verify_smali -type f -path "*/$cls" -print -quit | grep -q .
             echo "$cls: OK"
           done
