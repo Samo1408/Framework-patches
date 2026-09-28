@@ -151,6 +151,13 @@
     const-string v0, "hardware"
     return-object v0
     :cond_a5
+    const-string v0, "baseband"
+    invoke-virtual {v0, p0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    move-result v0
+    if-eqz v0, :cond_b0
+    const-string v0, "ro.baseband"
+    return-object v0
+    :cond_b0
     return-object p0
 .end method
 
@@ -204,6 +211,57 @@
     :cond_3f
     const/4 v0, 0x0
     return-object v0
+.end method
+
+.method public static getOrSystemProperty(Ljava/lang/String;)Ljava/lang/String;
+    .registers 2
+
+    invoke-static {p0}, Landroid/os/BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;
+    move-result-object v0
+    if-nez v0, :cond_return
+
+    invoke-static {p0}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
+    move-result-object v0
+
+    :cond_return
+    return-object v0
+.end method
+
+.method public static getOrSystemProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    .registers 3
+
+    invoke-static {p0}, Landroid/os/BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;
+    move-result-object v0
+    if-nez v0, :cond_return
+
+    invoke-static {p0, p1}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    move-result-object v0
+
+    :cond_return
+    return-object v0
+.end method
+
+.method public static getInt(Ljava/lang/String;I)I
+    .registers 3
+
+    invoke-static {p0}, Landroid/os/BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;
+    move-result-object v0
+    if-eqz v0, :cond_system
+
+    :try_start
+    invoke-static {v0}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
+    move-result v0
+    return v0
+    :try_end
+    .catch Ljava/lang/NumberFormatException; {:try_start .. :try_end} :catch_invalid
+
+    :catch_invalid
+    move-exception v0
+
+    :cond_system
+    invoke-static {p0, p1}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
+    move-result v0
+    return v0
 .end method
 
 .method public static declared-synchronized getSerialNumber()Ljava/lang/String;
