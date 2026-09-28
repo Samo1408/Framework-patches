@@ -128,7 +128,7 @@
 
     const-string v1, ""
 
-    invoke-static {v0, v1}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v0, v1}, Landroid/os/BuildSpoof;->getOrSystemProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
@@ -137,7 +137,7 @@
     .line 364
     const-string/jumbo v0, "ro.build.version.security_patch"
 
-    invoke-static {v0, v1}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v0, v1}, Landroid/os/BuildSpoof;->getOrSystemProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
@@ -146,7 +146,7 @@
     .line 371
     const-string/jumbo v0, "ro.build.version.security_index"
 
-    invoke-static {v0, v1}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v0, v1}, Landroid/os/BuildSpoof;->getOrSystemProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
@@ -185,7 +185,7 @@
     sput-object v2, Landroid/os/Build$VERSION;->SDK:Ljava/lang/String;
 
     .line 403
-    invoke-static {v0, v1}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
+    invoke-static {v0, v1}, Landroid/os/BuildSpoof;->getInt(Ljava/lang/String;I)I
 
     move-result v0
 
@@ -197,7 +197,7 @@
     .line 420
     const-string/jumbo v2, "ro.product.first_api_level"
 
-    invoke-static {v2, v1}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
+    invoke-static {v2, v1}, Landroid/os/BuildSpoof;->getInt(Ljava/lang/String;I)I
 
     move-result v2
 
@@ -209,7 +209,7 @@
     .line 454
     const-string/jumbo v2, "ro.build.version.preview_sdk"
 
-    invoke-static {v2, v1}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
+    invoke-static {v2, v1}, Landroid/os/BuildSpoof;->getInt(Ljava/lang/String;I)I
 
     move-result v2
 
@@ -218,7 +218,7 @@
     .line 465
     const-string/jumbo v2, "ro.build.version.sem"
 
-    invoke-static {v2, v1}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
+    invoke-static {v2, v1}, Landroid/os/BuildSpoof;->getInt(Ljava/lang/String;I)I
 
     move-result v2
 
@@ -227,7 +227,7 @@
     .line 476
     const-string/jumbo v2, "ro.build.version.sep"
 
-    invoke-static {v2, v1}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
+    invoke-static {v2, v1}, Landroid/os/BuildSpoof;->getInt(Ljava/lang/String;I)I
 
     move-result v2
 
@@ -238,7 +238,7 @@
 
     const-string v3, "REL"
 
-    invoke-static {v2, v3}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v2, v3}, Landroid/os/BuildSpoof;->getOrSystemProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v2
 
@@ -311,7 +311,7 @@
     .line 547
     const-string/jumbo v0, "ro.build.version.min_supported_target_sdk"
 
-    invoke-static {v0, v1}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
+    invoke-static {v0, v1}, Landroid/os/BuildSpoof;->getInt(Ljava/lang/String;I)I
 
     move-result v0
 
