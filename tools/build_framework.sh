@@ -132,6 +132,7 @@ rm -f "$OUTPUT"
 unzip -t "$OUTPUT" >/dev/null
 count=$(unzip -l "$OUTPUT" | awk '/classes[0-9]*\.dex$/ {n++} END {print n+0}')
 [[ "$count" -eq "${#DEXES[@]}" ]] || { echo "DEX count changed: $count != ${#DEXES[@]}" >&2; exit 7; }
+python3 "$ROOT/tools/verify_framework_compat.py" --patched-output "$OUTPUT"
 
 echo "Built: $OUTPUT"
 echo "DEX count preserved: $count"
