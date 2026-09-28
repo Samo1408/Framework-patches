@@ -484,7 +484,7 @@
     .line 1325
     const-string/jumbo v2, "ro.hw_timeout_multiplier"
 
-    invoke-static {v2, v3}, Landroid/os/BuildSpoof;->getInt(Ljava/lang/String;I)I
+    invoke-static {v2, v3}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
 
     move-result v2
 
@@ -496,7 +496,7 @@
     .line 1333
     const-string/jumbo v2, "ro.treble.enabled"
 
-    invoke-static {v2, v1}, Landroid/os/BuildSpoof;->getBoolean(Ljava/lang/String;Z)Z
+    invoke-static {v2, v1}, Landroid/os/SystemProperties;->getBoolean(Ljava/lang/String;Z)Z
 
     move-result v2
 
@@ -539,7 +539,7 @@
     .line 1524
     const-string/jumbo v2, "ro.debuggable"
 
-    invoke-static {v2, v1}, Landroid/os/BuildSpoof;->getInt(Ljava/lang/String;I)I
+    invoke-static {v2, v1}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
 
     move-result v2
 
@@ -586,7 +586,7 @@
     .line 1564
     const-string/jumbo v0, "ro.boot.container"
 
-    invoke-static {v0, v1}, Landroid/os/BuildSpoof;->getBoolean(Ljava/lang/String;Z)Z
+    invoke-static {v0, v1}, Landroid/os/SystemProperties;->getBoolean(Ljava/lang/String;Z)Z
 
     move-result v0
 
@@ -958,12 +958,32 @@
 .end method
 
 .method private static greylist getLong(Ljava/lang/String;)J
-    .registers 3
+    .registers 4
     .param p0, "property"  # Ljava/lang/String;
-    const-wide/16 v1, -0x1
-    invoke-static {p0, v1, v2}, Landroid/os/BuildSpoof;->getLong(Ljava/lang/String;J)J
+
+    .line 1615
+    :try_start_0
+    invoke-static {p0}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {v0}, Ljava/lang/Long;->parseLong(Ljava/lang/String;)J
+
     move-result-wide v0
+    :try_end_8
+    .catch Ljava/lang/NumberFormatException; {:try_start_0 .. :try_end_8} :catch_9
+
     return-wide v0
+
+    .line 1616
+    :catch_9
+    move-exception v0
+
+    .line 1617
+    .local v0, "e":Ljava/lang/NumberFormatException;
+    const-wide/16 v1, -0x1
+
+    return-wide v1
 .end method
 
 .method public static whitelist getRadioVersion()Ljava/lang/String;
@@ -989,11 +1009,6 @@
     .registers 4
 
     .line 258
-    invoke-static {}, Landroid/os/BuildSpoof;->getSerialNumber()Ljava/lang/String;
-    move-result-object v0
-    if-eqz v0, :service
-    return-object v0
-:service
     nop
 
     .line 259
@@ -1085,14 +1100,9 @@
     .param p1, "separator"  # Ljava/lang/String;
 
     .line 1604
-    invoke-static {p0}, Landroid/os/BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;
-    move-result-object v0
-    if-eqz v0, :system_list
-    goto :list_value
-:system_list
     invoke-static {p0}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
+
     move-result-object v0
-:list_value
 
     .line 1605
     .local v0, "value":Ljava/lang/String;
