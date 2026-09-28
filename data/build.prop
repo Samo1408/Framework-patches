@@ -11,6 +11,13 @@ type=user
 # Optional examples:
 # serialNumber=YOUR_DEVICE_SERIAL
 # The legacy spelling serialnumber=YOUR_DEVICE_SERIAL is also accepted.
+# ro.build.id=UP1A.231005.007
+# ro.build.display.id=UP1A.231005.007.EXAMPLE
+# ro.hardware=mt6769
+# ro.baseband=EXACT_MODEM_VERSION
+# ro.system.build.fingerprint=
+# ro.vendor.build.fingerprint=
+# ro.bootimage.build.fingerprint=
 # board=a14
 # hardware=mt6769
 # bootloader=A145FXXU...
