@@ -266,30 +266,24 @@
     sput-object v0, Landroid/os/Build;->MODEL_FOR_ATTESTATION:Ljava/lang/String;
 
     .line 149
-    invoke-static {}, Landroid/sysprop/SocProperties;->soc_manufacturer()Ljava/util/Optional;
+    const-string/jumbo v0, "ro.soc.manufacturer"
+
+    const-string v1, "unknown"
+
+    invoke-static {v0, v1}, Landroid/os/BuildSpoof;->getOrSystemProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
-
-    const-string/jumbo v1, "unknown"
-
-    invoke-virtual {v0, v1}, Ljava/util/Optional;->orElse(Ljava/lang/Object;)Ljava/lang/Object;
-
-    move-result-object v0
-
-    check-cast v0, Ljava/lang/String;
 
     sput-object v0, Landroid/os/Build;->SOC_MANUFACTURER:Ljava/lang/String;
 
     .line 153
-    invoke-static {}, Landroid/sysprop/SocProperties;->soc_model()Ljava/util/Optional;
+    const-string/jumbo v0, "ro.soc.model"
+
+    const-string v1, "unknown"
+
+    invoke-static {v0, v1}, Landroid/os/BuildSpoof;->getOrSystemProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
-
-    invoke-virtual {v0, v1}, Ljava/util/Optional;->orElse(Ljava/lang/Object;)Ljava/lang/Object;
-
-    move-result-object v0
-
-    check-cast v0, Ljava/lang/String;
 
     sput-object v0, Landroid/os/Build;->SOC_MODEL:Ljava/lang/String;
 
@@ -302,6 +296,14 @@
 
     sput-object v0, Landroid/os/Build;->BOOTLOADER:Ljava/lang/String;
 
+    const-string v0, "baseband"
+
+    invoke-static {v0}, Landroid/os/BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    if-nez v0, :spoof_radio
+
     .line 168
     invoke-static {}, Landroid/sysprop/TelephonyProperties;->baseband_version()Ljava/util/List;
 
@@ -312,6 +314,7 @@
 
     move-result-object v0
 
+    :spoof_radio
     sput-object v0, Landroid/os/Build;->RADIO:Ljava/lang/String;
 
     .line 171
