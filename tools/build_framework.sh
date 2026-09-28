@@ -61,7 +61,21 @@ copy_patch android/location/Location.smali
 copy_patch android/telephony/SubscriptionInfo.smali
 copy_patch android/telephony/TelephonyManager.smali
 
-# Spoof is deliberately added to the original classes6.dex directory.
+# BuildSpoof patch: replace the original framework Build classes in-place.
+# Build and Build$VERSION both live in classes3.dex on the target Android 14
+# framework. copy_patch() auto-detects the original DEX and preserves that
+# DEX boundary instead of merging classes.
+copy_patch android/os/SemSystemProperties.smali
+copy_patch android/os/Build.smali
+copy_patch 'android/os/Build$VERSION.smali'
+
+# Add the new BuildSpoof helper to classes3.dex, matching the DEX placement
+# expected by the patched Build/Build$VERSION implementation.
+[[ -d "$WORK/dex/classes3" ]] || { echo "classes3.dex is required for BuildSpoof" >&2; exit 6; }
+mkdir -p "$WORK/dex/classes3/android/os"
+cp "$ROOT/patches/android/os/BuildSpoof.smali" "$WORK/dex/classes3/android/os/BuildSpoof.smali"
+
+# Location/SIM spoof helper remains in the original classes6.dex boundary.
 [[ -d "$WORK/dex/classes6" ]] || { echo "classes6.dex is required for this patch" >&2; exit 6; }
 mkdir -p "$WORK/dex/classes6/android/location"
 cp "$ROOT/patches/android/location/Spoof.smali" "$WORK/dex/classes6/android/location/Spoof.smali"
@@ -89,6 +103,19 @@ for dex in "${DEXES[@]}"; do
   fi
   test -s "$WORK/jar/$dex"
   echo "=== ASSEMBLED $dex: $(stat -c '%s bytes' "$WORK/jar/$dex") ==="
+done
+
+# Preserve the requested DEX 039 format for MT Manager compatibility.
+# smali 3.0.9 may emit DEX 040 when assembling API 34 sources; normalize
+# the generated DEX header to 039 and recalculate both integrity fields.
+# ZIP compression is intentionally unchanged: the final JAR remains a normal
+# compressed ZIP archive to keep its size lower than the original framework.
+DEX_VERSION_TOOL="$ROOT/tools/preserve_dex_version.py"
+[[ -f "$DEX_VERSION_TOOL" ]] || { echo "Missing $DEX_VERSION_TOOL" >&2; exit 8; }
+
+for dex in "${DEXES[@]}"; do
+  python3 "$DEX_VERSION_TOOL" "$WORK/jar/$dex" 039
+  echo "=== DEX VERSION $dex: $(python3 -c 'import sys; print(open(sys.argv[1],"rb").read(8)[4:7].decode("ascii"))' "$WORK/jar/$dex") ==="
 done
 
 # Modified JARs must not retain stale signing metadata.
