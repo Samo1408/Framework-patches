@@ -226,69 +226,9 @@
 .end method
 
 .method public static declared-synchronized get(Ljava/lang/String;)Ljava/lang/String;
-    .registers 5
-    if-eqz p0, :cond_null
-    invoke-static {}, Landroid/os/BuildSpoof;->load()V
-    sget-object v0, Landroid/os/BuildSpoof;->PROPS:Ljava/util/Properties;
-    invoke-virtual {v0, p0}, Ljava/util/Properties;->containsKey(Ljava/lang/Object;)Z
-    move-result v1
-    if-eqz v1, :cond_10
-    invoke-virtual {v0, p0}, Ljava/util/Properties;->getProperty(Ljava/lang/String;)Ljava/lang/String;
-    move-result-object v1
-    invoke-static {v1}, Landroid/os/BuildSpoof;->nonEmpty(Ljava/lang/String;)Z
-    move-result v2
-    if-eqz v2, :cond_10
-    return-object v1
-    :cond_10
-    invoke-static {p0}, Landroid/os/BuildSpoof;->getAlias(Ljava/lang/String;)Ljava/lang/String;
-    move-result-object v1
-    invoke-virtual {v0, v1}, Ljava/util/Properties;->containsKey(Ljava/lang/Object;)Z
-    move-result v2
-    if-eqz v2, :cond_1f
-    invoke-virtual {v0, v1}, Ljava/util/Properties;->getProperty(Ljava/lang/String;)Ljava/lang/String;
-    move-result-object v1
-    invoke-static {v1}, Landroid/os/BuildSpoof;->nonEmpty(Ljava/lang/String;)Z
-    move-result v2
-    if-eqz v2, :cond_1f
-    return-object v1
-    :cond_1f
-    const-string v2, "ro.product."
-    invoke-virtual {p0, v2}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
-    move-result v2
-    if-eqz v2, :cond_2f
-    const/16 v2, 0xb
-    invoke-virtual {p0, v2}, Ljava/lang/String;->substring(I)Ljava/lang/String;
-    move-result-object v2
-    invoke-virtual {v0, v2}, Ljava/util/Properties;->containsKey(Ljava/lang/Object;)Z
-    move-result v3
-    if-eqz v3, :cond_2f
-    invoke-virtual {v0, v2}, Ljava/util/Properties;->getProperty(Ljava/lang/String;)Ljava/lang/String;
-    move-result-object v1
-    invoke-static {v1}, Landroid/os/BuildSpoof;->nonEmpty(Ljava/lang/String;)Z
-    move-result v3
-    if-eqz v3, :cond_2f
-    return-object v1
-    :cond_2f
-    const-string v2, "ro.build."
-    invoke-virtual {p0, v2}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
-    move-result v2
-    if-eqz v2, :cond_3f
-    const/16 v2, 0x9
-    invoke-virtual {p0, v2}, Ljava/lang/String;->substring(I)Ljava/lang/String;
-    move-result-object v2
-    invoke-virtual {v0, v2}, Ljava/util/Properties;->containsKey(Ljava/lang/Object;)Z
-    move-result v3
-    if-eqz v3, :cond_3f
-    invoke-virtual {v0, v2}, Ljava/util/Properties;->getProperty(Ljava/lang/String;)Ljava/lang/String;
-    move-result-object v1
-    invoke-static {v1}, Landroid/os/BuildSpoof;->nonEmpty(Ljava/lang/String;)Z
-    move-result v3
-    if-eqz v3, :cond_3f
-    return-object v1
-    :cond_3f
-    const/4 v0, 0x0
-    return-object v0
-    :cond_null
+    .registers 1
+    # SAFE-BOOT: no filesystem access from Build/Build$VERSION during Zygote preload.
+    # Overrides are intentionally disabled here; original SystemProperties remain active.
     const/4 v0, 0x0
     return-object v0
 .end method
@@ -312,65 +252,78 @@
     .registers 2
     invoke-static {p0}, Landroid/os/BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;
     move-result-object v0
-    if-nez v0, :cond_return
+    if-nez v0, :return_value
     invoke-static {p0}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
     move-result-object v0
-    :cond_return
+    :return_value
     return-object v0
 .end method
 
 .method public static getOrSystemProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-    .registers 3
+    .registers 2
     invoke-static {p0}, Landroid/os/BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;
     move-result-object v0
-    if-nez v0, :cond_return
+    if-nez v0, :return_value_default
     invoke-static {p0, p1}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
     move-result-object v0
-    :cond_return
+    :return_value_default
     return-object v0
 .end method
 
 .method public static getInt(Ljava/lang/String;I)I
-    .registers 3
+    .registers 2
     invoke-static {p0}, Landroid/os/BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;
     move-result-object v0
-    if-eqz v0, :cond_system
-    :try_start
+    if-eqz v0, :system_int
+    :try_start_safe
     invoke-static {v0}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
     move-result v0
     return v0
-    :try_end
-    .catch Ljava/lang/NumberFormatException; {:try_start .. :try_end} :catch_invalid
-    :catch_invalid
-    move-exception v0
-    :cond_system
+    :try_end_safe
+    .catch Ljava/lang/NumberFormatException; {:try_start_safe .. :try_end_safe} :system_int
+    :system_int
     invoke-static {p0, p1}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
     move-result v0
     return v0
 .end method
 
 .method public static declared-synchronized getSerialNumber()Ljava/lang/String;
-    .registers 2
+    .registers 3
+    # SAFE-BOOT: get() performs no filesystem access in this build.
     const-string v0, "serialNumber"
     invoke-static {v0}, Landroid/os/BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;
     move-result-object v0
-    if-eqz v0, :cond_legacy
+    if-eqz v0, :check_serialnumber
     return-object v0
-    :cond_legacy
+
+    :check_serialnumber
+    const-string v0, "serialNumber"
+    invoke-static {v0}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
+    move-result-object v0
+    invoke-static {v0}, Landroid/os/BuildSpoof;->nonEmpty(Ljava/lang/String;)Z
+    move-result v1
+    if-eqz v1, :check_legacy
+    return-object v0
+
+    :check_legacy
     const-string v0, "serialnumber"
-    invoke-static {v0}, Landroid/os/BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v0}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
     move-result-object v0
-    if-eqz v0, :cond_ril
+    invoke-static {v0}, Landroid/os/BuildSpoof;->nonEmpty(Ljava/lang/String;)Z
+    move-result v1
+    if-eqz v1, :check_ril
     return-object v0
 
-    :cond_ril
+    :check_ril
     const-string v0, "ril.serialnumber"
-    invoke-static {v0}, Landroid/os/BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v0}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
     move-result-object v0
-    if-eqz v0, :cond_none
+    invoke-static {v0}, Landroid/os/BuildSpoof;->nonEmpty(Ljava/lang/String;)Z
+    move-result v1
+    if-eqz v1, :none
     return-object v0
 
-    :cond_none
+    :none
     const/4 v0, 0x0
     return-object v0
 .end method
