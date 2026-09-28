@@ -28,17 +28,9 @@
 .method private static getCountryImpl()Ljava/lang/String;
     .registers 4
     const-string v0, "ro.product.locale"
-    invoke-static {v0}, Landroid/os/BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;
+    const-string v1, "en-GB"
+    invoke-static {v0, v1}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
     move-result-object v0
-    if-eqz v0, :cond_default_locale
-    invoke-virtual {v0}, Ljava/lang/String;->trim()Ljava/lang/String;
-    move-result-object v0
-    invoke-virtual {v0}, Ljava/lang/String;->isEmpty()Z
-    move-result v1
-    if-eqz v1, :cond_locale_ready
-    :cond_default_locale
-    const-string v0, "en-GB"
-    :cond_locale_ready
     if-nez v0, :cond_ok
     const-string v0, "GB"
     return-object v0
