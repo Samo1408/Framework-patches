@@ -767,7 +767,7 @@
     .line 1306
     const-string/jumbo v0, "ro.build.fingerprint"
 
-    invoke-static {v0}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v0}, Landroid/os/BuildSpoof;->getOrSystemProperty(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v1
 
@@ -878,7 +878,7 @@
 
     move-result-object v4
 
-    invoke-static {v4}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v4}, Landroid/os/BuildSpoof;->getOrSystemProperty(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v11
 
@@ -963,7 +963,7 @@
 
     .line 1615
     :try_start_0
-    invoke-static {p0}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {p0}, Landroid/os/BuildSpoof;->getOrSystemProperty(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
@@ -1108,7 +1108,7 @@
     .param p1, "separator"  # Ljava/lang/String;
 
     .line 1604
-    invoke-static {p0}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {p0}, Landroid/os/BuildSpoof;->getOrSystemProperty(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
@@ -1279,7 +1279,7 @@
     :cond_32
     const-string/jumbo v0, "ro.system.build.fingerprint"
 
-    invoke-static {v0}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v0}, Landroid/os/BuildSpoof;->getOrSystemProperty(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
@@ -1287,7 +1287,7 @@
     .local v0, "system":Ljava/lang/String;
     const-string/jumbo v4, "ro.vendor.build.fingerprint"
 
-    invoke-static {v4}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v4}, Landroid/os/BuildSpoof;->getOrSystemProperty(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v4
 
@@ -1295,7 +1295,7 @@
     .local v4, "vendor":Ljava/lang/String;
     const-string/jumbo v5, "ro.bootimage.build.fingerprint"
 
-    invoke-static {v5}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v5}, Landroid/os/BuildSpoof;->getOrSystemProperty(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v5
 
@@ -1311,7 +1311,7 @@
     .local v6, "requiredBootloader":Ljava/lang/String;
     const-string/jumbo v7, "ro.bootloader"
 
-    invoke-static {v7}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v7}, Landroid/os/BuildSpoof;->getOrSystemProperty(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v7
 
