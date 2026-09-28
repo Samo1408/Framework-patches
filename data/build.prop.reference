@@ -1,0 +1,171 @@
+# ================================================================
+# /data/build.prop - Android Build Spoof Reference
+# ================================================================
+# This file is read by the patched android.os.Build / Build$VERSION
+# implementation.
+#
+# Priority:
+#   1) short key (example: model=SM-A145F)
+#   2) full Android property key (example: ro.product.model=SM-A145F)
+#
+# Empty/commented entries mean: keep the original device value.
+# Do NOT change security-sensitive values unless you know the effect.
+# ================================================================
+
+# ------------------------ Product identity -----------------------
+manufacturer=samsung
+brand=samsung
+model=SM-A145F
+device=a14
+product=a14
+name=a14
+board=a14
+hardware=exynos850
+locale=en-US
+serialNumber=
+serialnumber=
+bootloader=
+
+# Full equivalents
+ro.product.manufacturer=samsung
+ro.product.brand=samsung
+ro.product.model=SM-A145F
+ro.product.device=a14
+ro.product.name=a14
+ro.product.board=a14
+ro.product.locale=en-US
+ro.hardware=exynos850
+locale=en-US
+serialNumber=
+serialnumber=
+ro.bootloader=
+
+# ------------------------- Build identity ------------------------
+id=
+display_id=
+ro.build.id=
+ro.build.display.id=
+ro.build.fingerprint=
+ro.system.build.fingerprint=
+ro.vendor.build.fingerprint=
+ro.bootimage.build.fingerprint=
+
+# Example fingerprint format:
+# samsung/a14xnsxx/a14:14/UP1A.231005.007/A145FXXU:user/release-keys
+fingerprint=
+
+# ---------------------- Build classification ---------------------
+type=user
+tags=release-keys
+user=
+host=
+date_utc=
+
+ro.build.type=user
+ro.build.tags=release-keys
+ro.build.user=
+ro.build.host=
+ro.build.date.utc=
+
+# ---------------------- Android version --------------------------
+# Keep these coherent if spoofing a complete software identity.
+release=14
+codename=REL
+incremental=
+sdk=34
+base_os=
+security_patch=
+
+ro.build.version.release=14
+ro.build.version.codename=REL
+ro.build.version.incremental=
+ro.build.version.sdk=34
+ro.build.version.base_os=
+ro.build.version.security_patch=
+ro.build.version.release_or_codename=
+ro.build.version.release_or_preview_display=
+
+# --------------------- Android preview fields --------------------
+preview_sdk=0
+preview_sdk_fingerprint=
+all_codenames=
+known_codenames=
+min_supported_target_sdk=
+sem=
+sep=
+security_index=
+
+ro.build.version.preview_sdk=0
+ro.build.version.preview_sdk_fingerprint=
+ro.build.version.all_codenames=
+ro.build.version.known_codenames=
+ro.build.version.min_supported_target_sdk=
+ro.build.version.sem=
+ro.build.version.sep=
+ro.build.version.security_index=
+
+# ------------------------- CPU / ABI -----------------------------
+cpu_abilist=
+cpu_abilist32=
+cpu_abilist64=
+
+ro.product.cpu.abilist=
+ro.product.cpu.abilist32=
+ro.product.cpu.abilist64=
+
+# ---------------------- Boot / hardware --------------------------
+boot_container=
+boot_hardware_sku=
+boot_product_hardware_sku=
+boot_qemu=
+
+ro.boot.container=
+ro.boot.hardware.sku=
+ro.boot.product.hardware.sku=
+ro.boot.qemu=
+
+# -------------------------- Treble --------------------------------
+treble_enabled=true
+ro.treble.enabled=true
+
+# ----------------------- API / device age ------------------------
+first_api_level=34
+ro.product.first_api_level=34
+
+# ------------------------- Runtime --------------------------------
+# ro.debuggable=0 is typical for production user builds.
+debuggable=0
+ro.debuggable=0
+
+# Hardware timeout multiplier. Leave empty unless specifically needed.
+hw_timeout_multiplier=
+ro.hw_timeout_multiplier=
+
+# --------------------- Attestation-related -----------------------
+# Build.smali may construct these dynamically.
+# These are intentionally blank by default.
+ro.product.%s_for_attestation=
+ro.product.vendor.%s=
+
+# -------------------------- Modem / Baseband ---------------------
+# Value returned by android.os.Build.getRadioVersion().
+# Leave empty to use the real modem/baseband version.
+baseband=
+ro.boot.baseband=
+
+# ----------------------- Partition builds ------------------------
+# Optional per-partition fingerprints.
+# Uncomment/fill only when your spoof requires partition coherence.
+ro.system.build.fingerprint=
+ro.vendor.build.fingerprint=
+ro.bootimage.build.fingerprint=
+
+# -------------------------- Notes --------------------------------
+# 1. Short keys are the preferred editing interface.
+# 2. Full ro.* keys are included as a reference and fallback.
+# 3. Do not blindly spoof SDK/security/attestation properties together
+#    with a different firmware generation; inconsistent combinations
+#    can expose contradictory device information.
+# 4. The patched framework reads this file through BuildSpoof rather
+#    than changing Android's actual system property service.
+# ================================================================
