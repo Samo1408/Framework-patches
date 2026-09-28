@@ -29,9 +29,19 @@ This version patches `android/os/Build.smali` and `Build$VERSION.smali` directly
 
 The archive includes `data/build.prop` as a template; installing the framework JAR alone does not create `/data/build.prop`. A later flashable ZIP can install that template as `/data/build.prop`.
 
-## Serial number spoof
+## Serial number and build-property overrides
 Set `serialNumber=...` in `/data/build.prop` to enable the serial-number override. The legacy
 `serialnumber` spelling remains supported. `SemSystemProperties.getDeviceSerialNumber()`,
 `Build.getSerial()`, and reads of `ril.serialnumber` through `SemSystemProperties` return this
 non-empty override. When neither key is set (or it is empty), each path keeps its original
 platform behavior.
+
+`BuildSpoof` now also provides a spoof-first, system-property fallback for `Build.VERSION`
+strings and numbers, ABI/codename lists, and the three partition fingerprints examined by
+`Build.isBuildConsistent()`. This allows values written by the companion app to reach their
+corresponding framework paths without changing unrelated properties. A blank or absent key
+continues to read the original platform property.
+
+The companion app writes the canonical `ro.baseband` key. `BuildSpoof` maps the existing
+`Build.getRadioVersion()` lookup for `baseband` to this key before using the original modem
+property, so the override remains optional and absent values preserve the platform behavior.
