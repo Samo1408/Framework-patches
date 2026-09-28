@@ -56,28 +56,28 @@ copy_patch() {
   fi
 }
 
+# Apply every patched class that must replace an existing framework class.
+# BuildSpoof is handled separately because it is a new runtime class.
 copy_patch android/location/Country.smali
 copy_patch android/location/Location.smali
 copy_patch android/telephony/SubscriptionInfo.smali
 copy_patch android/telephony/TelephonyManager.smali
-
-# BuildSpoof patch: replace the original framework Build classes in-place.
-# Build and Build$VERSION both live in classes3.dex on the target Android 14
-# framework. copy_patch() auto-detects the original DEX and preserves that
-# DEX boundary instead of merging classes.
 copy_patch android/os/Build.smali
 copy_patch 'android/os/Build$VERSION.smali'
 
-# Add the new BuildSpoof helper to classes3.dex, matching the DEX placement
-# expected by the patched Build/Build$VERSION implementation.
+# New runtime classes are deliberately kept in their original target DEX boundaries.
 [[ -d "$WORK/dex/classes3" ]] || { echo "classes3.dex is required for BuildSpoof" >&2; exit 6; }
-mkdir -p "$WORK/dex/classes3/android/os"
+[[ -d "$WORK/dex/classes6" ]] || { echo "classes6.dex is required for Spoof" >&2; exit 6; }
+mkdir -p "$WORK/dex/classes3/android/os" "$WORK/dex/classes6/android/location"
 cp "$ROOT/patches/android/os/BuildSpoof.smali" "$WORK/dex/classes3/android/os/BuildSpoof.smali"
-
-# Location/SIM spoof helper remains in the original classes6.dex boundary.
-[[ -d "$WORK/dex/classes6" ]] || { echo "classes6.dex is required for this patch" >&2; exit 6; }
-mkdir -p "$WORK/dex/classes6/android/location"
 cp "$ROOT/patches/android/location/Spoof.smali" "$WORK/dex/classes6/android/location/Spoof.smali"
+
+# Hard fail if any expected patched/new class is missing before assembly.
+for expected in \
+  "$WORK/dex/classes3/android/os/BuildSpoof.smali" \
+  "$WORK/dex/classes6/android/location/Spoof.smali"; do
+  [[ -f "$expected" ]] || { echo "ERROR: expected injected class missing: $expected" >&2; exit 9; }
+done
 
 rm -f "$WORK/jar"/classes*.dex
 for dex in "${DEXES[@]}"; do
