@@ -7,6 +7,15 @@
 #   android/telephony/SubscriptionInfo -> auto-detected original DEX
 #   android/telephony/TelephonyManager  -> auto-detected original DEX
 #   android/location/Spoof           -> classes6.dex (new class)
+#   android/os/Build                   -> auto-detected original DEX (classes3.dex on target)
+#   android/os/Build$VERSION          -> auto-detected original DEX (classes3.dex on target)
+#   android/os/BuildSpoof              -> classes3.dex (new class)
 #
 # The builder preserves the original classes*.dex boundaries. It never merges all
 # classes into one DEX, which avoids changing the boot class path layout.
+
+BuildSpoof runtime: android/os/Build.smali + android/os/Build$VERSION.smali + new android/os/BuildSpoof.smali
+
+Serial spoof: BuildSpoof.getSerialNumber() accepts serialNumber (and legacy serialnumber).
+SemSystemProperties.getDeviceSerialNumber(), SemSystemProperties reads of ril.serialnumber, and
+Build.getSerial() use the same non-empty override and preserve their original behavior otherwise.
