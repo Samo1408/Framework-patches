@@ -65,6 +65,7 @@ copy_patch android/telephony/TelephonyManager.smali
 # Build and Build$VERSION both live in classes3.dex on the target Android 14
 # framework. copy_patch() auto-detects the original DEX and preserves that
 # DEX boundary instead of merging classes.
+copy_patch android/os/SemSystemProperties.smali
 copy_patch android/os/Build.smali
 copy_patch 'android/os/Build$VERSION.smali'
 
