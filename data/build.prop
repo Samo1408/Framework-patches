@@ -1,4 +1,7 @@
 # BuildSpoof runtime overrides
+# Primary runtime file: /data/system/devicespoof/build.prop
+# Legacy fallback: /data/build.prop
+
 # Use either Android property names (ro.product.model) or short aliases (model).
 manufacturer=samsung
 brand=samsung
