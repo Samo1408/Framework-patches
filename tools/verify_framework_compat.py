@@ -26,7 +26,7 @@ def require(condition: bool, message: str) -> None:
         raise ValueError(message)
 
 
-def inspect(path: Path, for_patching: bool) -> str:
+def inspect(path: Path, for_patching: bool, patched_output: bool) -> str:
     require(path.is_file(), f"Missing framework JAR: {path}")
     try:
         with ZipFile(path) as archive:
@@ -48,6 +48,13 @@ def inspect(path: Path, for_patching: bool) -> str:
         require(marker in joined, f"Framework lacks expected class {marker.decode('ascii')}")
 
     installed = b"Landroid/os/BuildSpoof;" in dexes["classes3.dex"]
+    if patched_output:
+        require(installed, "patched output lacks BuildSpoof in classes3.dex")
+        for marker in (b"/data/build.prop", b"ro.soc.manufacturer", b"ro.soc.model",
+                       b"devicespoof.operator.numeric"):
+            require(marker in b"".join(dexes.values()),
+                    f"patched output lacks required override marker {marker.decode('ascii')}")
+        return "Patched framework output has the required overlay and Country markers."
     if for_patching:
         return "Framework layout is compatible for patching" + (" (existing BuildSpoof will be replaced)." if installed else ".")
     return "Framework layout is compatible; BuildSpoof is " + ("present." if installed else "not present.")
@@ -57,9 +64,11 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("framework_jar", type=Path)
     parser.add_argument("--for-patching", action="store_true")
+    parser.add_argument("--patched-output", action="store_true",
+                        help="require markers that must exist after this project's patches are assembled")
     args = parser.parse_args()
     try:
-        print(inspect(args.framework_jar, args.for_patching))
+        print(inspect(args.framework_jar, args.for_patching, args.patched_output))
         return 0
     except ValueError as error:
         print(f"Framework compatibility: FAILED: {error}")
