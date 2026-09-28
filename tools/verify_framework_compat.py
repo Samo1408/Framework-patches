@@ -50,7 +50,7 @@ def inspect(path: Path, for_patching: bool, patched_output: bool) -> str:
     installed = b"Landroid/os/BuildSpoof;" in dexes["classes3.dex"]
     if patched_output:
         require(installed, "patched output lacks BuildSpoof in classes3.dex")
-        for marker in (b"/data/build.prop", b"ro.soc.manufacturer", b"ro.soc.model",
+        for marker in (b"/data/system/devicespoof/build.prop", b"ro.soc.manufacturer", b"ro.soc.model",
                        b"devicespoof.operator.numeric"):
             require(marker in b"".join(dexes.values()),
                     f"patched output lacks required override marker {marker.decode('ascii')}")
