@@ -4,16 +4,20 @@
 .source "BuildSpoof.java"
 
 .field private static final FILE:Ljava/lang/String; = "/data/build.prop"
-.field private static final PROPS:Ljava/util/Properties;
-.field private static volatile sLoaded:Z
+.field private static volatile PROPS:Ljava/util/Properties;
+.field private static volatile sLastCheck:J
+.field private static volatile sLastModified:J
+.field private static volatile sLastLength:J
 
 .method static constructor <clinit>()V
-    .registers 2
+    .registers 3
     new-instance v0, Ljava/util/Properties;
     invoke-direct {v0}, Ljava/util/Properties;-><init>()V
     sput-object v0, Landroid/os/BuildSpoof;->PROPS:Ljava/util/Properties;
-    const/4 v0, 0x0
-    sput-boolean v0, Landroid/os/BuildSpoof;->sLoaded:Z
+    const-wide/16 v1, 0x0
+    sput-wide v1, Landroid/os/BuildSpoof;->sLastCheck:J
+    sput-wide v1, Landroid/os/BuildSpoof;->sLastModified:J
+    sput-wide v1, Landroid/os/BuildSpoof;->sLastLength:J
     return-void
 .end method
 
@@ -23,52 +27,51 @@
     return-void
 .end method
 
-.method private static synchronized load()V
-    .registers 7
-
-    # Load /data/build.prop at most once per framework process.
-    # IMPORTANT: get() must never perform File.stat()/I/O after this point.
-    sget-boolean v0, Landroid/os/BuildSpoof;->sLoaded:Z
-    if-eqz v0, :cond_load
+.method private static load()V
+    .registers 10
+    invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
+    move-result-wide v0
+    sget-wide v2, Landroid/os/BuildSpoof;->sLastCheck:J
+    sub-long v4, v0, v2
+    const-wide/32 v6, 0x4e20
+    cmp-long v8, v4, v6
+    if-gez v8, :cond_check
     return-void
 
-    :cond_load
-    new-instance v0, Ljava/io/File;
-    const-string v1, "/data/build.prop"
-    invoke-direct {v0, v1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+    :cond_check
+    sput-wide v0, Landroid/os/BuildSpoof;->sLastCheck:J
 
-    :try_start
-    invoke-virtual {v0}, Ljava/io/File;->exists()Z
-    move-result v1
-    if-eqz v1, :cond_finish
+    new-instance v2, Ljava/io/File;
+    const-string v3, "/data/build.prop"
+    invoke-direct {v2, v3}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+    invoke-virtual {v2}, Ljava/io/File;->lastModified()J
+    move-result-wide v3
+    invoke-virtual {v2}, Ljava/io/File;->length()J
+    move-result-wide v5
 
-    new-instance v1, Ljava/util/Properties;
-    invoke-direct {v1}, Ljava/util/Properties;-><init>()V
-
-    new-instance v2, Ljava/io/FileInputStream;
-    invoke-direct {v2, v0}, Ljava/io/FileInputStream;-><init>(Ljava/io/File;)V
-    invoke-virtual {v1, v2}, Ljava/util/Properties;->load(Ljava/io/InputStream;)V
-    invoke-virtual {v2}, Ljava/io/InputStream;->close()V
-
-    # Publish only a completely parsed snapshot.
-    sput-object v1, Landroid/os/BuildSpoof;->PROPS:Ljava/util/Properties;
-
-    :cond_finish
-    const/4 v1, 0x1
-    sput-boolean v1, Landroid/os/BuildSpoof;->sLoaded:Z
+    sget-wide v7, Landroid/os/BuildSpoof;->sLastModified:J
+    cmp-long v9, v3, v7
+    if-nez v9, :cond_reload
+    sget-wide v7, Landroid/os/BuildSpoof;->sLastLength:J
+    cmp-long v9, v5, v7
+    if-nez v9, :cond_reload
     return-void
-    :try_end
-    .catch Ljava/lang/Throwable; {:try_start .. :try_end} :catch_load
 
-    :catch_load
-    move-exception v1
-    # Fail closed: keep an empty overlay and use real SystemProperties.
-    # Mark loaded so a boot-time failure cannot turn every Build.get() into I/O.
-    new-instance v2, Ljava/util/Properties;
-    invoke-direct {v2}, Ljava/util/Properties;-><init>()V
-    sput-object v2, Landroid/os/BuildSpoof;->PROPS:Ljava/util/Properties;
-    const/4 v2, 0x1
-    sput-boolean v2, Landroid/os/BuildSpoof;->sLoaded:Z
+    :cond_reload
+    :try_start_2c
+    new-instance v7, Ljava/io/FileInputStream;
+    const-string v8, "/data/build.prop"
+    invoke-direct {v7, v8}, Ljava/io/FileInputStream;-><init>(Ljava/lang/String;)V
+    new-instance v8, Ljava/util/Properties;
+    invoke-direct {v8}, Ljava/util/Properties;-><init>()V
+    invoke-virtual {v8, v7}, Ljava/util/Properties;->load(Ljava/io/InputStream;)V
+    invoke-virtual {v7}, Ljava/io/InputStream;->close()V
+    sput-object v8, Landroid/os/BuildSpoof;->PROPS:Ljava/util/Properties;
+    sput-wide v3, Landroid/os/BuildSpoof;->sLastModified:J
+    sput-wide v5, Landroid/os/BuildSpoof;->sLastLength:J
+    :try_end_43
+    .catch Ljava/lang/Throwable; {:try_start_2c .. :try_end_43} :catch_43
+    :catch_43
     return-void
 .end method
 
@@ -179,157 +182,57 @@
     const-string v0, "hardware"
     return-object v0
     :cond_a5
-    const-string v0, "baseband"
-    invoke-virtual {v0, p0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-    move-result v0
-    if-eqz v0, :cond_b0
-    const-string v0, "ro.baseband"
-    return-object v0
-    :cond_b0
     return-object p0
 .end method
 
-.method public static get(Ljava/lang/String;)Ljava/lang/String;
+.method public static declared-synchronized get(Ljava/lang/String;)Ljava/lang/String;
     .registers 5
     invoke-static {}, Landroid/os/BuildSpoof;->load()V
     sget-object v0, Landroid/os/BuildSpoof;->PROPS:Ljava/util/Properties;
-
+    invoke-virtual {v0, p0}, Ljava/util/Properties;->containsKey(Ljava/lang/Object;)Z
+    move-result v1
+    if-eqz v1, :cond_10
     invoke-virtual {v0, p0}, Ljava/util/Properties;->getProperty(Ljava/lang/String;)Ljava/lang/String;
     move-result-object v1
-    if-eqz v1, :cond_alias
-    invoke-virtual {v1}, Ljava/lang/String;->isEmpty()Z
-    move-result v2
-    if-nez v2, :cond_alias
     return-object v1
-
-    :cond_alias
+    :cond_10
     invoke-static {p0}, Landroid/os/BuildSpoof;->getAlias(Ljava/lang/String;)Ljava/lang/String;
     move-result-object v1
+    invoke-virtual {v0, v1}, Ljava/util/Properties;->containsKey(Ljava/lang/Object;)Z
+    move-result v2
+    if-eqz v2, :cond_1f
     invoke-virtual {v0, v1}, Ljava/util/Properties;->getProperty(Ljava/lang/String;)Ljava/lang/String;
-    move-result-object v2
-    if-eqz v2, :cond_prefix_product
-    invoke-virtual {v2}, Ljava/lang/String;->isEmpty()Z
-    move-result v3
-    if-nez v3, :cond_prefix_product
-    return-object v2
-
-    :cond_prefix_product
+    move-result-object v1
+    return-object v1
+    :cond_1f
     const-string v2, "ro.product."
     invoke-virtual {p0, v2}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
     move-result v2
-    if-eqz v2, :cond_prefix_build
+    if-eqz v2, :cond_2f
     const/16 v2, 0xb
     invoke-virtual {p0, v2}, Ljava/lang/String;->substring(I)Ljava/lang/String;
     move-result-object v2
+    invoke-virtual {v0, v2}, Ljava/util/Properties;->containsKey(Ljava/lang/Object;)Z
+    move-result v3
+    if-eqz v3, :cond_2f
     invoke-virtual {v0, v2}, Ljava/util/Properties;->getProperty(Ljava/lang/String;)Ljava/lang/String;
-    move-result-object v3
-    if-eqz v3, :cond_prefix_build
-    invoke-virtual {v3}, Ljava/lang/String;->isEmpty()Z
-    move-result v4
-    if-nez v4, :cond_prefix_build
-    return-object v3
-
-    :cond_prefix_build
+    move-result-object v1
+    return-object v1
+    :cond_2f
     const-string v2, "ro.build."
     invoke-virtual {p0, v2}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
     move-result v2
-    if-eqz v2, :cond_none
+    if-eqz v2, :cond_3f
     const/16 v2, 0x9
     invoke-virtual {p0, v2}, Ljava/lang/String;->substring(I)Ljava/lang/String;
     move-result-object v2
+    invoke-virtual {v0, v2}, Ljava/util/Properties;->containsKey(Ljava/lang/Object;)Z
+    move-result v3
+    if-eqz v3, :cond_3f
     invoke-virtual {v0, v2}, Ljava/util/Properties;->getProperty(Ljava/lang/String;)Ljava/lang/String;
-    move-result-object v3
-    if-eqz v3, :cond_none
-    invoke-virtual {v3}, Ljava/lang/String;->isEmpty()Z
-    move-result v4
-    if-nez v4, :cond_none
-    return-object v3
-
-    :cond_none
-    const/4 v0, 0x0
-    return-object v0
-.end method
-
-.method public static getOrSystemProperty(Ljava/lang/String;)Ljava/lang/String;
-    .registers 2
-    invoke-static {p0}, Landroid/os/BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;
-    move-result-object v0
-    if-eqz v0, :cond_system
-    invoke-virtual {v0}, Ljava/lang/String;->isEmpty()Z
-    move-result v1
-    if-eqz v1, :cond_return
-    :cond_system
-    invoke-static {p0}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
-    move-result-object v0
-    :cond_return
-    return-object v0
-.end method
-
-.method public static getOrSystemProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-    .registers 3
-    invoke-static {p0}, Landroid/os/BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;
-    move-result-object v0
-    if-eqz v0, :cond_system
-    invoke-virtual {v0}, Ljava/lang/String;->isEmpty()Z
-    move-result v1
-    if-eqz v1, :cond_return
-    :cond_system
-    invoke-static {p0, p1}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-    move-result-object v0
-    :cond_return
-    return-object v0
-.end method
-
-.method public static getInt(Ljava/lang/String;I)I
-    .registers 3
-
-    invoke-static {p0}, Landroid/os/BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;
-    move-result-object v0
-    if-eqz v0, :cond_system
-
-    :try_start
-    invoke-static {v0}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
-    move-result v0
-    return v0
-    :try_end
-    .catch Ljava/lang/NumberFormatException; {:try_start .. :try_end} :catch_invalid
-
-    :catch_invalid
-    move-exception v0
-
-    :cond_system
-    invoke-static {p0, p1}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
-    move-result v0
-    return v0
-.end method
-
-.method public static getSerialNumber()Ljava/lang/String;
-    .registers 2
-
-    const-string v0, "serialNumber"
-    invoke-static {v0}, Landroid/os/BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;
-    move-result-object v0
-    if-eqz v0, :cond_legacy
-
-    invoke-virtual {v0}, Ljava/lang/String;->isEmpty()Z
-    move-result v1
-    if-nez v1, :cond_legacy
-
-    return-object v0
-
-    :cond_legacy
-    const-string v0, "serialnumber"
-    invoke-static {v0}, Landroid/os/BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;
-    move-result-object v0
-    if-eqz v0, :cond_none
-
-    invoke-virtual {v0}, Ljava/lang/String;->isEmpty()Z
-    move-result v1
-    if-nez v1, :cond_none
-
-    return-object v0
-
-    :cond_none
+    move-result-object v1
+    return-object v1
+    :cond_3f
     const/4 v0, 0x0
     return-object v0
 .end method
