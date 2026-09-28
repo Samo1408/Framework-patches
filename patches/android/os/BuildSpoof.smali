@@ -81,6 +81,13 @@
     const-string v0, "product"
     return-object v0
     :cond_37
+    const-string v0, "ro.product.locale"
+    invoke-virtual {v0, p0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    move-result v0
+    if-eqz v0, :cond_locale_next
+    const-string v0, "locale"
+    return-object v0
+    :cond_locale_next
     const-string v0, "ro.product.board"
     invoke-virtual {v0, p0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
     move-result v0
