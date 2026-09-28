@@ -5,15 +5,18 @@
 
 .field private static final FILE:Ljava/lang/String; = "/data/build.prop"
 .field private static final PROPS:Ljava/util/Properties;
+.field private static volatile sLastModified:J
 .field private static volatile sLoaded:Z
 
 .method static constructor <clinit>()V
-    .registers 1
+    .registers 2
     new-instance v0, Ljava/util/Properties;
     invoke-direct {v0}, Ljava/util/Properties;-><init>()V
     sput-object v0, Landroid/os/BuildSpoof;->PROPS:Ljava/util/Properties;
     const/4 v0, 0x0
     sput-boolean v0, Landroid/os/BuildSpoof;->sLoaded:Z
+    const-wide/16 v0, 0x0
+    sput-wide v0, Landroid/os/BuildSpoof;->sLastModified:J
     return-void
 .end method
 
@@ -24,23 +27,45 @@
 .end method
 
 .method private static load()V
-    .registers 4
+    .registers 7
+
     sget-boolean v0, Landroid/os/BuildSpoof;->sLoaded:Z
-    if-eqz v0, :cond_4
-    return-void
-    :cond_4
-    :try_start_4
-    new-instance v0, Ljava/io/FileInputStream;
+    if-eqz v0, :cond_reload
+
+    new-instance v0, Ljava/io/File;
     const-string v1, "/data/build.prop"
-    invoke-direct {v0, v1}, Ljava/io/FileInputStream;-><init>(Ljava/lang/String;)V
-    sget-object v1, Landroid/os/BuildSpoof;->PROPS:Ljava/util/Properties;
-    invoke-virtual {v1, v0}, Ljava/util/Properties;->load(Ljava/io/InputStream;)V
+    invoke-direct {v0, v1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+    invoke-virtual {v0}, Ljava/io/File;->lastModified()J
+    move-result-wide v1
+    sget-wide v3, Landroid/os/BuildSpoof;->sLastModified:J
+    cmp-long v5, v1, v3
+    if-eqz v5, :cond_return
+
+    :cond_reload
+    new-instance v0, Ljava/io/File;
+    const-string v1, "/data/build.prop"
+    invoke-direct {v0, v1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+    invoke-virtual {v0}, Ljava/io/File;->lastModified()J
+    move-result-wide v1
+    sget-object v3, Landroid/os/BuildSpoof;->PROPS:Ljava/util/Properties;
+    invoke-virtual {v3}, Ljava/util/Properties;->clear()V
+
+    :try_start
+    new-instance v0, Ljava/io/FileInputStream;
+    const-string v3, "/data/build.prop"
+    invoke-direct {v0, v3}, Ljava/io/FileInputStream;-><init>(Ljava/lang/String;)V
+    sget-object v3, Landroid/os/BuildSpoof;->PROPS:Ljava/util/Properties;
+    invoke-virtual {v3, v0}, Ljava/util/Properties;->load(Ljava/io/InputStream;)V
     invoke-virtual {v0}, Ljava/io/InputStream;->close()V
-    :try_end_15
-    .catch Ljava/lang/Throwable; {:try_start_4 .. :try_end_15} :catch_16
-    :catch_16
+    :try_end
+    .catch Ljava/lang/Throwable; {:try_start .. :try_end} :catch
+
+    :catch
+    sput-wide v1, Landroid/os/BuildSpoof;->sLastModified:J
     const/4 v0, 0x1
     sput-boolean v0, Landroid/os/BuildSpoof;->sLoaded:Z
+
+    :cond_return
     return-void
 .end method
 
