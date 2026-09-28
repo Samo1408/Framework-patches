@@ -25,7 +25,11 @@ The build keeps the compressed ZIP/JAR output. After assembly, generated DEX fil
 
 ## BuildSpoof runtime overrides
 
-This version patches `android/os/Build.smali` and `Build$VERSION.smali` directly from `tools/build_framework.sh`, and adds `android/os/BuildSpoof.smali` to `classes3.dex`. At runtime it reads `/data/build.prop` once and caches the parsed values. Exact Android property names and short aliases are accepted. For example `model=SM-A145F` overrides `ro.product.model`, and `fingerprint=...` overrides `ro.build.fingerprint`. If `/data/build.prop` is absent or a key is absent, the original `SystemProperties` value is used.
+This version patches `android/os/Build.smali` and `Build$VERSION.smali` directly from `tools/build_framework.sh`, and adds `android/os/BuildSpoof.smali` to `classes3.dex`. At runtime it reads `/data/build.prop` and reloads the parsed values when that file's
+modification time changes. Exact Android property names and short aliases are accepted. For
+example `model=SM-A145F` overrides `ro.product.model`, and `fingerprint=...` overrides
+`ro.build.fingerprint`. If `/data/build.prop` is absent or a key is absent, the original
+`SystemProperties` value is used.
 
 The archive includes `data/build.prop` as a template; installing the framework JAR alone does not create `/data/build.prop`. A later flashable ZIP can install that template as `/data/build.prop`.
 
@@ -45,3 +49,18 @@ continues to read the original platform property.
 The companion app writes the canonical `ro.baseband` key. `BuildSpoof` maps the existing
 `Build.getRadioVersion()` lookup for `baseband` to this key before using the original modem
 property, so the override remains optional and absent values preserve the platform behavior.
+
+## Applying and verifying a preset
+
+Saving a preset changes only `/data/build.prop`; it intentionally does **not** edit the
+installed `framework.jar`. The installed, patched JAR must be rebuilt from this project for
+the exact device firmware and installed through the device's normal framework replacement
+procedure. `tools/verify_framework_compat.py` rejects a JAR that lacks the required six-DEX,
+Android 14 layout before the builder changes it.
+
+`Build.getSerial()` and `Build.getRadioVersion()` can observe a refreshed overlay through
+their patched path. `Build` and `Build.VERSION` fields are static values captured when their
+process initializes, so reboot the device after changing identity/fingerprint fields. Then use
+the companion app's **Read & verify hooks** report to compare runtime `Build` values and the
+serial path to the saved file. That report does not claim a partition-fingerprint API check
+or prove behavior on a different firmware.
