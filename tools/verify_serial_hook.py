@@ -33,7 +33,10 @@ def main() -> int:
     serial_helper = method_body(build_spoof, ".method public static declared-synchronized getSerialNumber()")
     require(serial_helper, 'const-string v0, "serialNumber"', "preferred serialNumber key")
     require(serial_helper, 'const-string v0, "serialnumber"', "legacy serialnumber key")
-    require(serial_helper, "if-nez v1, :cond_none", "empty-value rejection")
+    require(serial_helper, 'const-string v0, "ril.serialnumber"', "ril.serialnumber key")
+    non_empty = method_body(build_spoof, ".method private static nonEmpty(Ljava/lang/String;)Z")
+    require(non_empty, "String;->trim()Ljava/lang/String;", "empty-value trimming")
+    require(serial_helper, "BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;", "serial overlay reader")
 
     device_serial = method_body(sem_properties, ".method public static blacklist getDeviceSerialNumber()")
     require(device_serial, "BuildSpoof;->getSerialNumber()Ljava/lang/String;", "device serial hook")
