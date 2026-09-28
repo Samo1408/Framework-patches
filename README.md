@@ -18,3 +18,20 @@ Requirements:
 
 Do not use the previously generated `framework_A14_sim-cached_fixed.jar`.
 \n## v3 diagnostics\n\nThe build script assembles each DEX separately with a bounded Java heap and logs each assembly. On failure, `build-debug/` is preserved and uploaded as a diagnostic artifact.\n
+
+## DEX format and compression
+The build keeps the compressed ZIP/JAR output. After assembly, generated DEX files are normalized to DEX 039 and their SHA-1 signature and Adler-32 checksum are recalculated. The workflow verifies that all six DEX files are version 039 before publishing the artifact.
+
+
+## BuildSpoof runtime overrides
+
+This version patches `android/os/Build.smali` and `Build$VERSION.smali` directly from `tools/build_framework.sh`, and adds `android/os/BuildSpoof.smali` to `classes3.dex`. At runtime it reads `/data/build.prop` once and caches the parsed values. Exact Android property names and short aliases are accepted. For example `model=SM-A145F` overrides `ro.product.model`, and `fingerprint=...` overrides `ro.build.fingerprint`. If `/data/build.prop` is absent or a key is absent, the original `SystemProperties` value is used.
+
+The archive includes `data/build.prop` as a template; installing the framework JAR alone does not create `/data/build.prop`. A later flashable ZIP can install that template as `/data/build.prop`.
+
+## Serial number spoof
+Set `serialNumber=...` in `/data/build.prop` to enable the serial-number override. The legacy
+`serialnumber` spelling remains supported. `SemSystemProperties.getDeviceSerialNumber()`,
+`Build.getSerial()`, and reads of `ril.serialnumber` through `SemSystemProperties` return this
+non-empty override. When neither key is set (or it is empty), each path keeps its original
+platform behavior.
