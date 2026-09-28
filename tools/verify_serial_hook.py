@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Structural checks for the serial-number override wiring."""
+"""Structural checks for serial and build-property override wiring."""
 
 from pathlib import Path
 import sys
@@ -28,6 +28,7 @@ def main() -> int:
     build_spoof = ROOT / "patches/android/os/BuildSpoof.smali"
     sem_properties = ROOT / "patches/android/os/SemSystemProperties.smali"
     build = ROOT / "patches/android/os/Build.smali"
+    build_version = ROOT / "patches/android/os/Build$VERSION.smali"
 
     serial_helper = method_body(build_spoof, ".method public static declared-synchronized getSerialNumber()")
     require(serial_helper, 'const-string v0, "serialNumber"', "preferred serialNumber key")
@@ -51,7 +52,34 @@ def main() -> int:
     require(build_get_serial, "BuildSpoof;->getSerialNumber()Ljava/lang/String;", "Build.getSerial hook")
     require(build_get_serial, ":cond_device_identifier", "normal Build.getSerial fallback")
 
-    print("Serial hook structure: OK")
+    helper = method_body(build_spoof, ".method public static getOrSystemProperty(Ljava/lang/String;)Ljava/lang/String;")
+    require(helper, "BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;", "spoof-first property helper")
+    require(helper, "SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;", "normal property fallback")
+    int_helper = method_body(build_spoof, ".method public static getInt(Ljava/lang/String;I)I")
+    require(int_helper, "Integer;->parseInt(Ljava/lang/String;)I", "numeric override parser")
+    require(int_helper, "SystemProperties;->getInt(Ljava/lang/String;I)I", "normal numeric fallback")
+    alias_helper = method_body(build_spoof, ".method private static getAlias(Ljava/lang/String;)Ljava/lang/String;")
+    require(alias_helper, 'const-string v0, "baseband"', "baseband alias selector")
+    require(alias_helper, 'const-string v0, "ro.baseband"', "canonical baseband alias")
+
+    list_helper = method_body(build, ".method private static greylist-max-o getStringList(Ljava/lang/String;Ljava/lang/String;)[Ljava/lang/String;")
+    require(list_helper, "BuildSpoof;->getOrSystemProperty(Ljava/lang/String;)Ljava/lang/String;", "list property hook")
+    long_helper = method_body(build, ".method private static greylist getLong(Ljava/lang/String;)J")
+    require(long_helper, "BuildSpoof;->getOrSystemProperty(Ljava/lang/String;)Ljava/lang/String;", "long property hook")
+
+    consistency = method_body(build, ".method public static greylist-max-o isBuildConsistent()Z")
+    for key in ("ro.system.build.fingerprint", "ro.vendor.build.fingerprint", "ro.bootimage.build.fingerprint"):
+        require(consistency, key, f"{key} consistency check")
+    if consistency.count("BuildSpoof;->getOrSystemProperty(Ljava/lang/String;)Ljava/lang/String;") < 3:
+        raise AssertionError("Partition fingerprints do not all use the spoof-aware reader")
+
+    version_init = method_body(build_version, ".method static constructor blacklist <clinit>()V")
+    for key in ("ro.build.version.base_os", "ro.build.version.security_patch", "ro.build.version.security_index"):
+        require(version_init, key, f"{key} version field")
+    require(version_init, "BuildSpoof;->getOrSystemProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "version string hook")
+    require(version_init, "BuildSpoof;->getInt(Ljava/lang/String;I)I", "version numeric hook")
+
+    print("Serial and build-property hook structure: OK")
     return 0
 
 
