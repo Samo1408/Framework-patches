@@ -141,6 +141,15 @@ jobs:
           echo '--- Spoof references ---'
           grep -R -l 'Landroid/location/Spoof;' verify_smali | head -20
 
+          echo '--- BuildSpoof wiring ---'
+          find verify_smali -type f -path '*/android/os/BuildSpoof.smali' -print -quit | grep -q .
+          grep -R -q 'Landroid/os/BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;' verify_smali/android/os/Build.smali
+          grep -R -q 'Landroid/os/BuildSpoof;->getInt(Ljava/lang/String;I)I' verify_smali/android/os/Build\$VERSION.smali
+          grep -R -q 'Landroid/os/BuildSpoof;->getBoolean(Ljava/lang/String;Z)Z' verify_smali/android/os/Build.smali
+          grep -R -q 'Landroid/os/BuildSpoof;->getSerialNumber()Ljava/lang/String;' verify_smali/android/os/Build.smali
+          echo 'BuildSpoof:   OK'
+          echo 'Build wiring: OK'
+
           echo '--- Signature files ---'
           if unzip -Z1 "$OUTPUT" | grep -E '^META-INF/.*\.(SF|RSA|DSA)$' >/dev/null; then
             echo 'ERROR: stale JAR signature files found in output'
