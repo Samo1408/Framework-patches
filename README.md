@@ -25,16 +25,16 @@ The build keeps the compressed ZIP/JAR output. After assembly, generated DEX fil
 
 ## BuildSpoof runtime overrides
 
-This version patches `android/os/Build.smali` and `Build$VERSION.smali` directly from `tools/build_framework.sh`, and adds `android/os/BuildSpoof.smali` to `classes3.dex`. At runtime it reads `/data/build.prop` and reloads the parsed values when that file's
+This version patches `android/os/Build.smali` and `Build$VERSION.smali` directly from `tools/build_framework.sh`, and adds `android/os/BuildSpoof.smali` to `classes3.dex`. At runtime it reads `the primary /data/system/devicespoof/build.prop path (legacy fallback: /data/build.prop)` and reloads the parsed values when that file's
 modification time changes. Exact Android property names and short aliases are accepted. For
 example `model=SM-A145F` overrides `ro.product.model`, and `fingerprint=...` overrides
-`ro.build.fingerprint`. If `/data/build.prop` is absent or a key is absent, the original
+`ro.build.fingerprint`. If `the primary /data/system/devicespoof/build.prop path (legacy fallback: /data/build.prop)` is absent or a key is absent, the original
 `SystemProperties` value is used.
 
-The archive includes `data/build.prop` as a template; installing the framework JAR alone does not create `/data/build.prop`. A later flashable ZIP can install that template as `/data/build.prop`.
+The archive includes `data/build.prop` as a template; installing the framework JAR alone does not create `the primary /data/system/devicespoof/build.prop path (legacy fallback: /data/build.prop)`. A later flashable ZIP can install that template as `the primary /data/system/devicespoof/build.prop path (legacy fallback: /data/build.prop)`.
 
 ## Serial number and build-property overrides
-Set `serialNumber=...` in `/data/build.prop` to enable the serial-number override. The legacy
+Set `serialNumber=...` in `the primary /data/system/devicespoof/build.prop path (legacy fallback: /data/build.prop)` to enable the serial-number override. The legacy
 `serialnumber` spelling remains supported. `SemSystemProperties.getDeviceSerialNumber()`,
 `Build.getSerial()`, and reads of `ril.serialnumber` through `SemSystemProperties` return this
 non-empty override. When neither key is set (or it is empty), each path keeps its original
@@ -56,14 +56,14 @@ fallback, so `ro.soc.manufacturer` and `ro.soc.model` can reach their correspond
 
 ## Applying and verifying a preset
 
-Saving a preset changes only `/data/build.prop`; it intentionally does **not** edit the
+Saving a preset changes only `the primary /data/system/devicespoof/build.prop path (legacy fallback: /data/build.prop)`; it intentionally does **not** edit the
 installed `framework.jar`. The installed, patched JAR must be rebuilt from this project for
 the exact device firmware and installed through the device's normal framework replacement
 procedure. `tools/verify_framework_compat.py` rejects a JAR that lacks the required six-DEX,
 Android 14 layout before the builder changes it.
 
 The builder also runs `tools/verify_framework_compat.py --patched-output` on its output. It
-checks the DEX layout plus the `BuildSpoof`, `/data/build.prop`, SoC, and Country-operator
+checks the DEX layout plus the `BuildSpoof`, `the primary /data/system/devicespoof/build.prop path (legacy fallback: /data/build.prop)`, SoC, and Country-operator
 markers. This is a structural check only: it proves neither that this exact JAR is installed on
 the phone nor that a process has reloaded it.
 
@@ -79,7 +79,7 @@ API check or prove behavior on a different firmware.
 ## Country and operator overlay
 
 `android/location/Spoof` now reads `ro.product.locale` through `BuildSpoof`, so the companion
-app's `/data/build.prop` overlay can select the existing country dataset without editing the
+app's `the primary /data/system/devicespoof/build.prop path (legacy fallback: /data/build.prop)` overlay can select the existing country dataset without editing the
 system property service. It keeps the existing country cache, automatic location rotation, and
 power-saving TTLs unchanged. `devicespoof.operator.numeric` and
 `devicespoof.operator.name` are optional: when both are absent the original three-operator
