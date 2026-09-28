@@ -11,6 +11,12 @@ type=user
 # Optional examples:
 # serialNumber=YOUR_DEVICE_SERIAL
 # The legacy spelling serialnumber=YOUR_DEVICE_SERIAL is also accepted.
+# Country overlay: preserve the phone language and set only the country segment.
+# android/location/Spoof reads this through BuildSpoof; it does not change the UI language.
+# ro.product.locale=en-GB
+# Optional fixed operator from Spoof's matching country list. Omit both to retain rotation.
+# devicespoof.operator.numeric=23430
+# devicespoof.operator.name=EE
 # ro.build.id=UP1A.231005.007
 # ro.build.display.id=UP1A.231005.007.EXAMPLE
 # ro.hardware=mt6769
