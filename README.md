@@ -49,6 +49,10 @@ continues to read the original platform property.
 The companion app writes the canonical `ro.baseband` key. `BuildSpoof` maps the existing
 `Build.getRadioVersion()` lookup for `baseband` to this key before using the original modem
 property, so the override remains optional and absent values preserve the platform behavior.
+`Build.RADIO` now uses the same overlay before its original telephony fallback. The Android 14
+`SOC_MANUFACTURER` and `SOC_MODEL` initializers previously bypassed `Build.getString()` through
+`SocProperties`; they now use `BuildSpoof.getOrSystemProperty()` with their original `unknown`
+fallback, so `ro.soc.manufacturer` and `ro.soc.model` can reach their corresponding Build fields.
 
 ## Applying and verifying a preset
 
@@ -58,9 +62,31 @@ the exact device firmware and installed through the device's normal framework re
 procedure. `tools/verify_framework_compat.py` rejects a JAR that lacks the required six-DEX,
 Android 14 layout before the builder changes it.
 
+The builder also runs `tools/verify_framework_compat.py --patched-output` on its output. It
+checks the DEX layout plus the `BuildSpoof`, `/data/build.prop`, SoC, and Country-operator
+markers. This is a structural check only: it proves neither that this exact JAR is installed on
+the phone nor that a process has reloaded it.
+
 `Build.getSerial()` and `Build.getRadioVersion()` can observe a refreshed overlay through
 their patched path. `Build` and `Build.VERSION` fields are static values captured when their
 process initializes, so reboot the device after changing identity/fingerprint fields. Then use
 the companion app's **Read & verify hooks** report to compare runtime `Build` values and the
-serial path to the saved file. That report does not claim a partition-fingerprint API check
-or prove behavior on a different firmware.
+serial path to the app's saved applied-values snapshot. The app does not compare an unapplied
+preset to runtime values, classifies a `Build.getSerial()` `SecurityException` as
+permission-restricted rather than a hook failure, and does not claim a partition-fingerprint
+API check or prove behavior on a different firmware.
+
+## Country and operator overlay
+
+`android/location/Spoof` now reads `ro.product.locale` through `BuildSpoof`, so the companion
+app's `/data/build.prop` overlay can select the existing country dataset without editing the
+system property service. It keeps the existing country cache, automatic location rotation, and
+power-saving TTLs unchanged. `devicespoof.operator.numeric` and
+`devicespoof.operator.name` are optional: when both are absent the original three-operator
+rotation remains active; when present, `Spoof.getOpNumeric()` and `Spoof.getOpName()` return
+the supplied pair before consulting that cache. These values feed the already patched
+`TelephonyManager` and `SubscriptionInfo` paths.
+
+The companion app's `CountryCatalog.java` is generated with
+`tools/generate_country_catalog.py` directly from this `Spoof.smali`; run it after changing
+country coordinates or operators so the UI exposes no values outside the hook dataset.
