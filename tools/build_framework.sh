@@ -72,6 +72,16 @@ mkdir -p "$WORK/dex/classes3/android/os" "$WORK/dex/classes6/android/location"
 cp "$ROOT/patches/android/os/BuildSpoof.smali" "$WORK/dex/classes3/android/os/BuildSpoof.smali"
 cp "$ROOT/patches/android/location/Spoof.smali" "$WORK/dex/classes6/android/location/Spoof.smali"
 
+# Static contract checks: the patched framework must actually reference the runtime reader.
+grep -q 'Landroid/os/BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;' "$ROOT/patches/android/os/Build.smali" \
+  || { echo "ERROR: Build.smali is not wired to BuildSpoof.get" >&2; exit 10; }
+grep -q 'Landroid/os/BuildSpoof;->getInt(Ljava/lang/String;I)I' "$ROOT/patches/android/os/Build\$VERSION.smali" \
+  || { echo "ERROR: Build$VERSION.smali is not wired to BuildSpoof.getInt" >&2; exit 10; }
+grep -q 'Landroid/os/BuildSpoof;->getBoolean(Ljava/lang/String;Z)Z' "$ROOT/patches/android/os/Build.smali" \
+  || { echo "ERROR: Build.smali is not wired to BuildSpoof.getBoolean" >&2; exit 10; }
+grep -q 'Landroid/os/BuildSpoof;->getSerialNumber()Ljava/lang/String;' "$ROOT/patches/android/os/Build.smali" \
+  || { echo "ERROR: Build.smali serial path is not wired to BuildSpoof" >&2; exit 10; }
+
 # Hard fail if any expected patched/new class is missing before assembly.
 for expected in \
   "$WORK/dex/classes3/android/os/BuildSpoof.smali" \
