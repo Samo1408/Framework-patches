@@ -92,7 +92,7 @@
     const/4 v8, 0x0
     sput-boolean v8, Landroid/os/BuildSpoof;->sLoaded:Z
     return-void
-.end methodod
+.end method
 
 .method private static getAlias(Ljava/lang/String;)Ljava/lang/String;
     .registers 2
