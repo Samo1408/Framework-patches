@@ -148,6 +148,60 @@
     .registers 2
 
     .line 137
+    # Sales-code overlay is limited to a Samsung-selected manufacturer.
+    const-string v0, "ro.product.manufacturer"
+
+    invoke-static {v0}, Landroid/os/BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_sales_real_manufacturer
+
+    const-string v1, "samsung"
+
+    invoke-virtual {v1, v0}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_sales_fallback
+
+    goto :cond_sales_samsung
+
+    :cond_sales_real_manufacturer
+    const-string v0, "ro.product.manufacturer"
+
+    const-string v1, ""
+
+    invoke-static {v0, v1}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v1, "samsung"
+
+    invoke-virtual {v1, v0}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_sales_fallback
+
+    :cond_sales_samsung
+    const-string v0, "ro.csc.sales_code"
+
+    invoke-static {v0}, Landroid/os/BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_sales_fallback
+
+    invoke-virtual {v0}, Ljava/lang/String;->isEmpty()Z
+
+    move-result v1
+
+    if-nez v1, :cond_sales_fallback
+
+    return-object v0
+
+    :cond_sales_fallback
     const-string/jumbo v0, "ro.csc.sales_code"
 
     const-string v1, ""
