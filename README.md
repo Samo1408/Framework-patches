@@ -31,3 +31,11 @@ The archive includes `data/build.prop` as a template; installing the framework J
 
 ## Serial number spoof
 `SemSystemProperties.getDeviceSerialNumber()` first reads the `serialnumber` key from `/data/build.prop` through `BuildSpoof`; when absent/empty it falls back to the original `ril.serialnumber` property.
+
+## Samsung Sales Code
+
+`android/os/SemSystemProperties.smali` now routes `getSalesCode()` through `BuildSpoof`
+only when the selected manufacturer is Samsung. For non-Samsung selections, the hook does
+not apply the `/data/build.prop` sales-code override and the original system property is used.
+The companion Device Spoofing UI exposes `ro.csc.sales_code` only for Samsung selections and
+allows manual values such as `XAA`, `BTU`, `DBT`, `INS`, and `XXV`.
