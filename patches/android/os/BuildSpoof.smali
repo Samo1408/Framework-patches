@@ -3,22 +3,15 @@
 .super Ljava/lang/Object;
 .source "BuildSpoof.java"
 
-.field private static final FILE:Ljava/lang/String; = "/data/build.prop"
-.field private static volatile PROPS:Ljava/util/Properties;
-.field private static volatile sLastCheck:J
-.field private static volatile sLastModified:J
-.field private static volatile sLastLength:J
+.field private static final FILE:Ljava/lang/String; = "/system/spoof.prop"
+.field private static final PROPS:Ljava/util/Properties;
 .field private static volatile sLoaded:Z
 
 .method static constructor <clinit>()V
-    .registers 3
+    .registers 1
     new-instance v0, Ljava/util/Properties;
     invoke-direct {v0}, Ljava/util/Properties;-><init>()V
     sput-object v0, Landroid/os/BuildSpoof;->PROPS:Ljava/util/Properties;
-    const-wide/16 v1, 0x0
-    sput-wide v1, Landroid/os/BuildSpoof;->sLastCheck:J
-    sput-wide v1, Landroid/os/BuildSpoof;->sLastModified:J
-    sput-wide v1, Landroid/os/BuildSpoof;->sLastLength:J
     const/4 v0, 0x0
     sput-boolean v0, Landroid/os/BuildSpoof;->sLoaded:Z
     return-void
@@ -31,67 +24,39 @@
 .end method
 
 .method private static load()V
-    .registers 10
-    invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
-    move-result-wide v0
-    sget-wide v2, Landroid/os/BuildSpoof;->sLastCheck:J
-    sub-long v4, v0, v2
-    const-wide/32 v6, 0x4e20
-    cmp-long v8, v4, v6
-    if-ltz v8, :check
+    .registers 4
+    sget-boolean v0, Landroid/os/BuildSpoof;->sLoaded:Z
+    if-eqz v0, :cond_4
     return-void
-:check
-    sput-wide v0, Landroid/os/BuildSpoof;->sLastCheck:J
-    new-instance v2, Ljava/io/File;
-    const-string v3, "/data/build.prop"
-    invoke-direct {v2, v3}, Ljava/io/File;-><init>(Ljava/lang/String;)V
-    invoke-virtual {v2}, Ljava/io/File;->exists()Z
-    move-result v8
-    if-eqz v8, :missing
-    invoke-virtual {v2}, Ljava/io/File;->lastModified()J
-    move-result-wide v3
-    invoke-virtual {v2}, Ljava/io/File;->length()J
-    move-result-wide v5
-    sget-boolean v8, Landroid/os/BuildSpoof;->sLoaded:Z
-    if-eqz v8, :reload
-    sget-wide v8, Landroid/os/BuildSpoof;->sLastModified:J
-    cmp-long v8, v3, v8
-    if-nez v8, :reload
-    sget-wide v8, Landroid/os/BuildSpoof;->sLastLength:J
-    cmp-long v8, v5, v8
-    if-nez v8, :reload
+    :cond_4
+    :try_start_4
+    new-instance v0, Ljava/io/FileInputStream;
+    const-string v1, "/system/spoof.prop"
+    invoke-direct {v0, v1}, Ljava/io/FileInputStream;-><init>(Ljava/lang/String;)V
+    sget-object v1, Landroid/os/BuildSpoof;->PROPS:Ljava/util/Properties;
+    invoke-virtual {v1, v0}, Ljava/util/Properties;->load(Ljava/io/InputStream;)V
+    invoke-virtual {v0}, Ljava/io/InputStream;->close()V
+    :try_end_15
+    .catch Ljava/lang/Throwable; {:try_start_4 .. :try_end_15} :catch_16
+    :catch_16
+    const/4 v0, 0x1
+    sput-boolean v0, Landroid/os/BuildSpoof;->sLoaded:Z
     return-void
-:reload
-    :try_start
-    new-instance v7, Ljava/io/FileInputStream;
-    const-string v8, "/data/build.prop"
-    invoke-direct {v7, v8}, Ljava/io/FileInputStream;-><init>(Ljava/lang/String;)V
-    new-instance v8, Ljava/util/Properties;
-    invoke-direct {v8}, Ljava/util/Properties;-><init>()V
-    invoke-virtual {v8, v7}, Ljava/util/Properties;->load(Ljava/io/InputStream;)V
-    invoke-virtual {v7}, Ljava/io/InputStream;->close()V
-    sput-object v8, Landroid/os/BuildSpoof;->PROPS:Ljava/util/Properties;
-    sput-wide v3, Landroid/os/BuildSpoof;->sLastModified:J
-    sput-wide v5, Landroid/os/BuildSpoof;->sLastLength:J
-    const/4 v8, 0x1
-    sput-boolean v8, Landroid/os/BuildSpoof;->sLoaded:Z
-    return-void
-    :try_end
-    .catch Ljava/lang/Throwable; {:try_start .. :try_end} :catch
-:catch
-    const/4 v8, 0x0
-    sput-boolean v8, Landroid/os/BuildSpoof;->sLoaded:Z
-    return-void
-:missing
-    new-instance v7, Ljava/util/Properties;
-    invoke-direct {v7}, Ljava/util/Properties;-><init>()V
-    sput-object v7, Landroid/os/BuildSpoof;->PROPS:Ljava/util/Properties;
-    const-wide/16 v8, 0x0
-    sput-wide v8, Landroid/os/BuildSpoof;->sLastModified:J
-    sput-wide v8, Landroid/os/BuildSpoof;->sLastLength:J
-    const/4 v8, 0x0
-    sput-boolean v8, Landroid/os/BuildSpoof;->sLoaded:Z
-    return-void
+.end method
+
+.method public static getSalesCode()Ljava/lang/String;
+    .registers 2
+    const-string v0, "ro.csc.sales_code"
+    invoke-static {v0}, Landroid/os/BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;
+    move-result-object v0
+    if-eqz v0, :cond_sales_default
+    invoke-virtual {v0}, Ljava/lang/String;->isEmpty()Z
+    move-result v1
+    if-nez v1, :cond_sales_default
+    return-object v0
+    :cond_sales_default
+    const-string v0, ""
+    return-object v0
 .end method
 
 .method private static getAlias(Ljava/lang/String;)Ljava/lang/String;
@@ -208,38 +173,6 @@
     .registers 5
     invoke-static {}, Landroid/os/BuildSpoof;->load()V
     sget-object v0, Landroid/os/BuildSpoof;->PROPS:Ljava/util/Properties;
-
-    # Samsung-only Sales Code override. Keep the generic BuildSpoof path
-    # unchanged for every other property so existing BuildSpoof hooks retain
-    # their original behavior and 20-second reload semantics.
-    const-string v1, "ro.csc.sales_code"
-    invoke-virtual {v1, p0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-    move-result v2
-    if-eqz v2, :cond_generic
-
-    const-string v1, "manufacturer"
-    invoke-virtual {v0, v1}, Ljava/util/Properties;->getProperty(Ljava/lang/String;)Ljava/lang/String;
-    move-result-object v1
-    if-eqz v1, :cond_sales_none
-
-    const-string v2, "samsung"
-    invoke-virtual {v2, v1}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
-    move-result v2
-    if-eqz v2, :cond_sales_none
-
-    const-string v1, "ro.csc.sales_code"
-    invoke-virtual {v0, v1}, Ljava/util/Properties;->containsKey(Ljava/lang/Object;)Z
-    move-result v2
-    if-eqz v2, :cond_sales_none
-    invoke-virtual {v0, v1}, Ljava/util/Properties;->getProperty(Ljava/lang/String;)Ljava/lang/String;
-    move-result-object v1
-    return-object v1
-
-    :cond_sales_none
-    const/4 v0, 0x0
-    return-object v0
-
-    :cond_generic
     invoke-virtual {v0, p0}, Ljava/util/Properties;->containsKey(Ljava/lang/Object;)Z
     move-result v1
     if-eqz v1, :cond_10
