@@ -1,0 +1,19 @@
+# Ghost/SIM cached A14 patch
+# Base: Android 14 framework.jar matching smali_A14_original.zip
+# Target API: 34
+# Patched DEX classes:
+#   android/location/Country        -> auto-detected original DEX
+#   android/location/Location       -> auto-detected original DEX
+#   android/telephony/SubscriptionInfo -> auto-detected original DEX
+#   android/telephony/TelephonyManager  -> auto-detected original DEX
+#   android/location/Spoof           -> classes6.dex (new class)
+#   android/os/Build                   -> auto-detected original DEX (classes3.dex on target)
+#   android/os/Build$VERSION          -> auto-detected original DEX (classes3.dex on target)
+#   android/os/BuildSpoof              -> classes3.dex (new class)
+#
+# The builder preserves the original classes*.dex boundaries. It never merges all
+# classes into one DEX, which avoids changing the boot class path layout.
+
+BuildSpoof runtime: android/os/Build.smali + android/os/Build$VERSION.smali + new android/os/BuildSpoof.smali
+
+Serial spoof: android/os/SemSystemProperties.smali -> getDeviceSerialNumber() reads serialnumber from /data/build.prop via BuildSpoof, falling back to ril.serialnumber.
