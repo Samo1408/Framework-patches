@@ -148,22 +148,8 @@
     .registers 2
 
     .line 137
-    # BuildSpoof owns the Samsung-only decision. This keeps getSalesCode
-    # isolated and avoids calling BuildSpoof recursively for manufacturer.
-    const-string v0, "ro.csc.sales_code"
-    invoke-static {v0}, Landroid/os/BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;
-    move-result-object v0
+    invoke-static {}, Landroid/os/BuildSpoof;->getSalesCode()Ljava/lang/String;
 
-    if-eqz v0, :cond_sales_fallback
-    invoke-virtual {v0}, Ljava/lang/String;->isEmpty()Z
-    move-result v1
-    if-nez v1, :cond_sales_fallback
-    return-object v0
-
-    :cond_sales_fallback
-    const-string/jumbo v0, "ro.csc.sales_code"
-    const-string v1, ""
-    invoke-static {v0, v1}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
     move-result-object v0
     return-object v0
 .end method
