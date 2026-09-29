@@ -189,6 +189,38 @@
     .registers 5
     invoke-static {}, Landroid/os/BuildSpoof;->load()V
     sget-object v0, Landroid/os/BuildSpoof;->PROPS:Ljava/util/Properties;
+
+    # Samsung-only Sales Code override. Keep the generic BuildSpoof path
+    # unchanged for every other property so existing BuildSpoof hooks retain
+    # their original behavior and 20-second reload semantics.
+    const-string v1, "ro.csc.sales_code"
+    invoke-virtual {v1, p0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    move-result v2
+    if-eqz v2, :cond_generic
+
+    const-string v1, "manufacturer"
+    invoke-virtual {v0, v1}, Ljava/util/Properties;->getProperty(Ljava/lang/String;)Ljava/lang/String;
+    move-result-object v1
+    if-eqz v1, :cond_sales_none
+
+    const-string v2, "samsung"
+    invoke-virtual {v2, v1}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+    move-result v2
+    if-eqz v2, :cond_sales_none
+
+    const-string v1, "ro.csc.sales_code"
+    invoke-virtual {v0, v1}, Ljava/util/Properties;->containsKey(Ljava/lang/Object;)Z
+    move-result v2
+    if-eqz v2, :cond_sales_none
+    invoke-virtual {v0, v1}, Ljava/util/Properties;->getProperty(Ljava/lang/String;)Ljava/lang/String;
+    move-result-object v1
+    return-object v1
+
+    :cond_sales_none
+    const/4 v0, 0x0
+    return-object v0
+
+    :cond_generic
     invoke-virtual {v0, p0}, Ljava/util/Properties;->containsKey(Ljava/lang/Object;)Z
     move-result v1
     if-eqz v1, :cond_10
