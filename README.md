@@ -31,12 +31,3 @@ The archive includes `data/build.prop` as a template; installing the framework J
 
 ## Serial number spoof
 `SemSystemProperties.getDeviceSerialNumber()` first reads the `serialnumber` key from `/data/build.prop` through `BuildSpoof`; when absent/empty it falls back to the original `ril.serialnumber` property.
-
-## Sales Code hook correction
-
-The Samsung Sales Code hook is isolated in `BuildSpoof.get("ro.csc.sales_code")`.
-The existing generic BuildSpoof property path is unchanged. The helper continues to
-check `/data/build.prop` no more than once every 20 seconds and reloads when its
-modified time or length changes. `getSalesCode()` receives an override only when the
-spoofed `manufacturer` is `samsung`; otherwise it falls back to the original system
-property.
