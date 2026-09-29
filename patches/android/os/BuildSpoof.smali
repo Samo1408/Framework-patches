@@ -8,6 +8,7 @@
 .field private static volatile sLastCheck:J
 .field private static volatile sLastModified:J
 .field private static volatile sLastLength:J
+.field private static volatile sLoaded:Z
 
 .method static constructor <clinit>()V
     .registers 3
@@ -18,6 +19,8 @@
     sput-wide v1, Landroid/os/BuildSpoof;->sLastCheck:J
     sput-wide v1, Landroid/os/BuildSpoof;->sLastModified:J
     sput-wide v1, Landroid/os/BuildSpoof;->sLastLength:J
+    const/4 v0, 0x0
+    sput-boolean v0, Landroid/os/BuildSpoof;->sLoaded:Z
     return-void
 .end method
 
@@ -35,30 +38,31 @@
     sub-long v4, v0, v2
     const-wide/32 v6, 0x4e20
     cmp-long v8, v4, v6
-    if-gez v8, :cond_check
+    if-ltz v8, :check
     return-void
-
-    :cond_check
+:check
     sput-wide v0, Landroid/os/BuildSpoof;->sLastCheck:J
-
     new-instance v2, Ljava/io/File;
     const-string v3, "/data/build.prop"
     invoke-direct {v2, v3}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+    invoke-virtual {v2}, Ljava/io/File;->exists()Z
+    move-result v8
+    if-eqz v8, :missing
     invoke-virtual {v2}, Ljava/io/File;->lastModified()J
     move-result-wide v3
     invoke-virtual {v2}, Ljava/io/File;->length()J
     move-result-wide v5
-
-    sget-wide v7, Landroid/os/BuildSpoof;->sLastModified:J
-    cmp-long v9, v3, v7
-    if-nez v9, :cond_reload
-    sget-wide v7, Landroid/os/BuildSpoof;->sLastLength:J
-    cmp-long v9, v5, v7
-    if-nez v9, :cond_reload
+    sget-boolean v8, Landroid/os/BuildSpoof;->sLoaded:Z
+    if-eqz v8, :reload
+    sget-wide v8, Landroid/os/BuildSpoof;->sLastModified:J
+    cmp-long v8, v3, v8
+    if-nez v8, :reload
+    sget-wide v8, Landroid/os/BuildSpoof;->sLastLength:J
+    cmp-long v8, v5, v8
+    if-nez v8, :reload
     return-void
-
-    :cond_reload
-    :try_start_2c
+:reload
+    :try_start
     new-instance v7, Ljava/io/FileInputStream;
     const-string v8, "/data/build.prop"
     invoke-direct {v7, v8}, Ljava/io/FileInputStream;-><init>(Ljava/lang/String;)V
@@ -69,11 +73,26 @@
     sput-object v8, Landroid/os/BuildSpoof;->PROPS:Ljava/util/Properties;
     sput-wide v3, Landroid/os/BuildSpoof;->sLastModified:J
     sput-wide v5, Landroid/os/BuildSpoof;->sLastLength:J
-    :try_end_43
-    .catch Ljava/lang/Throwable; {:try_start_2c .. :try_end_43} :catch_43
-    :catch_43
+    const/4 v8, 0x1
+    sput-boolean v8, Landroid/os/BuildSpoof;->sLoaded:Z
     return-void
-.end method
+    :try_end
+    .catch Ljava/lang/Throwable; {:try_start .. :try_end} :catch
+:catch
+    const/4 v8, 0x0
+    sput-boolean v8, Landroid/os/BuildSpoof;->sLoaded:Z
+    return-void
+:missing
+    new-instance v7, Ljava/util/Properties;
+    invoke-direct {v7}, Ljava/util/Properties;-><init>()V
+    sput-object v7, Landroid/os/BuildSpoof;->PROPS:Ljava/util/Properties;
+    const-wide/16 v8, 0x0
+    sput-wide v8, Landroid/os/BuildSpoof;->sLastModified:J
+    sput-wide v8, Landroid/os/BuildSpoof;->sLastLength:J
+    const/4 v8, 0x0
+    sput-boolean v8, Landroid/os/BuildSpoof;->sLoaded:Z
+    return-void
+.end methodod
 
 .method private static getAlias(Ljava/lang/String;)Ljava/lang/String;
     .registers 2
