@@ -137,6 +137,9 @@ jobs:
             echo "$cls: OK"
           done
 
+          echo '--- Jumbo normalization ---'
+          grep -R -n 'const-string/jumbo' build-debug/dex/classes2 build-debug/dex/classes3 | head -10 || true
+
           echo '--- Universal helper references ---'
           grep -R -l 'Landroid/location/Spoof;' verify_smali | head -20
           grep -R -l 'Landroid/os/BuildSpoof;' verify_smali | head -20
