@@ -58,8 +58,8 @@ jobs:
           unzip -l framework.jar | grep -E 'classes[0-9]*\.dex$'
 
           ORIGINAL_DEX_COUNT=$(unzip -Z1 framework.jar | grep -E '^classes[0-9]*\.dex$' | wc -l)
-          test "$ORIGINAL_DEX_COUNT" -eq 6
-          echo "Original DEX count: $ORIGINAL_DEX_COUNT"
+          test "$ORIGINAL_DEX_COUNT" -ge 1
+          echo "Original DEX count: $ORIGINAL_DEX_COUNT (universal mode)"
 
       - name: Fix build script permissions
         shell: bash
@@ -77,13 +77,13 @@ jobs:
           mkdir -p build-debug
           API=34 SMALI_XMX=6g WORK_DIR="$GITHUB_WORKSPACE/build-debug" bash tools/build_framework.sh \
             framework.jar \
-            framework_A14_sim-cached_patched.jar
+            framework_A14_universal_sim-cached_patched.jar
 
-      
+
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: framework-A14-sim-cached-patched
-          path: framework_A14_sim-cached_patched.jar
+          name: framework-A14-universal-sim-cached-patched
+          path: framework_A14_universal_sim-cached_patched.jar
           if-no-files-found: error
