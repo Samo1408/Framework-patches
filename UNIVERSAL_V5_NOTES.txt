@@ -1,0 +1,6 @@
+Universal V5
+-------------
+Retains V4 selective DEX assembly and adds jumbo normalization before assembling
+modified DEX files. Samsung framework DEX files can cross the 65,535 string-id
+boundary after helper classes are added; const-string/jumbo is required for
+string indices above 0xffff. Untouched DEX files remain byte-for-byte unchanged.
