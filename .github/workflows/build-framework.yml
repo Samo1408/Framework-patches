@@ -33,12 +33,12 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p tools
-          curl -fL --retry 3 --retry-all-errors -o tools/baksmali-3.0.9-fat.jar \
-            https://github.com/baksmali/smali/releases/download/3.0.9/baksmali-3.0.9-fat-release.jar
-          curl -fL --retry 3 --retry-all-errors -o tools/smali-3.0.9-fat.jar \
-            https://github.com/baksmali/smali/releases/download/3.0.9/smali-3.0.9-fat-release.jar
-          test -s tools/baksmali-3.0.9-fat.jar
-          test -s tools/smali-3.0.9-fat.jar
+          curl -fL --retry 3 --retry-all-errors -o tools/baksmali-3.0.10-fat.jar \
+            https://github.com/baksmali/smali/releases/download/3.0.10/baksmali-3.0.10-fat-release.jar
+          curl -fL --retry 3 --retry-all-errors -o tools/smali-3.0.10-fat.jar \
+            https://github.com/baksmali/smali/releases/download/3.0.10/smali-3.0.10-fat-release.jar
+          test -s tools/baksmali-3.0.10-fat.jar
+          test -s tools/smali-3.0.10-fat.jar
 
       - name: Download original framework.jar
         env:
@@ -112,7 +112,7 @@ jobs:
           for dex in verify_output/classes*.dex; do
             name=$(basename "$dex" .dex)
             mkdir -p "verify_smali/$name"
-            java -jar tools/baksmali-3.0.9-fat.jar disassemble \
+            java -jar tools/baksmali-3.0.10-fat.jar disassemble \
               --api 34 \
               --output "verify_smali/$name" \
               "$dex"
