@@ -148,9 +148,14 @@
     .registers 2
 
     .line 137
-    invoke-static {}, Landroid/os/BuildSpoof;->getSalesCode()Ljava/lang/String;
+    const-string/jumbo v0, "ro.csc.sales_code"
+
+    const-string v1, ""
+
+    invoke-static {v0, v1}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
+
     return-object v0
 .end method
 
