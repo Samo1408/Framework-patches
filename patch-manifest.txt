@@ -42,3 +42,5 @@ Build$VERSION:
 #   contained no project hook and replacing it would couple the output to one
 #   Samsung framework revision. The target framework's native Build$VERSION is
 #   preserved unchanged.
+
+Universal v2: only modified DEX files are reassembled; untouched DEX binaries are preserved byte-for-byte.
