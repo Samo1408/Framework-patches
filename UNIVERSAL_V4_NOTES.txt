@@ -1,0 +1,6 @@
+Universal V4
+-------------
+Uses smali/baksmali 3.0.10.
+The V3 selective-assembly design is retained: only modified DEX files are reassembled;
+untouched DEX files remain byte-for-byte from the input framework.jar.
+3.0.10 is used because its release notes include writer fixes and A12-A15 handling fixes.
