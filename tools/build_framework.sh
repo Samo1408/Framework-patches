@@ -3,7 +3,7 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 INPUT="${1:-$ROOT/framework.jar}"
-OUTPUT="${2:-$ROOT/framework_patched.jar}"
+OUTPUT="${2:-$ROOT/framework_p.jar}"
 # Always use an absolute output path. The JAR must be written outside WORK/jar,
 # otherwise zip would try to include the output JAR while creating it.
 if [[ "$OUTPUT" != /* ]]; then
@@ -86,11 +86,35 @@ cp "$ROOT/patches/android/location/Spoof.smali" "$LOCATION_DEX_DIR/android/locat
 echo "BuildSpoof -> $(basename "$BUILD_DEX_DIR").dex"
 echo "Location/SIM Spoof -> $(basename "$LOCATION_DEX_DIR").dex"
 
-rm -f "$WORK/jar"/classes*.dex
-for dex in "${DEXES[@]}"; do
+# Only DEX files containing patched classes/helpers need to be reassembled.
+# Untouched DEX files are kept byte-for-byte from the original framework.jar.
+# This is important for Samsung framework DEX files that are valid on-device
+# but cannot be losslessly round-tripped through smali (e.g. near the 65K
+# reference limit).
+mapfile -t MODIFIED_DEXES < <(
+  python3 - "$PATCH_REPORT" "$BUILD_DEX_DIR" "$LOCATION_DEX_DIR" <<'PY'
+import json, sys
+from pathlib import Path
+p=json.load(open(sys.argv[1], encoding='utf-8'))
+seen=set()
+for r in p.get('results', []):
+    if r.get('status') == 'patched' and r.get('dex'):
+        seen.add(r['dex'] + '.dex')
+for d in sys.argv[2:4]:
+    seen.add(Path(d).name + '.dex')
+for x in sorted(seen):
+    print(x)
+PY
+)
+(( ${#MODIFIED_DEXES[@]} > 0 )) || { echo "No modified DEX files found" >&2; exit 9; }
+
+echo "Modified DEX files: ${MODIFIED_DEXES[*]}"
+echo "Untouched DEX files will be preserved byte-for-byte."
+
+for dex in "${MODIFIED_DEXES[@]}"; do
   name="${dex%.dex}"
   log="$WORK/logs/assemble-$name.log"
-  echo "=== ASSEMBLING $dex ==="
+  echo "=== ASSEMBLING MODIFIED $dex ==="
   echo "Java: $(java -version 2>&1 | head -1)"
   echo "Heap: $SMALI_XMX"
   echo "Source: $WORK/dex/$name"
@@ -101,25 +125,19 @@ for dex in "${DEXES[@]}"; do
   set -e
   cat "$log"
   if [[ "$rc" -ne 0 ]]; then
-    echo "ERROR: smali assemble failed for $dex with exit code $rc" >&2
+    echo "ERROR: smali assemble failed for modified $dex with exit code $rc" >&2
     echo "Diagnostic log: $log" >&2
-    if command -v free >/dev/null 2>&1; then free -h >&2 || true; fi
-    if [[ -r /proc/meminfo ]]; then grep -E 'Mem(Total|Free|Available)|Swap(Total|Free)' /proc/meminfo >&2 || true; fi
     exit "$rc"
   fi
   test -s "$WORK/jar/$dex"
   echo "=== ASSEMBLED $dex: $(stat -c '%s bytes' "$WORK/jar/$dex") ==="
 done
 
-# Preserve the requested DEX 039 format for MT Manager compatibility.
-# smali 3.0.9 may emit DEX 040 when assembling API 34 sources; normalize
-# the generated DEX header to 039 and recalculate both integrity fields.
-# ZIP compression is intentionally unchanged: the final JAR remains a normal
-# compressed ZIP archive to keep its size lower than the original framework.
+# Preserve the requested DEX 039 format for modified DEX files only.
 DEX_VERSION_TOOL="$ROOT/tools/preserve_dex_version.py"
 [[ -f "$DEX_VERSION_TOOL" ]] || { echo "Missing $DEX_VERSION_TOOL" >&2; exit 8; }
 
-for dex in "${DEXES[@]}"; do
+for dex in "${MODIFIED_DEXES[@]}"; do
   python3 "$DEX_VERSION_TOOL" "$WORK/jar/$dex" 039
   echo "=== DEX VERSION $dex: $(python3 -c 'import sys; print(open(sys.argv[1],"rb").read(8)[4:7].decode("ascii"))' "$WORK/jar/$dex") ==="
 done
