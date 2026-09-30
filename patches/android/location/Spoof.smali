@@ -28,19 +28,27 @@
 .method private static getCountryImpl()Ljava/lang/String;
     .registers 4
     const-string v0, "ro.product.locale"
-    const-string v1, "en-GB"
-    invoke-static {v0, v1}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v0}, Landroid/os/BuildSpoof;->get(Ljava/lang/String;)Ljava/lang/String;
     move-result-object v0
-    if-nez v0, :cond_ok
+    if-eqz v0, :cond_default
+    invoke-virtual {v0}, Ljava/lang/String;->trim()Ljava/lang/String;
+    move-result-object v0
+    invoke-virtual {v0}, Ljava/lang/String;->isEmpty()Z
+    move-result v1
+    if-eqz v1, :cond_parse
+
+    :cond_default
     const-string v0, "GB"
     return-object v0
-    :cond_ok
+
+    :cond_parse
     const/16 v1, 0x2d
     invoke-virtual {v0, v1}, Ljava/lang/String;->lastIndexOf(I)I
     move-result v1
     if-gez v1, :cond_has
     const-string v0, "GB"
     return-object v0
+
     :cond_has
     add-int/lit8 v1, v1, 0x1
     invoke-virtual {v0, v1}, Ljava/lang/String;->substring(I)Ljava/lang/String;
@@ -3081,7 +3089,9 @@
     if-eqz v2, :miss
     sget-wide v3, Landroid/location/Spoof;->sCountryTs:J
     sub-long v5, v0, v3
-    const-wide/32 v3, 0x36ee80
+    # Country cache follows BuildSpoof's 20-second file refresh window.
+    # This prevents a previously cached GB value from surviving a country change.
+    const-wide/32 v3, 0x4e20
     cmp-long v3, v5, v3
     if-gez v3, :miss
     return-object v2
