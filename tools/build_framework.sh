@@ -9,8 +9,8 @@ OUTPUT="${2:-$ROOT/framework_A14_universal_sim-cached_patched.jar}"
 if [[ "$OUTPUT" != /* ]]; then
   OUTPUT="$(cd "$(dirname "$OUTPUT")" && pwd)/$(basename "$OUTPUT")"
 fi
-BAKSMALI_JAR="${BAKSMALI_JAR:-$ROOT/tools/baksmali-3.0.9-fat.jar}"
-SMALI_JAR="${SMALI_JAR:-$ROOT/tools/smali-3.0.9-fat.jar}"
+BAKSMALI_JAR="${BAKSMALI_JAR:-$ROOT/tools/baksmali-3.0.10-fat.jar}"
+SMALI_JAR="${SMALI_JAR:-$ROOT/tools/smali-3.0.10-fat.jar}"
 API="${API:-34}"
 
 [[ -f "$INPUT" ]] || { echo "Missing input framework.jar: $INPUT" >&2; exit 2; }
