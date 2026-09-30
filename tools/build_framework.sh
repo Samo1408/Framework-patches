@@ -3,7 +3,7 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 INPUT="${1:-$ROOT/framework.jar}"
-OUTPUT="${2:-$ROOT/framework_p.jar}"
+OUTPUT="${2:-$ROOT/framework_A14_universal_sim-cached_patched.jar}"
 # Always use an absolute output path. The JAR must be written outside WORK/jar,
 # otherwise zip would try to include the output JAR while creating it.
 if [[ "$OUTPUT" != /* ]]; then
@@ -68,18 +68,23 @@ PY
 # Add helper classes to the DEX that contains their primary target class.
 # Cross-DEX references are valid, while co-locating the helper keeps the
 # framework layout close to the original project where possible.
-class_dir() {
+# Resolve the actual DEX root directory from a class path.  The first path
+# component below $WORK/dex is the real DEX name (classes, classes2, ...).
+class_dex_dir() {
   local rel="$1"
-  find "$WORK/dex" -type f -path "*/$rel" -print -quit | xargs -r dirname
+  local hit relpath dexname
+  hit="$(find "$WORK/dex" -type f -path "*/$rel" -print -quit)"
+  [[ -n "$hit" ]] || return 1
+  relpath="${hit#"$WORK/dex/"}"
+  dexname="${relpath%%/*}"
+  printf '%s/%s' "$WORK/dex" "$dexname"
 }
 
-BUILD_DIR="$(class_dir android/os/Build.smali)"
-LOCATION_DIR="$(class_dir android/location/Location.smali)"
-[[ -n "$BUILD_DIR" && -d "$BUILD_DIR" ]] || { echo "Cannot locate Build.smali after universal patch" >&2; exit 6; }
-[[ -n "$LOCATION_DIR" && -d "$LOCATION_DIR" ]] || { echo "Cannot locate Location.smali after universal patch" >&2; exit 6; }
+BUILD_DEX_DIR="$(class_dex_dir android/os/Build.smali)"
+LOCATION_DEX_DIR="$(class_dex_dir android/location/Location.smali)"
+[[ -n "$BUILD_DEX_DIR" && -d "$BUILD_DEX_DIR" ]] || { echo "Cannot locate Build.smali after universal patch" >&2; exit 6; }
+[[ -n "$LOCATION_DEX_DIR" && -d "$LOCATION_DEX_DIR" ]] || { echo "Cannot locate Location.smali after universal patch" >&2; exit 6; }
 
-BUILD_DEX_DIR="$(dirname "$BUILD_DIR")"
-LOCATION_DEX_DIR="$(dirname "$LOCATION_DIR")"
 mkdir -p "$BUILD_DEX_DIR/android/os" "$LOCATION_DEX_DIR/android/location"
 cp "$ROOT/patches/android/os/BuildSpoof.smali" "$BUILD_DEX_DIR/android/os/BuildSpoof.smali"
 cp "$ROOT/patches/android/location/Spoof.smali" "$LOCATION_DEX_DIR/android/location/Spoof.smali"
