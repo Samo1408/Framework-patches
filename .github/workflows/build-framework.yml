@@ -77,13 +77,13 @@ jobs:
           mkdir -p build-debug
           API=34 SMALI_XMX=6g WORK_DIR="$GITHUB_WORKSPACE/build-debug" bash tools/build_framework.sh \
             framework.jar \
-            framework_patched.jar
+            framework_p.jar
 
-
+      
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: framework-A14-universal-patched
-          path: framework_patched.jar
+          name: framework-universal
+          path: framework_p.jar
           if-no-files-found: error
