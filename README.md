@@ -15,7 +15,7 @@ in a hard-coded DEX that does not exist in another Samsung build.
 Requirements:
 - Samsung Android 14 framework.jar with the standard framework target classes.
 - Java 17.
-- baksmali/smali 3.0.9 fat jars (downloaded by the workflow).
+- baksmali/smali 3.0.10 fat jars (downloaded by the workflow).
 
 Do not use the previously generated `framework_A14_sim-cached_fixed.jar`.
 \n## v3 diagnostics\n\nThe build script assembles each DEX separately with a bounded Java heap and logs each assembly. On failure, `build-debug/` is preserved and uploaded as a diagnostic artifact.\n
