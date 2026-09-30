@@ -3,7 +3,7 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 INPUT="${1:-$ROOT/framework.jar}"
-OUTPUT="${2:-$ROOT/framework_A14_universal_sim-cached_patched.jar}"
+OUTPUT="${2:-$ROOT/framework_patched.jar}"
 # Always use an absolute output path. The JAR must be written outside WORK/jar,
 # otherwise zip would try to include the output JAR while creating it.
 if [[ "$OUTPUT" != /* ]]; then
