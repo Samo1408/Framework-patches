@@ -17,3 +17,10 @@
 BuildSpoof runtime: android/os/Build.smali + android/os/Build$VERSION.smali + new android/os/BuildSpoof.smali
 
 Serial spoof: android/os/SemSystemProperties.smali -> getDeviceSerialNumber() reads serialnumber from /data/build.prop via BuildSpoof, falling back to ril.serialnumber.
+
+# Country/locale fix
+# android/location/Spoof.getCountryImpl() no longer reads SystemProperties or /system/build.prop.
+# It reads ro.product.locale exclusively through android/os/BuildSpoof.get().
+# BuildSpoof reads /system/spoof.prop and refreshes at most every 20 seconds, while also
+# reloading immediately when the file metadata changes. This prevents a missing/empty file
+# at boot from permanently caching the GB fallback and allows country changes to be observed.
