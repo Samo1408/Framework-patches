@@ -131,6 +131,7 @@ def patch_one(dex_root: Path, patch_root: Path, target_rel: str, marker: str):
         target.write_text(new_text, encoding='utf-8')
     return {
         "target": target_rel,
+        "dex": target.parent.parent.name,
         "status": "patched" if applied else "no-matching-methods",
         "methods": applied,
         "missing_methods": missing,
