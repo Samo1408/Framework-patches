@@ -1,0 +1,44 @@
+# Ghost/SIM cached A14 patch — UNIVERSAL Samsung Android 14
+#
+# The patcher no longer assumes a fixed classesN.dex layout. It disassembles
+# every classes*.dex, locates target classes by descriptor, and replaces only
+# the methods containing the project spoof hooks. All other vendor-specific
+# fields/methods remain from the input framework.jar.
+
+Functional targets:
+#   android/location/Country#getCountryIso()
+#   android/location/Location#getLatitude(), getLongitude(), getSpeed()
+#   android/telephony/SubscriptionInfo#getCarrierName(), getCountryIso(),
+#       getDisplayName(), getMccString(), getMncString()
+#   android/telephony/TelephonyManager#getSimCountryIsoForPhone(),
+#       getNetworkCountryIso(), getNetworkOperatorForPhone(),
+#       getNetworkOperatorName(), getSimOperatorNameForPhone(),
+#       getSimOperatorNumericForPhone()
+#   android/os/Build#deriveFingerprint(), getRadioVersion(), getString()
+#   android/os/SemSystemProperties#getDeviceSerialNumber()
+
+Helpers:
+#   android/os/BuildSpoof  -> placed in the DEX containing android/os/Build
+#   android/location/Spoof -> placed in the DEX containing android/location/Location
+
+BuildSpoof runtime:
+#   Reads /system/spoof.prop and refreshes at most every 20 seconds while also
+#   checking file metadata, preserving the original project behavior.
+
+Serial spoof:
+#   SemSystemProperties#getDeviceSerialNumber() reads the serialnumber override
+#   through BuildSpoof and falls back to ril.serialnumber.
+
+Country/locale fix:
+#   android/location/Spoof#getCountryImpl() reads ro.product.locale exclusively
+#   through BuildSpoof instead of SystemProperties.
+
+DEX behavior:
+#   Any number of classes*.dex is accepted. DEX filenames/order/count are
+#   preserved. No hard-coded classes3.dex/classes6.dex requirement remains.
+
+Build$VERSION:
+#   The previous complete-class replacement is intentionally removed. Its patch
+#   contained no project hook and replacing it would couple the output to one
+#   Samsung framework revision. The target framework's native Build$VERSION is
+#   preserved unchanged.
