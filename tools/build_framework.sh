@@ -116,6 +116,42 @@ PY
 echo "Modified DEX files: ${MODIFIED_DEXES[*]}"
 echo "Untouched DEX files will be preserved byte-for-byte."
 
+# Samsung framework DEX files can sit above the 65,535 string-id boundary.
+# Adding our helper classes shifts string indices, so an existing const-string
+# can become an index such as 65548. DEX provides const-string/jumbo exactly
+# for this case. Normalize all const-string instructions in modified DEX trees
+# before assembly; jumbo is valid for both low and high string indices and does
+# not change the runtime value or method semantics.
+for dex in "${MODIFIED_DEXES[@]}"; do
+  name="${dex%.dex}"
+  DEX_SRC="$WORK/dex/$name"
+  python3 - "$DEX_SRC" <<'PY'
+from pathlib import Path
+import sys
+root = Path(sys.argv[1])
+changed = 0
+for p in root.rglob('*.smali'):
+    try:
+        text = p.read_text(encoding='utf-8')
+    except UnicodeDecodeError:
+        continue
+    lines = text.splitlines(keepends=True)
+    out = []
+    local = 0
+    for line in lines:
+        stripped = line.lstrip()
+        indent = line[:len(line)-len(stripped)]
+        if stripped.startswith('const-string ') and not stripped.startswith('const-string/jumbo '):
+            line = indent + stripped.replace('const-string ', 'const-string/jumbo ', 1)
+            local += 1
+        out.append(line)
+    if local:
+        p.write_text(''.join(out), encoding='utf-8')
+        changed += local
+print(f"Jumbo-normalized {changed} const-string instructions in {root.name}.dex")
+PY
+done
+
 for dex in "${MODIFIED_DEXES[@]}"; do
   name="${dex%.dex}"
   log="$WORK/logs/assemble-$name.log"
