@@ -27,7 +27,7 @@ else
   KEEP_WORK="${KEEP_WORK:-0}"
 fi
 trap 'status=$?; if [[ "$KEEP_WORK" != "1" ]]; then rm -rf "$WORK"; fi; exit "$status"' EXIT
-mkdir -p "$WORK/jar" "$WORK/dex" "$WORK/out" "$WORK/logs"
+mkdir -p "$WORK/jar" "$WORK/original_dex" "$WORK/dex" "$WORK/out" "$WORK/logs"
 
 SMALI_XMX="${SMALI_XMX:-6g}"
 SMALI_JAVA_OPTS="${SMALI_JAVA_OPTS:--Xmx$SMALI_XMX -XX:+UseSerialGC}"
@@ -35,6 +35,7 @@ SMALI_JAVA_OPTS="${SMALI_JAVA_OPTS:--Xmx$SMALI_XMX -XX:+UseSerialGC}"
 unzip -q "$INPUT" -d "$WORK/jar"
 mapfile -t DEXES < <(find "$WORK/jar" -maxdepth 1 -type f -name 'classes*.dex' -printf '%f\n' | sort -V)
 (( ${#DEXES[@]} > 0 )) || { echo "No classes*.dex found" >&2; exit 3; }
+cp "$WORK/jar"/classes*.dex "$WORK/original_dex/"
 
 for dex in "${DEXES[@]}"; do
   name="${dex%.dex}"
@@ -152,35 +153,119 @@ print(f"Jumbo-normalized {changed} const-string instructions in {root.name}.dex"
 PY
 done
 
+# First try normal round-trip assembly. If a Samsung DEX cannot be
+# round-tripped because its global reference tables are already at a 16-bit
+# boundary, fall back to an overlay DEX containing only the patched classes.
+# The original DEX is then shifted later in the multi-dex sequence and remains
+# byte-for-byte unchanged. This avoids rewriting unrelated vendor classes.
+OVERLAY_ROOT="$WORK/overlays"
+mkdir -p "$OVERLAY_ROOT"
+declare -a OVERLAY_NAMES=()
+
 for dex in "${MODIFIED_DEXES[@]}"; do
   name="${dex%.dex}"
   log="$WORK/logs/assemble-$name.log"
   echo "=== ASSEMBLING MODIFIED $dex ==="
-  echo "Java: $(java -version 2>&1 | head -1)"
-  echo "Heap: $SMALI_XMX"
-  echo "Source: $WORK/dex/$name"
-  echo "Output: $WORK/jar/$dex"
   set +e
   java $SMALI_JAVA_OPTS -jar "$SMALI_JAR" assemble --api "$API" --output "$WORK/jar/$dex" "$WORK/dex/$name" >"$log" 2>&1
   rc=$?
   set -e
   cat "$log"
-  if [[ "$rc" -ne 0 ]]; then
-    echo "ERROR: smali assemble failed for modified $dex with exit code $rc" >&2
-    echo "Diagnostic log: $log" >&2
-    exit "$rc"
+  if [[ "$rc" -eq 0 && -s "$WORK/jar/$dex" ]]; then
+    echo "=== ASSEMBLED $dex ==="
+    continue
   fi
-  test -s "$WORK/jar/$dex"
-  echo "=== ASSEMBLED $dex: $(stat -c '%s bytes' "$WORK/jar/$dex") ==="
+
+  echo "=== ROUND-TRIP FAILED FOR $dex; BUILDING CLASS OVERLAY ==="
+  rm -f "$WORK/jar/$dex"
+  overlay="$OVERLAY_ROOT/$name"
+  rm -rf "$overlay"
+  mkdir -p "$overlay"
+
+  # Copy only classes actually modified by the universal patcher.
+  python3 - "$PATCH_REPORT" "$name" "$WORK/dex/$name" "$overlay" "$ROOT/patches" <<'PY'
+import json, shutil, sys
+from pathlib import Path
+report=json.load(open(sys.argv[1],encoding='utf-8'))
+dex=sys.argv[2]
+src=Path(sys.argv[3]); dst=Path(sys.argv[4]); patchroot=Path(sys.argv[5])
+targets=[]
+for r in report.get("results",[]):
+    if r.get("status")=="patched" and r.get("dex")==dex:
+        targets.append(r["target"])
+for rel in targets:
+    p=src/rel
+    if not p.is_file():
+        raise SystemExit(f"Missing patched class for overlay: {p}")
+    q=dst/rel; q.parent.mkdir(parents=True,exist_ok=True)
+    shutil.copy2(p,q)
+# Helpers referenced by the patched methods.
+for rel in ("android/os/BuildSpoof.smali","android/location/Spoof.smali"):
+    p=patchroot/rel
+    if p.is_file():
+        q=dst/rel; q.parent.mkdir(parents=True,exist_ok=True)
+        shutil.copy2(p,q)
+print("Overlay classes:", ", ".join(targets))
+PY
+
+  overlay_dex="$OVERLAY_ROOT/${name}.dex"
+  java $SMALI_JAVA_OPTS -jar "$SMALI_JAR" assemble --api "$API" --output "$overlay_dex" "$overlay" >"$WORK/logs/overlay-$name.log" 2>&1
+  cat "$WORK/logs/overlay-$name.log"
+  test -s "$overlay_dex" || { echo "ERROR: overlay assembly failed for $dex" >&2; exit "$rc"; }
+  OVERLAY_NAMES+=("$name")
 done
+
+# Build the final multi-dex set. Normal modified DEXs use their original
+# positions. Failed round-trip DEXs are replaced by an overlay at their
+# original position; their untouched original bytes are shifted after it.
+# Android's class lookup uses the first definition, so the overlay wins.
+FINAL_DIR="$WORK/finaljar"
+rm -rf "$FINAL_DIR"; mkdir -p "$FINAL_DIR"
+for f in "$WORK/jar"/*; do
+  [[ -f "$f" ]] || continue
+  cp -p "$f" "$FINAL_DIR/$(basename "$f")"
+done
+
+# Track original DEX names and insert overlays by shifting the original DEX
+# and every later DEX one slot. This keeps classes.dex/classes2.dex sequencing.
+declare -A OVERLAY_FOR
+for name in "${OVERLAY_NAMES[@]}"; do OVERLAY_FOR["$name"]=1; done
+
+if (( ${#OVERLAY_NAMES[@]} > 0 )); then
+  rm -f "$FINAL_DIR"/classes*.dex
+  output_index=0
+  for orig in "${DEXES[@]}"; do
+    oname="${orig%.dex}"
+    outdex=""
+    if [[ "${OVERLAY_FOR[$oname]:-0}" == "1" ]]; then
+      outdex="classes.dex"
+      (( output_index > 0 )) && outdex="classes$((output_index+1)).dex"
+      cp -p "$OVERLAY_ROOT/$oname.dex" "$FINAL_DIR/$outdex"
+      output_index=$((output_index+1))
+      outdex="classes.dex"
+      (( output_index > 0 )) && outdex="classes$((output_index+1)).dex"
+      cp -p "$WORK/original_dex/$orig" "$FINAL_DIR/$outdex"
+      output_index=$((output_index+1))
+    else
+      outdex="classes.dex"
+      (( output_index > 0 )) && outdex="classes$((output_index+1)).dex"
+      cp -p "$WORK/jar/$orig" "$FINAL_DIR/$outdex"
+      output_index=$((output_index+1))
+    fi
+  done
+fi
+
+# Switch final packaging source to FINAL_DIR.
+rm -rf "$WORK/jar"
+mv "$FINAL_DIR" "$WORK/jar"
 
 # Preserve the requested DEX 039 format for modified DEX files only.
 DEX_VERSION_TOOL="$ROOT/tools/preserve_dex_version.py"
 [[ -f "$DEX_VERSION_TOOL" ]] || { echo "Missing $DEX_VERSION_TOOL" >&2; exit 8; }
 
-for dex in "${MODIFIED_DEXES[@]}"; do
-  python3 "$DEX_VERSION_TOOL" "$WORK/jar/$dex" 039
-  echo "=== DEX VERSION $dex: $(python3 -c 'import sys; print(open(sys.argv[1],"rb").read(8)[4:7].decode("ascii"))' "$WORK/jar/$dex") ==="
+for dex in "$WORK"/jar/classes*.dex; do
+  [[ -f "$dex" ]] || continue
+  python3 "$DEX_VERSION_TOOL" "$dex" 039
 done
 
 # Modified JARs must not retain stale signing metadata.
